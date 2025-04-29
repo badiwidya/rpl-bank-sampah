@@ -45,13 +45,17 @@ ls .ssh
 > 💡 **Note:** untuk macos gua ga bisa menjamin ini bener, soalnya di dokumentasinya lumayan  kondisional buat macos. Tapi kalo windows harusnya pasti bisa, udah gua test sendiri soalnya.
 
 > 💡 **Note:** kalo mau bisa langsung baca [dokumentasi](https://docs.github.com/en/authentication/connecting-to-github-with-ssh) buat cara yang lebih lengkap dan kalo ada error siapa tau ada cara ngatasinnya di sana.
+
 Selama ga ada step yang nyebutin mac/windows, itu berarti step itu sama untuk kedua OS ya.
+
 Buka terminal/windows powershell, terus ketik:
 ```zsh
 ssh-keygen -t ed_25519 -C "emailkalian@example.com"
 ```
 Kalo udah, kalian enter enter aja, saran gua ngga usah dikasih password, biar ngga ribet pas pull sama push nanti.
-Selanjutnya jalanin ssh-agent terus tambahin ssh-key ke ssh-agent
+
+Selanjutnya jalanin ssh-agent terus tambahin ssh-key ke ssh-agent.
+
 Untuk windows buka Windows Powershell as administrator terus jalanin ini:
 ```powershell
 Get-Service -Name ssh-agent | Set-Service -StartupType Manual
