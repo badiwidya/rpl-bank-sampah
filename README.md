@@ -149,5 +149,7 @@ Nah habis itu baru deh, website bisa dibuka. Kalo kalian ga rubah nama foldernya
 
 <p align="center"><img src="docs/images/welcome-page-laravel.png" width="600" alt="Laravel Herd Site"></p>
 
+> ⚠️ Kita mau branch main repositori ini biar tetep bersih, kalo kalian mau eksperimen/eksplor dan belajar pertimbangin bikin proyek laravel baru pake herd (tanpa starter kit), atau kalian bisa bikin branch baru dari repo ini. Di folder repo lokal kalian ketik `git switch -c nama_branch` dan kalo kalian udah selesai eksperimen/mau ngulang bersih lagi bisa dihapus branch yang itu dan bikin baru lagi.
+
 ## Alur Kerja Git dan Github
 ### Todo
