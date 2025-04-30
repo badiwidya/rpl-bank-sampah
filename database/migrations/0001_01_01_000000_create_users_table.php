@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->string('no_telepon')->unique();
+            $table->timestamp('email_verified_at')->nullable(); // Karena kita mau user verifikasi email ini tetep ada
             $table->string('password');
+            $table->enum('role', ['nasabah', 'admin'])->default('nasabah');
             $table->rememberToken();
             $table->timestamps();
         });
