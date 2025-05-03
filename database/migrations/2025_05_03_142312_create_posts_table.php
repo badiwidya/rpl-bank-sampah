@@ -19,6 +19,7 @@ return new class extends Migration
                 ->constrained('users')
                 ->nullOnDelete();
             $table->string('judul');
+            $table->string('cover_url')->nullable();
             $table->string('slug')->unique();
             $table->text('konten');
             $table->timestamps();
