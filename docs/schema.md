@@ -6,6 +6,7 @@
 
 ### users
 - `nama`
+- `avatar_url`
 - `email`: unik
 - `no_telepon`: unik
 - `email_verified_at`
