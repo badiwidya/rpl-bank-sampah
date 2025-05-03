@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('nama');
             $table->string('email')->unique();
             $table->string('no_telepon')->unique();
             $table->timestamp('email_verified_at')->nullable(); // Karena kita mau user verifikasi email ini tetep ada
