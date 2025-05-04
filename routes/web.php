@@ -19,8 +19,10 @@ Route::name('nasabah.')->group(function () {
         Route::get('/register', [RegisterController::class, 'create'])->name('register.show');
         Route::post('/register', [RegisterController::class, 'store'])->name('register.submit');
 
-        Route::get('/login', [SessionController::class, 'create'])->name('login.show');
-        Route::post('/login', [SessionController::class, 'store'])->name('login.submit');
+        Route::prefix('nasabah')->group(function () {
+            Route::get('/login', [SessionController::class, 'create'])->name('login.show');
+            Route::post('/login', [SessionController::class, 'store'])->name('login.submit');
+        });
 
     });
 

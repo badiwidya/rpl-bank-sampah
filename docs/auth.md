@@ -40,9 +40,9 @@ Controller: `App\Http\Controller\Auth\SessionController`
 
 ### Route
 Middleware: **guest**
-- `GET /login` - nampilin halaman login nasabah (nama route: `nasabah.login.show`)
+- `GET /nasabah/login` - nampilin halaman login nasabah (nama route: `nasabah.login.show`)
+- `POST /nasabah/login` - submit login nasabah (nama route: `nasabah.login.submit`)
 - `GET /admin/login` - nampilin halaman login admin (nama route: `admin.login.show`)
-- `POST /login` - submit login nasabah (nama route: `nasabah.login.submit`)
 - `POST /admin/login` - submit login admin (nama route: `admin.login.submit`)
 - `POST /logout` - logout user (nama route: `auth.logout`)
 
