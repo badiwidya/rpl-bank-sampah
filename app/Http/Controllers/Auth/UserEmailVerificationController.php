@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Notifications\UserVerification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Validation\ValidationException;
 
 class UserEmailVerificationController extends Controller
 {
@@ -37,8 +40,27 @@ class UserEmailVerificationController extends Controller
 
     }
 
-    public function resend()
+    public function resend(Request $request)
     {
+        
+        $user = Auth::user();
+
+        $key = 'resend-email:' . $user->id . '|' . $request->ip();
+
+        if (RateLimiter::tooManyAttempts($key, 1)) {
+            $seconds = RateLimiter::availableIn($key);
+            throw ValidationException::withMessages([
+                'error' => 'Coba lagi dalam ' . $seconds . ' detik',
+            ])->status(429);
+        }
+
+        RateLimiter::hit($key, 60);
+
+        $url = $user->generateVerificationUrl();
+
+        $user->notify(new UserVerification($url));
+
+        return back()->with('success', 'Email verifikasi berhasil dikirim ulang.');
 
     }
 }
