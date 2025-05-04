@@ -9,8 +9,16 @@ Route::get('/', function () {
 });
 
 Route::name('nasabah.')->group(function () {
-    Route::get('/register', [RegisterController::class, 'create'])->name('register.show');
-    Route::post('/register', [RegisterController::class, 'store'])->name('register.submit');
+    Route::middleware('guest')->group(function () {
+        Route::get('/register', [RegisterController::class, 'create'])->name('register.show');
+        Route::post('/register', [RegisterController::class, 'store'])->name('register.submit');
+    });
+
+    Route::get('/dashboard')->name('dashboard.index');
+});
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/dashboard')->name('dashboard.index');
 });
 
 Route::prefix('email')->name('mail.')->group(function () {
