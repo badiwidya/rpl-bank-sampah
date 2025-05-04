@@ -55,3 +55,18 @@ Middleware: **guest**
 - Session `login`: ada dua error yang dikirim sebagai session `login` -> kredensial invalid sama rate limit ke semua view login
 - Session `wrong_route`: nampilin `Silakan login sebagai {role}` kalo salah tempat login
 - Sisanya error validasi sesuai nama field 
+
+## Forgot Password
+Controller: `App\Http\Controller\Auth\ForgotPasswordController`
+
+### Route
+Middleware: **guest**
+
+- `GET /forgot-password` - nampilin view untuk ngisi email (nama route: `auth.password.request`)
+- `POST /forgot-password` - handle form untuk ngirim email isi link reset password (nama route: `auth.password.email`)
+- `GET /reset-password/{token}` - nampilin form reset password (password baru) (nama route: `auth.password.reset`)
+- `POST /reset-password` - handle update password user (nama route: `auth.password.update`)
+
+### Error/Session Yang Dikirim
+- `status`
+- `email`
