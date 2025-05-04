@@ -4,6 +4,8 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+use Illuminate\Auth\Passwords\CanResetPassword as PasswordsCanResetPassword;
+use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -12,10 +14,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\URL;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, PasswordsCanResetPassword;
 
     /**
      * The attributes that are mass assignable.
@@ -64,6 +66,14 @@ class User extends Authenticatable implements MustVerifyEmail
                 'id' => $this->id,
             ]
         );
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+
+        $url = url(route('auth.password.reset', ['token' => $token, 'email' => $this->email], false));
+
+        return $this->notify(new \App\Notifications\ResetPassword($url));
     }
 
     public function profile(): HasOne
