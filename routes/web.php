@@ -66,4 +66,5 @@ Route::prefix('email')->name('mail.')->middleware(['auth', 'unverified'])->group
 
 });
 
+Route::get('/login', function () {})->middleware(['guest'])->name('auth.login.choice');
 Route::post('/logout', [SessionController::class, 'destroy'])->middleware(['auth'])->name('auth.logout');

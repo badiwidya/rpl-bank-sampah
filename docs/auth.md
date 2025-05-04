@@ -40,6 +40,7 @@ Controller: `App\Http\Controller\Auth\SessionController`
 
 ### Route
 Middleware: **guest**
+- `GET /login` - nampilin halaman pilihan untuk login nasabah/admin (nama route: `auth.login.choice`)
 - `GET /nasabah/login` - nampilin halaman login nasabah (nama route: `nasabah.login.show`)
 - `POST /nasabah/login` - submit login nasabah (nama route: `nasabah.login.submit`)
 - `GET /admin/login` - nampilin halaman login admin (nama route: `admin.login.show`)
