@@ -36,7 +36,8 @@ class UserEmailVerificationController extends Controller
 
         $user->save();
 
-        return redirect()->route('nasabah.dashboard.index'); // OTW
+        return redirect()->route('nasabah.dashboard.index')
+            ->with('success', 'Email berhasil diverifikasi');
 
     }
 
