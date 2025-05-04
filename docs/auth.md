@@ -1,6 +1,7 @@
 # Autentikasi
 
 ## Registrasi
+Controller : `App\Http\Controller\Auth\RegisterController`
 
 ### Route
 Middleware: **guest**
@@ -15,6 +16,9 @@ Middleware: **guest**
 - `password_confirmation` - untuk konfirmasi password
 
 ## Verifikasi Email
+Controller: `App\Http\Controller\Auth\UserEmailVerificationController`
+
+Notification: `App\Notifications\UserVerification`
 
 ### Route
 Middleware: **auth**, **unverified**
