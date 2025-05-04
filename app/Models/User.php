@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\URL;
 
 class User extends Authenticatable
 {
@@ -49,6 +50,18 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function generateVerificationUrl()
+    {
+        return URL::temporarySignedRoute(
+            'mail.verification.verify',
+            now()->addMinutes(50),
+            [
+                'hash' => hash('sha256', $this->email),
+                'id' => $this->id,
+            ]
+        );
     }
 
     public function profile(): HasOne
