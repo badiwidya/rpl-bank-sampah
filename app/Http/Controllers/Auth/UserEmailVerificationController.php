@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\URL;
 
 class UserEmailVerificationController extends Controller
 {
@@ -12,13 +14,31 @@ class UserEmailVerificationController extends Controller
         return view('auth.email-notify');
     }
 
-    public function verify()
+    public function verify(Request $request)
     {
+        $userId = $request->route('id');
+        $hashedEmail = $request->route('hash');
+
+        if (! URL::hasValidSignature($request)) {
+            abort(419, "Invalid or expired link");
+        }
+
+        $user = Auth::user();
+
+        if ($user->id != $userId || hash('sha256', $user->email) != $hashedEmail) {
+            abort(403, "Forbidden");
+        }
+
+        $user->email_verified_at = now();
+
+        $user->save();
+
+        return redirect()->route('nasabah.dashboard.index'); // OTW
 
     }
 
     public function resend()
     {
-        
+
     }
 }
