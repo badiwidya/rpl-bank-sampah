@@ -72,9 +72,9 @@ Route::name('auth.')->group(function () {
     Route::post('/logout', [SessionController::class, 'destroy'])->middleware(['auth'])->name('logout');
 
     Route::name('password.')->group(function () {
-        Route::get('/forgot-password', [ForgotPasswordController::class, 'create'])->name('password.request');
-        Route::post('/forgot-password', [ForgotPasswordController::class, 'store'])->name('password.email');
-        Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'edit'])->name('password.reset');
-        Route::post('/reset-password', [ForgotPasswordController::class, 'update'])->name('password.update');
+        Route::get('/forgot-password', [ForgotPasswordController::class, 'create'])->name('request');
+        Route::post('/forgot-password', [ForgotPasswordController::class, 'store'])->name('email');
+        Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'edit'])->name('reset');
+        Route::post('/reset-password', [ForgotPasswordController::class, 'update'])->name('update');
     });
 });
