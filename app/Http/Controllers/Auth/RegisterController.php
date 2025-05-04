@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Notifications\UserVerification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
@@ -35,6 +36,12 @@ class RegisterController extends Controller
         $user->profile()->create();
 
         Auth::login($user);
+
+        $url = $user->generateVerificationUrl();
+
+        $user->notify(new UserVerification($url));
+
+        return redirect()->route('mail.verification.notice');
 
     }
 }
