@@ -14,14 +14,14 @@ Route::name('nasabah.')->group(function () {
         Route::post('/register', [RegisterController::class, 'store'])->name('register.submit');
     });
 
-    Route::middleware(['auth', 'role:nasabah'])->get('/dashboard', function () {})->name('dashboard.index');
+    Route::middleware(['auth', 'verified', 'role:nasabah'])->get('/dashboard', function () {})->name('dashboard.index');
 });
 
 Route::prefix('admin')->name('admin.')->group(function () {
-    Route::middleware(['auth', 'role:admin'])->get('/dashboard', function () {})->name('dashboard.index');
+    Route::middleware(['auth', 'verified', 'role:admin'])->get('/dashboard', function () {})->name('dashboard.index');
 });
 
-Route::prefix('email')->name('mail.')->group(function () {
+Route::prefix('email')->name('mail.')->middleware(['auth', 'unverified'])->group(function () {
     Route::get('/verify', [UserEmailVerificationController::class, 'notice'])->name('verification.notice');
     Route::get('/verify/{hash}/{id}', [UserEmailVerificationController::class, 'verify'])->name('verification.verify');
     Route::post('/verify', [UserEmailVerificationController::class, 'resend'])->name('verification.resend');
