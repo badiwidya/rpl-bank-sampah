@@ -68,6 +68,14 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
         );
     }
 
+    public function sendPasswordResetNotification($token)
+    {
+
+        $url = url(route('auth.password.reset', ['token' => $token, 'email' => $this->email], false));
+
+        return $this->notify(new \App\Notifications\ResetPassword($url));
+    }
+
     public function profile(): HasOne
     {
         return $this->hasOne(ProfilNasabah::class);
