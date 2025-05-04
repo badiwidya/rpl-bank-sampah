@@ -10,9 +10,15 @@ class SessionController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $accessFrom = $request->route()->getName();
+
+        if ($accessFrom === 'nasabah.login.show') {
+            return view('auth.nasabah-login');
+        } else {
+            return view('auth.admin-login');
+        }
     }
 
     /**
