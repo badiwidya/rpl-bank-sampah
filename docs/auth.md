@@ -3,7 +3,7 @@
 ## Registrasi
 
 ### Route
-Middleware: **guest** (otw)
+Middleware: **guest**
 - `GET /register` return view ke auth.register
 - `POST /register` submit form
 
@@ -17,6 +17,7 @@ Middleware: **guest** (otw)
 ## Verifikasi Email
 
 ### Route
+Middleware: **auth**, **unverified**
 - `GET /email/verify` return view notifikasi cek email (auth.email-notify), jadi isinya cuma "Link verifikasi telah dikirimkan, silakan cek inbox email Anda." sama button buat Resend.
 - `GET /email/verify/{hash}/{id}` ini format link yang bakal didapet user di emailnya, dan buat verifikasi juga.
 - `POST /email/verify` buat resend email
