@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\SessionController;
 use App\Http\Controllers\Auth\UserEmailVerificationController;
@@ -66,5 +67,14 @@ Route::prefix('email')->name('mail.')->middleware(['auth', 'unverified'])->group
 
 });
 
-Route::get('/login', function () {})->middleware(['guest'])->name('auth.login.choice');
-Route::post('/logout', [SessionController::class, 'destroy'])->middleware(['auth'])->name('auth.logout');
+Route::name('auth.')->group(function () {
+    Route::get('/login', function () {})->middleware(['guest'])->name('login.choice');
+    Route::post('/logout', [SessionController::class, 'destroy'])->middleware(['auth'])->name('logout');
+
+    Route::name('password.')->group(function () {
+        Route::get('/forgot-password', [ForgotPasswordController::class, 'create'])->name('password.request');
+        Route::post('/forgot-password', [ForgotPasswordController::class, 'store'])->name('password.email');
+        Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'edit'])->name('password.reset');
+        Route::post('/reset-password', [ForgotPasswordController::class, 'update'])->name('password.update');
+    });
+});
