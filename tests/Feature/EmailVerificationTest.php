@@ -11,7 +11,8 @@ test('User akan mendapatkan email setelah mendaftar', function () {
     Notification::fake();
 
     $userInput = [
-        'nama' => 'Makise Kurisu',
+        'nama_depan' => 'Makise',
+        'nama_belakang' => 'Kurisu',
         'email' => 'makise@amadeus.com',
         'no_telepon' => '0812345567',
         'password' => 'kurisu<3',
