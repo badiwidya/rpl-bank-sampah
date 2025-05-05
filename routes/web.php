@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\SessionController;
 use App\Http\Controllers\Auth\UserEmailVerificationController;
+use App\Http\Controllers\Nasabah\NasabahProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -32,7 +34,9 @@ Route::name('nasabah.')->group(function () {
     Route::prefix('dashboard')->middleware(['auth', 'verified', 'role:nasabah'])->name('dashboard.')->group(function () {
         
         Route::get('/', function () {})->name('index');
-   
+        Route::get('/profile', [NasabahProfileController::class, 'create'])->name('profile');
+        Route::get('/profile', [NasabahProfileController::class, 'store'])->name('profile');
+
     });
 
 });
@@ -52,6 +56,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::prefix('dashboard')->middleware(['auth', 'verified', 'role:admin'])->name('dashboard.')->group(function () {
         
         Route::get('/', function () {})->name('index');
+        Route::get('/profile', [AdminProfileController::class, 'create'])->name('profile');
+        Route::get('/profile', [AdminProfileController::class, 'store'])->name('profile');
    
     });
 
