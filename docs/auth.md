@@ -9,7 +9,8 @@ Middleware: **guest**
 - `POST /register` - submit form (nama route: `nasabah.register.submit`)
 
 ### Nama Field dan Validasi
-- `nama` - tidak boleh kosong, minimal 3 karakter, maksimal 255 karakter
+- `nama_depan` - tidak boleh kosong, minimal 3 karakter, maksimal 255 karakter
+- `nama_belakang` - tidak boleh kosong, minimal 3 karakter, maksimal 255 karakter
 - `email` - tidak boleh kosong, format email, unik
 - `no_telepon` - tidak boleh kosong, regex: 08sekian 8-11 digit, unik
 - `password` - tidak boleh kosong, minimal 8 karakter, harus ada setidaknya 1 huruf dan 1 angka

@@ -8,7 +8,8 @@ uses(RefreshDatabase::class);
 test('Mendaftarkan user dan membuat profil serta langsung masuk ketika semua field valid', function () {
 
     $userInput = [
-        'nama' => 'Makise Kurisu',
+        'nama_depan' => 'Makise',
+        'nama_belakang' => 'Kurisu',
         'email' => 'makise@amadeus.com',
         'no_telepon' => '0812345567',
         'password' => 'kurisu<3',
@@ -33,7 +34,8 @@ test('Mendaftarkan user dan membuat profil serta langsung masuk ketika semua fie
 
 test('Password otomatis ter-hash ketika user mendaftar', function () {
     $userInput = [
-        'nama' => 'Makise Kurisu',
+        'nama_depan' => 'Makise',
+        'nama_belakang' => 'Kurisu',
         'email' => 'makise@amadeus.com',
         'no_telepon' => '0812345567',
         'password' => 'kurisu<3',
@@ -50,7 +52,8 @@ test('Password otomatis ter-hash ketika user mendaftar', function () {
 
 test('User tidak terdaftar ketika format email tidak valid', function () {
     $userInput = [
-        'nama' => 'Makise Kurisu',
+        'nama_depan' => 'Makise',
+        'nama_belakang' => 'Kurisu',
         'email' => 'makise2amadeus.com',
         'no_telepon' => '0812345567',
         'password' => 'kurisu<3',
@@ -65,7 +68,8 @@ test('User tidak terdaftar ketika format email tidak valid', function () {
 
 test('User tidak terdaftar ketika nomor telepon bukan nomor Indonesia yang valid', function () {
     $userInput = [
-        'nama' => 'Makise Kurisu',
+        'nama_depan' => 'Makise',
+        'nama_belakang' => 'Kurisu',
         'email' => 'makise@amadeus.com',
         'no_telepon' => '9212893172',
         'password' => 'kurisu<3',
@@ -80,7 +84,8 @@ test('User tidak terdaftar ketika nomor telepon bukan nomor Indonesia yang valid
 
 test('User tidak terdaftar ketika password tidak sama dengan confirm password', function () {
     $userInput = [
-        'nama' => 'Makise Kurisu',
+        'nama_depan' => 'Makise',
+        'nama_belakang' => 'Kurisu',
         'email' => 'makise@amadeus.com',
         'no_telepon' => '0812345678',
         'password' => 'kurisu<3',
@@ -95,7 +100,8 @@ test('User tidak terdaftar ketika password tidak sama dengan confirm password', 
 
 test('User tidak terdaftar ketika password kurang dari 8 karakter', function () {
     $userInput = [
-        'nama' => 'Makise Kurisu',
+        'nama_depan' => 'Makise',
+        'nama_belakang' => 'Kurisu',
         'email' => 'makise@amadeus.com',
         'no_telepon' => '0812345678',
         'password' => 'chris<3',
@@ -110,7 +116,8 @@ test('User tidak terdaftar ketika password kurang dari 8 karakter', function () 
 
 test('User tidak terdaftar ketika password lebih dari 8 karakter tapi tidak ada setidaknya 1 angka', function () {
     $userInput = [
-        'nama' => 'Makise Kurisu',
+        'nama_depan' => 'Makise',
+        'nama_belakang' => 'Kurisu',
         'email' => 'makise@amadeus.com',
         'no_telepon' => '0812345678',
         'password' => 'kurisutina',
@@ -125,7 +132,8 @@ test('User tidak terdaftar ketika password lebih dari 8 karakter tapi tidak ada 
 
 test('User tidak terdaftar ketika password lebih dari 8 karakter tapi tidak ada setidaknya 1 huruf', function () {
     $userInput = [
-        'nama' => 'Makise Kurisu',
+        'nama_depan' => 'Makise',
+        'nama_belakang' => 'Kurisu',
         'email' => 'makise@amadeus.com',
         'no_telepon' => '0812345678',
         'password' => '100034589',
