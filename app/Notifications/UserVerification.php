@@ -36,7 +36,7 @@ class UserVerification extends Notification implements ShouldQueue
     {
         return (new MailMessage)
             ->subject('Verifikasi Email Nasabah')
-            ->greeting('Halo, ' . $notifiable->name . '!')
+            ->greeting('Halo, ' . $notifiable->nama_depan . '!')
             ->line('Terima kasih telah mendaftar di aplikasi kami.')
             ->line('Untuk mengaktifkan akun Anda, silakan verifikasi email Anda dengan menekan tombol di bawah ini.')
             ->action('Verifikasi Email', $this->url)
