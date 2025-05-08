@@ -89,3 +89,22 @@ test('Email akan terkirim ke email baru dan akan mengembalikan true', function (
     expect($result)->toBe(true);
     
 });
+
+test('Email user tidak akan berubah sebelum memencet link di email baru mereka', function () {
+    Notification::fake();
+
+    $user = User::factory()->create([
+        'email' => 'makise@amadeus.com',
+        'email_verified_at' => now(),
+    ]);
+
+    $service = new ProfileService();
+
+    $newEmail = 'kurisu@amadeus.com';
+
+    $result = $service->updateEmail($user, $newEmail);
+
+    expect($result)->toBe(true);
+    expect($user->fresh()->email)->not->toBe($newEmail);
+    
+});
