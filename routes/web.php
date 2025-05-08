@@ -33,7 +33,9 @@ Route::name('nasabah.')->group(function () {
     // Prefix rute '/dashboard' dan prefix nama 'dashboard.'
     Route::prefix('dashboard')->middleware(['auth', 'verified', 'role:nasabah'])->name('dashboard.')->group(function () {
         
-        Route::get('/', function () {})->name('index');
+        Route::get('/', function () {
+            return view('nasabah.index');
+        })->name('index');
         Route::get('/profile', [NasabahProfileController::class, 'create'])->name('profile');
         Route::post('/profile', [NasabahProfileController::class, 'store'])->name('profile.submit');
 
@@ -55,7 +57,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // Prefix url '/dashboard' (kalo digabungin sama yang atas jadi '/admin/dashboard') dan prefix nama 'dashboard.'
     Route::prefix('dashboard')->middleware(['auth', 'verified', 'role:admin'])->name('dashboard.')->group(function () {
         
-        Route::get('/', function () {})->name('index');
+        Route::get('/', function () {
+            return view('admin.index');
+        })->name('index');
         Route::get('/profile', [AdminProfileController::class, 'create'])->name('profile');
         Route::post('/profile', [AdminProfileController::class, 'store'])->name('profile.submit');
    
