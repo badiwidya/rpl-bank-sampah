@@ -17,7 +17,7 @@
 - Najma Hamidha (G6401231004)
 - Nisa Amelia (G6401231022)
 - Berton Adiwidya Wibowo (G6401231043)
-- Ibnu Burhanudin Habibi (G6401231096)
+- Ibnu Burhanudin Habibi (G6401231100)
 - Muhammad Fauzan Zubaedi (G6401231129)
 
 ## Tools Yang Harus Dipasang
