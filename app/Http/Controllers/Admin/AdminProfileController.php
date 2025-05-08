@@ -4,11 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateProfileRequest;
+use App\Services\ProfileService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class AdminProfileController extends Controller
 {
+
+    public function __construct(
+        protected ProfileService $profileService
+    ) {}
+
     public function create()
     {
         return view('admin.profile');
@@ -19,20 +24,24 @@ class AdminProfileController extends Controller
 
         $user = $request->user();
 
-        $validated = $request->validated();
+        $validated = $request->safe()->except(['email']);
+
+        $email = $request->safe()->email;
 
         if ($request->hasFile('avatar')) {
-            $oldAvatarUrl = $user->avatar_url;
-            $avatarUrl = $request->file('avatar')->store('avatars', 'public');
-            $validated['avatar_url'] = $avatarUrl;
+            $this->profileService->updateAvatar($user, $request->file('avatar'));
         }
 
-        $updated = $user->update($validated);
+        $changedEmail = $this->profileService->updateEmail($user, $email);
 
-        if ($updated && $oldAvatarUrl) 
-            Storage::disk('public')->delete($oldAvatarUrl);
+        $user->update($validated);
 
-        return back()->with('success', 'Data profil berhasil diganti.');
+        return back()->with([
+            'success' => 'Informasi profil Anda telah diperbarui.',
+            'email' => $changedEmail 
+                ? 'Silakan periksa email baru Anda untuk mengganti email, link verifikasi yang diberikan hanya akan bertahan selama 60 menit.' 
+                : ''
+        ]);
         
     }
 }
