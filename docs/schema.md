@@ -5,7 +5,8 @@
 > Sama `timestamps` (`created_at` & `updated_at`)
 
 ### users
-- `nama`
+- `nama_depan`
+- `nama_belakang`
 - `avatar_url`
 - `email`: unik
 - `no_telepon`: unik
