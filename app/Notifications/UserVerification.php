@@ -16,7 +16,8 @@ class UserVerification extends Notification implements ShouldQueue
      */
     public function __construct(
         public $url,
-        public $isEmailChange = false
+        public $isEmailChange = false,
+        protected ?\App\Models\User $actor = null,
     ) {}
 
     /**
@@ -38,7 +39,7 @@ class UserVerification extends Notification implements ShouldQueue
         if ($this->isEmailChange) {
             return (new MailMessage)
                 ->subject('Verifikasi Pergantian Email')
-                ->greeting('Halo, ' . $notifiable->nama_depan . '!')
+                ->greeting('Halo, ' . $this->actor->nama_depan . '!')
                 ->line('Kami mendapatkan permintaan pergantian alamat email pada akun Anda, untuk itu silakan verifikasi ulang alamat email Anda.')
                 ->action('Verifikasi Email', $this->url)
                 ->line('Jika Anda tidak melakukan aksi ini, Anda bisa mengabaikan pesan ini.')
