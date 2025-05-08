@@ -12,6 +12,7 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
+            'auth' => App\Http\Middleware\EnsureUserIsAuthenticated::class,
             'guest' => App\Http\Middleware\EnsureUserIsNotAuthenticated::class,
             'role' => App\Http\Middleware\EnsureUserHasRole::class,
             'verified' => App\Http\Middleware\EnsureEmailIsVerified::class,
