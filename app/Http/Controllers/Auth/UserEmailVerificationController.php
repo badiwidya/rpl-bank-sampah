@@ -47,7 +47,7 @@ class UserEmailVerificationController extends Controller
 
         return $isChangeEmail === false 
             ? redirect()->route('nasabah.dashboard.index')->with('success', 'Email berhasil diverifikasi')
-            : redirect()->route($user->role . '.dashboard.index')->with('email', 'Berhasil mengganti email');
+            : redirect()->route($user->role . '.dashboard.profile')->with('email', 'Berhasil mengganti email');
 
     }
 
