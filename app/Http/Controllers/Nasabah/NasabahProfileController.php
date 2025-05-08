@@ -22,7 +22,9 @@ class NasabahProfileController extends Controller
     {
         $user = $request->user();
 
-        $validated = $request->safe()->except(['email']);
+        $validatedUserInformation = $request->safe()->except(['email', 'alamat', 'metode_pembayaran_utama']);
+
+        $validatedProfileInformation = $request->safe()->only(['alamat', 'metode_pembayaran_utama']);
 
         $email = $request->safe()->email;
 
@@ -32,7 +34,9 @@ class NasabahProfileController extends Controller
 
         $changedEmail = $this->profileService->updateEmail($user, $email);
 
-        $user->update($validated);
+        $user->update($validatedUserInformation);
+
+        $user->profile()->update($validatedProfileInformation);
 
         return back()->with([
             'success' => 'Informasi profil Anda telah diperbarui.',
