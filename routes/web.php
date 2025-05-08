@@ -68,7 +68,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 Route::prefix('email')->name('mail.')->middleware(['auth', 'unverified'])->group(function () {
 
     Route::get('/verify', [UserEmailVerificationController::class, 'notice'])->name('verification.notice');
-    Route::get('/verify/{hash}/{id}', [UserEmailVerificationController::class, 'verify'])->name('verification.verify');
+    Route::get('/verify/{value}/{id}', [UserEmailVerificationController::class, 'verify'])->name('verification.verify')->withoutMiddleware('unverified');
     Route::post('/verify', [UserEmailVerificationController::class, 'resend'])->name('verification.resend');
 
 });

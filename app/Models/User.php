@@ -57,13 +57,13 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
         ];
     }
 
-    public function generateVerificationUrl()
+    public function generateVerificationUrl($email = null)
     {
         return URL::temporarySignedRoute(
             'mail.verification.verify',
             now()->addMinutes(50),
             [
-                'hash' => hash('sha256', $this->email),
+                'value' => $email ?? hash('sha256', $this->email),
                 'id' => $this->id,
             ]
         );
