@@ -25,7 +25,10 @@ test('Data profil admin akan terupdate untuk field selain email dan avatar', fun
     expect($admin->no_telepon)->toBe('0888234798');
 
     $response->assertSessionHasNoErrors()
-        ->assertSessionHas('success', 'Informasi profil Anda telah diperbarui.');
+        ->assertSessionHasAll([
+            'success' => 'Informasi profil Anda telah diperbarui.',
+            'email' => ''
+        ]);
 
 });
 
@@ -78,5 +81,32 @@ test('Update profil akan gagal kalau email sudah ada di database', function () {
     // Response invalid
     $response->assertSessionHasErrors()
         ->assertInvalid(['email']);
+
+});
+
+test('Akan menghasilkan response dengan session email ketika mengganti email', function () {
+    $admin = User::factory()->create(['role' => 'admin']);
+
+    $this->actingAs($admin);
+
+    $response = $this->post(route('admin.dashboard.profile.submit'), [
+        'nama_depan' => 'Kurisu',
+        'nama_belakang' => 'Makise',
+        'email' => 'kurisu@amadeus.com',
+        'no_telepon' => '0888234798',
+        'avatar' => $admin->avatar_url
+    ]);
+
+    $admin->fresh();
+
+    expect($admin->nama_depan)->toBe('Kurisu');
+    expect($admin->nama_belakang)->toBe('Makise');
+    expect($admin->no_telepon)->toBe('0888234798');
+
+    $response->assertSessionHasNoErrors()
+        ->assertSessionHasAll([
+            'success' => 'Informasi profil Anda telah diperbarui.',
+            'email' => 'Silakan periksa email baru Anda untuk mengganti email, link verifikasi yang diberikan hanya akan bertahan selama 60 menit.'
+        ]);
 
 });
