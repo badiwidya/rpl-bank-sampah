@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\SendChangePasswordEmail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\ValidationException;
@@ -46,6 +48,8 @@ class ChangePasswordController extends Controller
         $user->save();
 
         RateLimiter::clear($key);
+
+        SendChangePasswordEmail::dispatch($user);
 
         return back()->with('success', 'Berhasil mengganti password');
     }
