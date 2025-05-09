@@ -78,7 +78,9 @@ Route::prefix('email')->name('mail.')->middleware(['auth', 'unverified'])->group
 });
 
 Route::name('auth.')->group(function () {
-    Route::get('/login', function () {})->middleware(['guest'])->name('login.choice');
+    Route::get('/login', function () {
+        return view('auth.login');
+    })->middleware(['guest'])->name('login.choice');
     Route::post('/logout', [SessionController::class, 'destroy'])->middleware(['auth'])->name('logout');
 
     Route::name('password.')->middleware(['guest'])->group(function () {
@@ -88,3 +90,5 @@ Route::name('auth.')->group(function () {
         Route::post('/reset-password', [ForgotPasswordController::class, 'update'])->name('update');
     });
 });
+
+Route::view('/test', 'apacoba');
