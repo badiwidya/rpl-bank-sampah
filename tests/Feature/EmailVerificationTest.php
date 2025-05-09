@@ -129,3 +129,24 @@ test('User tidak akan terverifikasi kalau id berubah di url', function () {
 
     $this->assertNull($user->email_verified_at);
 });
+
+test('Ketika user mengganti email dan mengunjungi link yang dikirim ke email baru, email user akan berubah menjadi email baru', function () {
+    $user = User::factory()->create([
+        'email' => 'makise@amadeus.com',
+        'email_verified_at' => now()->subMinutes(10),
+    ]);
+
+    $newEmail = 'kurisu@amadeus.com';
+
+    $url = $user->generateVerificationUrl($newEmail);
+
+    $response = $this->actingAs($user);
+
+    $response->get($url);
+
+    $user->fresh();
+
+    expect($user->email)->toBe($newEmail);
+    expect($user->email_verified_at->format('Y-m-d H:i:s'))->toBe(now()->format('Y-m-d H:i:s'));
+
+});

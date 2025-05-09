@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\SessionController;
 use App\Http\Controllers\Auth\UserEmailVerificationController;
+use App\Http\Controllers\Nasabah\NasabahProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -31,8 +33,12 @@ Route::name('nasabah.')->group(function () {
     // Prefix rute '/dashboard' dan prefix nama 'dashboard.'
     Route::prefix('dashboard')->middleware(['auth', 'verified', 'role:nasabah'])->name('dashboard.')->group(function () {
         
-        Route::get('/', function () {})->name('index');
-   
+        Route::get('/', function () {
+            return view('nasabah.index');
+        })->name('index');
+        Route::get('/profile', [NasabahProfileController::class, 'create'])->name('profile');
+        Route::post('/profile', [NasabahProfileController::class, 'store'])->name('profile.submit');
+
     });
 
 });
@@ -51,7 +57,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // Prefix url '/dashboard' (kalo digabungin sama yang atas jadi '/admin/dashboard') dan prefix nama 'dashboard.'
     Route::prefix('dashboard')->middleware(['auth', 'verified', 'role:admin'])->name('dashboard.')->group(function () {
         
-        Route::get('/', function () {})->name('index');
+        Route::get('/', function () {
+            return view('admin.index');
+        })->name('index');
+        Route::get('/profile', [AdminProfileController::class, 'create'])->name('profile');
+        Route::post('/profile', [AdminProfileController::class, 'store'])->name('profile.submit');
    
     });
 
@@ -62,7 +72,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 Route::prefix('email')->name('mail.')->middleware(['auth', 'unverified'])->group(function () {
 
     Route::get('/verify', [UserEmailVerificationController::class, 'notice'])->name('verification.notice');
-    Route::get('/verify/{hash}/{id}', [UserEmailVerificationController::class, 'verify'])->name('verification.verify');
+    Route::get('/verify/{value}/{id}', [UserEmailVerificationController::class, 'verify'])->name('verification.verify')->withoutMiddleware('unverified');
     Route::post('/verify', [UserEmailVerificationController::class, 'resend'])->name('verification.resend');
 
 });

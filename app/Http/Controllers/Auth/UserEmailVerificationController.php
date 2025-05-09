@@ -20,24 +20,34 @@ class UserEmailVerificationController extends Controller
     public function verify(Request $request)
     {
         $userId = $request->route('id');
-        $hashedEmail = $request->route('hash');
+        $value = $request->route('value');
+        $user = Auth::user();
 
         if (! URL::hasValidSignature($request)) {
             abort(419, "Invalid or expired link");
         }
 
-        $user = Auth::user();
-
-        if ($user->id != $userId || hash('sha256', $user->email) != $hashedEmail) {
+        if ($user->id != $userId) {
             abort(403, "Forbidden");
+        }
+
+        $isChangeEmail = filter_var($value, FILTER_VALIDATE_EMAIL);
+
+        if ($isChangeEmail) {
+            $user->email = $value;
+        } else {
+            if (hash('sha256', $user->email) != $value) {
+                abort (403, "Forbidden");
+            }
         }
 
         $user->email_verified_at = now();
 
         $user->save();
 
-        return redirect()->route('nasabah.dashboard.index')
-            ->with('success', 'Email berhasil diverifikasi');
+        return $isChangeEmail === false 
+            ? redirect()->route('nasabah.dashboard.index')->with('success', 'Email berhasil diverifikasi')
+            : redirect()->route($user->role . '.dashboard.profile')->with('email', 'Berhasil mengganti email');
 
     }
 
