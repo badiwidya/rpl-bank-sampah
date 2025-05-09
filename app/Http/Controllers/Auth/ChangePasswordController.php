@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Jobs\SendChangePasswordEmail;
+use App\Notifications\ChangePassword;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\RateLimiter;
@@ -50,7 +51,7 @@ class ChangePasswordController extends Controller
 
         RateLimiter::clear($key);
 
-        SendChangePasswordEmail::dispatch($user);
+        $user->notify(new ChangePassword());
 
         return redirect(route($user->role . '.dashboard.profile'))->with('success', 'Berhasil mengganti password');
     }
