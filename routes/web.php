@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminProfileController;
+use App\Http\Controllers\Auth\ChangePasswordController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\SessionController;
@@ -32,13 +33,14 @@ Route::name('nasabah.')->group(function () {
     // Segala rute yang ada di dashboard
     // Prefix rute '/dashboard' dan prefix nama 'dashboard.'
     Route::prefix('dashboard')->middleware(['auth', 'verified', 'role:nasabah'])->name('dashboard.')->group(function () {
-        
+
         Route::get('/', function () {
             return view('nasabah.index');
         })->name('index');
         Route::get('/profile', [NasabahProfileController::class, 'create'])->name('profile');
         Route::post('/profile', [NasabahProfileController::class, 'store'])->name('profile.submit');
-
+        Route::get('/profile/change-password', [ChangePasswordController::class, 'create'])->name('password');
+        Route::post('/profile/change-password', [ChangePasswordController::class, 'update'])->name('password.update');
     });
 
 });
@@ -56,18 +58,19 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // Semua rute di dashboard admin
     // Prefix url '/dashboard' (kalo digabungin sama yang atas jadi '/admin/dashboard') dan prefix nama 'dashboard.'
     Route::prefix('dashboard')->middleware(['auth', 'verified', 'role:admin'])->name('dashboard.')->group(function () {
-        
+
         Route::get('/', function () {
             return view('admin.index');
         })->name('index');
         Route::get('/profile', [AdminProfileController::class, 'create'])->name('profile');
         Route::post('/profile', [AdminProfileController::class, 'store'])->name('profile.submit');
-   
+        Route::get('/profile/change-password', [ChangePasswordController::class, 'create'])->name('password');
+        Route::post('/profile/change-password', [ChangePasswordController::class, 'update'])->name('password.update');
     });
 
 });
 
-// Rute buat verifikasi email 
+// Rute buat verifikasi email
 // Prefix url '/email' dan prefix nama 'mail.'
 Route::prefix('email')->name('mail.')->middleware(['auth', 'unverified'])->group(function () {
 
@@ -91,4 +94,26 @@ Route::name('auth.')->group(function () {
     });
 });
 
-Route::view('/test', 'apacoba');
+Route::get('/test-nasabah', function () {
+    $user = \App\Models\User::where('role', 'nasabah')->first();
+
+    if (! $user) {
+        $user = \App\Models\User::factory()->create()->profile()->create();
+    }
+
+    \Illuminate\Support\Facades\Auth::login($user);
+
+    return redirect(route('nasabah.dashboard.index'));
+});
+
+Route::get('/test-admin', function () {
+    $user = \App\Models\User::where('role', 'admin')->first();
+
+    if (! $user) {
+        $user = \App\Models\User::factory()->create(['role' => 'admin'])->profile()->create();
+    }
+
+    \Illuminate\Support\Facades\Auth::login($user);
+
+    return redirect(route('admin.dashboard.index'));
+});
