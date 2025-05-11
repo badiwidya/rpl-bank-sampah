@@ -37,8 +37,8 @@ Route::name('nasabah.')->group(function () {
         Route::get('/', function () {
             return view('nasabah.index');
         })->name('index');
-        Route::get('/profile', [NasabahProfileController::class, 'create'])->name('profile');
-        Route::post('/profile', [NasabahProfileController::class, 'store'])->name('profile.submit');
+        Route::get('/profile', [NasabahProfileController::class, 'edit'])->name('profile');
+        Route::put('/profile', [NasabahProfileController::class, 'update'])->name('profile.submit');
         Route::get('/profile/change-password', [ChangePasswordController::class, 'create'])->name('password');
         Route::post('/profile/change-password', [ChangePasswordController::class, 'update'])->name('password.update');
     });
@@ -62,8 +62,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/', function () {
             return view('admin.index');
         })->name('index');
-        Route::get('/profile', [AdminProfileController::class, 'create'])->name('profile');
-        Route::post('/profile', [AdminProfileController::class, 'store'])->name('profile.submit');
+        Route::get('/profile', [AdminProfileController::class, 'edit'])->name('profile');
+        Route::put('/profile', [AdminProfileController::class, 'update'])->name('profile.submit');
         Route::get('/profile/change-password', [ChangePasswordController::class, 'create'])->name('password');
         Route::post('/profile/change-password', [ChangePasswordController::class, 'update'])->name('password.update');
     });

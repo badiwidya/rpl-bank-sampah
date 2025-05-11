@@ -34,6 +34,7 @@ class UpdateProfileRequest extends FormRequest
             'metode_pembayaran_utama' => 'sometimes|nullable|string',
             'alamat' => 'sometimes|nullable|string',
             'avatar' => 'sometimes|nullable|mimes:jpg,jpeg,png|max:4096',
+            'delete_avatar' => 'sometimes|nullable|boolean',
         ];
     }
 
