@@ -13,12 +13,12 @@ class NasabahProfileController extends Controller
         protected ProfileService $profileService
     ) {}
 
-    public function create()
+    public function edit()
     {
         return view('nasabah.profile');
     }
 
-    public function store(UpdateProfileRequest $request)
+    public function update(UpdateProfileRequest $request)
     {
         $user = $request->user();
 
@@ -40,8 +40,8 @@ class NasabahProfileController extends Controller
 
         return back()->with([
             'success' => 'Informasi profil Anda telah diperbarui.',
-            'email' => $changedEmail 
-                ? 'Silakan periksa email baru Anda untuk mengganti email, link verifikasi yang diberikan hanya akan bertahan selama 60 menit.' 
+            'email' => $changedEmail
+                ? 'Silakan periksa email baru Anda untuk mengganti email, link verifikasi yang diberikan hanya akan bertahan selama 60 menit.'
                 : ''
         ]);
     }
