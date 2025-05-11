@@ -12,7 +12,7 @@ test('Data profil nasabah akan terupdate untuk field selain email dan avatar', f
 
     $this->actingAs($user);
 
-    $response = $this->post(route('nasabah.dashboard.profile.submit'), [
+    $response = $this->put(route('nasabah.dashboard.profile.submit'), [
         'nama_depan' => 'Kurisu',
         'nama_belakang' => 'Makise',
         'email' => $user->email,
@@ -46,7 +46,7 @@ test('Update profil akan gagal kalau nomor telepon sudah ada di database', funct
 
     $this->actingAs($user);
 
-    $response = $this->post(route('nasabah.dashboard.profile.submit'), [
+    $response = $this->put(route('nasabah.dashboard.profile.submit'), [
         'nama_depan' => 'Kurisu',
         'nama_belakang' => 'Makise',
         'email' => $user->email,
@@ -74,7 +74,7 @@ test('Update profil akan gagal kalau email sudah ada di database', function () {
 
     $this->actingAs($user);
 
-    $response = $this->post(route('nasabah.dashboard.profile.submit'), [
+    $response = $this->put(route('nasabah.dashboard.profile.submit'), [
         'nama_depan' => 'Kurisu',
         'nama_belakang' => 'Makise',
         'email' => 'ookabe@amadeus.com',
@@ -101,7 +101,7 @@ test('Akan menghasilkan response dengan session email ketika mengganti email', f
 
     $this->actingAs($user);
 
-    $response = $this->post(route('nasabah.dashboard.profile.submit'), [
+    $response = $this->put(route('nasabah.dashboard.profile.submit'), [
         'nama_depan' => 'Kurisu',
         'nama_belakang' => 'Makise',
         'email' => 'kurisu@amadeus.com',
