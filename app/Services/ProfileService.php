@@ -37,4 +37,14 @@ class ProfileService
         return true;
 
     }
+
+    public function deleteAvatar(User $user)
+    {
+        if ($user->avatar_url != null) {
+            Storage::disk('public')->delete($user->avatar_url);
+            $user->update([
+                'avatar_url' => null,
+            ]);
+        }
+    }
 }

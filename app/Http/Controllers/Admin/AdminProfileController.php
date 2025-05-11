@@ -32,6 +32,10 @@ class AdminProfileController extends Controller
             $this->profileService->updateAvatar($user, $request->file('avatar'));
         }
 
+        if ($request->safe()->delete_avatar) {
+            $this->profileService->deleteAvatar($user);
+        }
+
         $changedEmail = $this->profileService->updateEmail($user, $email);
 
         $user->update($validated);
@@ -42,6 +46,5 @@ class AdminProfileController extends Controller
                 ? 'Silakan periksa email baru Anda untuk mengganti email, link verifikasi yang diberikan hanya akan bertahan selama 60 menit.'
                 : ''
         ]);
-
     }
 }

@@ -32,6 +32,10 @@ class NasabahProfileController extends Controller
             $this->profileService->updateAvatar($user, $request->file('avatar'));
         }
 
+        if($request->safe()->delete_avatar) {
+            $this->profileService->deleteAvatar($user);
+        }
+
         $changedEmail = $this->profileService->updateEmail($user, $email);
 
         $user->update($validatedUserInformation);
