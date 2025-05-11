@@ -7,6 +7,7 @@ namespace App\Models;
 use Illuminate\Auth\Passwords\CanResetPassword as PasswordsCanResetPassword;
 use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -96,4 +97,15 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
     {
         return $this->hasMany(TransaksiPenukaran::class);
     }
+
+    // protected function avatarUrl(): Attribute
+    // {
+    //     return Attribute::make(
+    //         get: function (?string $value) {
+    //             return $value
+    //                 ? asset('storage/' . $value)
+    //                 : asset('avatars/default.jpg');
+    //         }
+    //     );
+    // }
 }
