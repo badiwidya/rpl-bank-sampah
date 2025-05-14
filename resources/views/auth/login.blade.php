@@ -1,19 +1,6 @@
 <x-layouts.app title="Masuk - Bank Sampah">
     <main class="bg-white font-sans">
 
-        <!-- Header -->
-        <header class="flex justify-between items-center px-8 py-4 bg-white border-b shadow-sm">
-            <div class="flex items-center space-x-2 font-semibold text-lg">
-                <img src="/public/Group.png" alt="logo" class="w-6 h-6"/>
-                <span>Bank Sampah</span>
-            </div>
-            <nav class="space-x-6 text-sm font-medium">
-                <a href="#" class="text-gray-700 hover:text-green-600">Home</a>
-                <a href="#" class="text-gray-700 hover:text-green-600">About Us</a>
-                <a href="#" class="text-gray-700 hover:text-green-600">Profile</a>
-            </nav>
-        </header>
-
         <!-- Main Content -->
         <div class="flex h-[calc(100vh-72px)]">
             <!-- Left Panel -->
