@@ -5,8 +5,8 @@
             <!-- Left Panel -->
             <div
                 class="w-1/2 bg-gradient-to-b from-[#0eb784] to-[#003d26] flex flex-col items-center justify-center text-white px-8">
-                <img src="{{ asset('assets/earth-tree.svg') }}" alt="Earth with Trees" class="w-72 mb-8"/>
-                <p class="text-center text-sm max-w-md">
+                <img src="{{ asset('assets/earth-tree.svg') }}" alt="Earth with Trees" class="w-72 mb-14"/>
+                <p class="text-center text-sm max-w-md font-light">
                     "Dengan memanfaatkan bank sampah, kita ikut berperan aktif dalam menjaga ekosistem dan memastikan
                     bumi tetap lestari untuk generasi mendatang."
                 </p>
@@ -21,18 +21,18 @@
                              class="w-12 h-12"/>
                     </div>
                     <h2 class="text-lg font-semibold">Login Sebagai</h2>
-                    <p class="text-gray-500 text-sm mb-6">Akses Akun Setoran Sampah</p>
+                    <p class="text-gray-500 text-sm mb-6">Akses Akun Bank Sampah</p>
 
                     <!-- Admin Button as Anchor -->
-                    <a href="/admin/login"
+                    <a href="{{ route('admin.login.show') }}"
                        class="block bg-gray-800 text-white w-full py-2 rounded-md mb-3 hover:bg-gray-700 transition">Admin</a>
 
                     <!-- Pengguna Button -->
-                    <a href="/nasabah/login"
-                       class="block bg-green-600 text-white w-full py-2 rounded-md hover:bg-green-700 transition">Pengguna</a>
+                    <a href="{{ route('nasabah.login.show') }}"
+                       class="block bg-green-600 text-white w-full py-2 rounded-md hover:bg-green-700 transition">Nasabah</a>
 
                     <p class="mt-6 text-xs text-gray-500">
-                        Tidak Memiliki Akun? <a href="#" class="text-green-600 hover:underline">Daftar Disini</a>
+                        Tidak Memiliki Akun? <a href="{{ route('nasabah.register.show') }}" class="text-green-600 hover:underline">Daftar Disini</a>
                     </p>
                 </div>
             </div>
