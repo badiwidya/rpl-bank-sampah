@@ -6,7 +6,7 @@
         <title>{{ $title ?? 'Bank Sampah' }}</title>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body>
+    <body class="font-poppins">
         <x-header></x-header>
         {{ $slot }}
     </body>

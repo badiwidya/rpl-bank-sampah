@@ -1,5 +1,5 @@
 <x-layouts.app title="Masuk - Bank Sampah">
-    <main class="bg-white font-sans">
+    <main class="bg-white">
 
         <!-- Main Content -->
         <div class="flex h-[calc(100vh-72px)]">
