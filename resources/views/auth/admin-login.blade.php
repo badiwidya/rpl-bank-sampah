@@ -7,7 +7,7 @@
 {{--  <script src="https://cdn.tailwindcss.com"></script>--}}
 {{--</head>--}}
 
-<x-layouts.app title="Masuk Nasabah - Bank Sampah">
+<x-layouts.app title="Masuk Admin - Bank Sampah">
 
 
     <!-- Login Form -->
