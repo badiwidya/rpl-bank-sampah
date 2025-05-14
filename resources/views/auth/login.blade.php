@@ -1,8 +1,7 @@
 <x-layouts.app title="Masuk - Bank Sampah">
-    <main class="bg-white">
 
         <!-- Main Content -->
-        <div class="flex h-[calc(100vh-72px)]">
+        <div class="flex h-full">
             <!-- Left Panel -->
             <div
                 class="w-1/2 bg-gradient-to-b from-[#0eb784] to-[#003d26] flex flex-col items-center justify-center text-white px-8">
@@ -39,5 +38,4 @@
             </div>
         </div>
 
-    </main>
 </x-layouts.app>
