@@ -6,7 +6,7 @@
             <!-- Left Panel -->
             <div
                 class="w-1/2 bg-gradient-to-b from-[#0eb784] to-[#003d26] flex flex-col items-center justify-center text-white px-8">
-                <img src="https://i.ibb.co/0jTKTm7/earth-tree.png" alt="Earth with Trees" class="w-72 mb-8"/>
+                <img src="{{ asset('assets/earth-tree.svg') }}" alt="Earth with Trees" class="w-72 mb-8"/>
                 <p class="text-center text-sm max-w-md">
                     "Dengan memanfaatkan bank sampah, kita ikut berperan aktif dalam menjaga ekosistem dan memastikan
                     bumi tetap lestari untuk generasi mendatang."
