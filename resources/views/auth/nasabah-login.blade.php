@@ -16,7 +16,7 @@
         style="
             background-image:
                 linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(0,61,38,0.8) 100%),
-                url('{{ asset('assets/bg.jpeg') }}');
+                url('{{ asset('assets/bg-login-nasabah.jpeg') }}');
         "
     >
         <div class="bg-white bg-opacity-90 backdrop-blur-md p-8 rounded-xl shadow-xl w-full max-w-md">
