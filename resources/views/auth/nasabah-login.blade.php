@@ -15,7 +15,7 @@
         class="flex justify-center items-center h-full px-4 bg-cover bg-center"
         style="
             background-image:
-                linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(0,61,38,0.8) 100%),
+                linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(0,61,38,1) 100%),
                 url('{{ asset('assets/bg-login-nasabah.jpeg') }}');
         "
     >
