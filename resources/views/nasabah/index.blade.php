@@ -1,3 +1,6 @@
 <div>
-    <!-- Let all your things have their places; let each part of your business have its time. - Benjamin Franklin -->
+    <form action="{{ route('auth.logout') }}" method="post">
+        @csrf
+        <button type="submit">Logout</button>
+    </form>
 </div>
