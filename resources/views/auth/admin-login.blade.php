@@ -25,8 +25,11 @@
                      class="w-12 h-12"/>
             </div>
             @error('wrong_route')
-            <div class="text-sm font-light text-red-500 text-center">{{ $message }}</div>
+                <div class="text-sm font-light text-red-500 text-center">{{ $message }}</div>
             @enderror
+            @if(session('status'))
+                <div class="text-sm font-light text-green-500 text-center">{{ session('status') }}</div>
+            @endif
             <h2 class="text-xl font-semibold text-center">Masuk Sebagai Admin</h2>
             <p class="text-center text-sm text-gray-500 mb-6">Akses akun Bank Sampah Anda</p>
 
