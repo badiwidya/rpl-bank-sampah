@@ -44,7 +44,7 @@
                 <!-- No Handphone -->
                 <div class="mb-4">
                     <label class="block text-sm font-medium text-gray-700 mb-1" for="phone">No. Telepon</label>
-                    <input id="phone" name="no_telepon" type="text" placeholder="+628888888888"
+                    <input id="phone" name="no_telepon" type="text" placeholder="08123456789"
                            class="w-full px-4 py-2 placeholder:text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400 transition duration-300 @error('no_telepon') border-red-500 focus:ring-red-500 @enderror"
                            value="{{ old('no_telepon') }}"
                     />
