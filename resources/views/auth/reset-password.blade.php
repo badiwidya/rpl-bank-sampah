@@ -3,7 +3,7 @@
     <div class="flex justify-center items-center h-full bg-gray-200">
 
         <div class="bg-white backdrop-blur-md p-8 rounded-xl shadow-xl w-full max-w-md">
-            <h2 class="text-center text-xl font-semibold">Reset Password Anda</h2>
+            <h2 class="text-center text-xl font-semibold mb-4">Reset Password Anda</h2>
             <form action="{{ route('auth.password.update') }}" method="post">
                 @csrf
                 <input type="hidden" name="token" value="{{ $token }}">
