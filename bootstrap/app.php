@@ -17,6 +17,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'role' => App\Http\Middleware\EnsureUserHasRole::class,
             'verified' => App\Http\Middleware\EnsureEmailIsVerified::class,
             'unverified' => App\Http\Middleware\EnsureEmailIsUnverified::class,
+            'admin' => App\Http\Middleware\EnsureUserIsAdmin::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

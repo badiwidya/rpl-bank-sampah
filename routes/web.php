@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\SessionController;
 use App\Http\Controllers\Auth\UserEmailVerificationController;
 use App\Http\Controllers\Nasabah\NasabahProfileController;
+use App\Http\Controllers\Admin\SetorSampahController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -116,4 +117,31 @@ Route::get('/test-admin', function () {
     \Illuminate\Support\Facades\Auth::login($user);
 
     return redirect(route('admin.dashboard.index'));
+});
+
+//Rute Setor Sampah
+Route::prefix('admin')->middleware(['auth:sanctum', 'admin'])->group(function () {
+    // (1) Endpoint utama
+    Route::get('/setor-sampah', [SetorSampahController::class, 'index'])
+        ->name('admin.setor-sampah.index');
+
+    // (2) Cari nasabah
+    Route::post('/setor-sampah/cari-nasabah', [SetorSampahController::class, 'cariNasabah'])
+        ->name('admin.setor-sampah.cari-nasabah');
+
+    // (3) Form setor (GET)
+    Route::get('/setor-sampah/{user}/form', [SetorSampahController::class, 'formSetor'])
+        ->name('admin.setor-sampah.form');
+
+    // (4) Tambah sampah ke transaksi (POST)
+    Route::post('/setor-sampah/{transaksi}/tambah-sampah', [SetorSampahController::class, 'tambahSampah'])
+        ->name('admin.setor-sampah.tambah-sampah');
+
+    // (5) Simpan transaksi (POST)
+    Route::post('/setor-sampah/{transaksi}/simpan', [SetorSampahController::class, 'simpanSetoran'])
+        ->name('admin.setor-sampah.simpan-setoran');
+
+    // (6) Konfirmasi transaksi (POST)
+    Route::post('/setor-sampah/{transaksi}/konfirmasi', [SetorSampahController::class, 'konfirmasiSetoran'])
+        ->name('admin.setor-sampah.konfirmasi');
 });
