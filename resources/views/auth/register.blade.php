@@ -135,6 +135,11 @@
                 </button>
             </form>
 
+            <p class="text-center text-sm text-gray-600 mt-6">
+                Sudah punya akun? <a href="{{ route('auth.login.choice') }}" class="text-green-600 hover:underline">Masuk
+                    ke akun</a>
+            </p>
+
         </div>
     </div>
 
