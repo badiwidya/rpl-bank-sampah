@@ -32,7 +32,7 @@
     </header>
 
     <div class="py-8"></div>
-
+    @if(auth()->check())
     <!-- Overlay -->
     <div
         x-show="sidebarOpen"
@@ -42,6 +42,7 @@
     ></div>
 
     <!-- Sidebar -->
+
     <div
         x-show="sidebarOpen"
         x-transition:enter="transition ease-out duration-300"
@@ -68,4 +69,5 @@
             <li><a href="#" class="block px-2 py-1 hover:underline rounded">Keluar</a></li>
         </ul>
     </div>
+        @endif
 </div>
