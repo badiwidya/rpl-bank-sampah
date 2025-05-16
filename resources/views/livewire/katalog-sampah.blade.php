@@ -111,7 +111,7 @@
                                               d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                                     </svg>
                                 </button>
-                                <button wire:click="$emit('openDeleteModal', {{ $item->id }})"
+                                <button wire:click="confirmDelete({{ $item->id }})"
                                         class="text-white bg-red-600 hover:bg-red-900 p-1 rounded-md hover:cursor-pointer">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
                                          viewBox="0 0 24 24"
@@ -146,4 +146,41 @@
             {{ $jenisSampah->links() }}
         </div>
     </div>
+
+    <div
+        wire:show="deleteConfirmation"
+        class="fixed inset-0 bg-black/50 z-40"
+        @click="$wire.deleteConfirmation = false"
+        x.transition.opacity
+    ></div>
+
+    <div
+        wire:show="deleteConfirmation"
+        class="flex flex-col fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-lg p-6 z-50"
+        @click.away="$wire.deleteConfirmation = false"
+    >
+        <h3 class="text-lg font-semibold mb-4">Konfirmasi Hapus</h3>
+        <p class="mb-6 text-gray-700">Apakah Anda yakin ingin menghapus data ini? Tindakan ini tidak dapat
+            dibatalkan.</p>
+
+        <div class="flex justify-end space-x-3">
+            <button
+                type="button"
+                class="px-4 py-2 rounded bg-gray-300 hover:bg-gray-400 text-gray-700 font-semibold"
+                @click="$wire.deleteConfirmation = false"
+            >
+                Batal
+            </button>
+
+            <button
+                type="button"
+                class="px-4 py-2 rounded bg-red-600 hover:bg-red-700 text-white font-semibold"
+                wire:click="delete"
+            >
+                Hapus
+            </button>
+        </div>
+    </div>
+
+
 </div>
