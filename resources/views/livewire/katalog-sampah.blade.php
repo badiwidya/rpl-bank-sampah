@@ -1,14 +1,14 @@
-<div class="py-6 w-4/5 mx-auto">
+<div class="py-6 w-4/5 mx-auto @cannot('create', \App\Models\Sampah::class) max-w-3/5 @endcannot">
 
 
     <div
-        class="flex justify-between items-center mb-6 @cannot('create', \App\Models\Sampah::class) justify-center @endcannot">
+        class="flex justify-between items-center mb-6">
         <div class="w-1/2">
             <div class="relative">
                 <input
                     type="text"
                     wire:model.live.debounce.300ms="term"
-                    class="bg-white w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    class="bg-white w-full pl-10 pr-4 py-2 rounded-lg border drop-shadow-sm border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition duration-300"
                     placeholder="Cari sampah..."
                 >
                 <div class="absolute left-3 top-2.5 text-gray-400">
@@ -23,7 +23,7 @@
         @can('create', \App\Models\Sampah::class)
             <button
                 wire:click=""
-                class="bg-green-500 hover:bg-green-600 hover:cursor-pointer text-white font-medium py-2 px-4 rounded-lg flex items-center transition duration-150 ease-in-out">
+                class="bg-green-500 hover:bg-green-600 drop-shadow-md hover:cursor-pointer text-white font-medium py-2 px-4 rounded-lg flex items-center transition duration-150 ease-in-out">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
                      stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
