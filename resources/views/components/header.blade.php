@@ -39,6 +39,7 @@
     @if(auth()->check())
         <!-- Overlay -->
         <div
+            x-cloak
             x-show="sidebarOpen"
             x-transition.opacity
             class="fixed inset-0 bg-black/50 z-40"
@@ -48,6 +49,7 @@
         <!-- Sidebar -->
 
         <div
+            x-cloak
             x-show="sidebarOpen"
             x-transition:enter="transition ease-out duration-300"
             x-transition:enter-start="-translate-x-full"
