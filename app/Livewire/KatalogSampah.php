@@ -24,7 +24,7 @@ class KatalogSampah extends Component
         }
     }
 
-    public function updatingSearch()
+    public function updatingTerm()
     {
         $this->resetPage();
     }
