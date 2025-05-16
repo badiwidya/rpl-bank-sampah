@@ -1,3 +1,5 @@
-<div>
-    <!-- Be present above all else. - Naval Ravikant -->
-</div>
+<x-layouts.app title="Katalog Sampah - Bank Sampah">
+
+    <livewire:katalog-sampah/>
+
+</x-layouts.app>
