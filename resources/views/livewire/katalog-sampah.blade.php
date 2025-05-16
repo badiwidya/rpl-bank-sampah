@@ -85,7 +85,7 @@
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
             @forelse($jenisSampah as $item)
-                <tr class="hover:bg-gray-50">
+                <tr wire:key="{{ $item->id }}" class="hover:bg-gray-50">
                     <td class="px-6 py-4 whitespace-nowrap">
                         <div class="h-16 w-16 rounded overflow-hidden bg-gray-100">
                             <img src="{{ asset($item->image_url) }}" alt="{{ $item->nama }}"
