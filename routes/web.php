@@ -41,6 +41,12 @@ Route::name('nasabah.')->group(function () {
         Route::put('/profile', [NasabahProfileController::class, 'update'])->name('profile.submit');
         Route::get('/profile/change-password', [ChangePasswordController::class, 'create'])->name('password');
         Route::post('/profile/change-password', [ChangePasswordController::class, 'update'])->name('password.update');
+
+        // Rute sementara katalog sampah
+        Route::get('/sampah', function () {
+            return view('nasabah.sampah');
+        });
+
     });
 
 });
