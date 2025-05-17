@@ -104,7 +104,7 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
             get: function (?string $value) {
                 return $value
                     ? 'storage/' . $value
-                    : 'avatars/default.jpg';
+                    : 'avatars/default.png';
             }
         );
     }
