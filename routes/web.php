@@ -45,7 +45,7 @@ Route::name('nasabah.')->group(function () {
         // Rute sementara katalog sampah
         Route::get('/sampah', function () {
             return view('nasabah.sampah');
-        });
+        })->name('sampah');
 
     });
 
@@ -76,7 +76,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // Sementara
         Route::get('/sampah', function() {
             return view('admin.sampah');
-        });
+        })->name('sampah');
     });
 
 });
