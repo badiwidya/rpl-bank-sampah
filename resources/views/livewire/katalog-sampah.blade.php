@@ -186,7 +186,8 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="4" class="px-6 py-10 text-center text-gray-500">
+                    <td colspan="{{ auth()->user()?->role === 'admin' ? '6' : '3' }}"
+                        class="px-6 py-10 text-center text-gray-500">
                         <div class="flex flex-col items-center justify-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-gray-400 mb-2"
                                  fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -259,7 +260,7 @@
                     <input type="file" wire:model="imageUpload" accept=".jpeg,.jpg,.png" class="hidden"
                            x-ref="fileInput">
                     @error('imageUpload')
-                        <div class="text-red-500 text-xs my-1 self-end">{{ $message }}</div>
+                    <div class="text-red-500 text-xs my-1 self-end">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="mb-4">
@@ -273,13 +274,19 @@
 
                 <div class="mb-4">
                     <label class="block text-sm font-medium text-gray-700 mb-1">Harga per kg</label>
-                    <input type="number" name="harga_per_kg" step="0.01"
-                           wire:model.defer="dataInput.harga_per_kg"
-                           class="w-full px-4 py-2 placeholder:text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400 transition duration-300 @error('dataInput.harga_per_kg') border-red-500 focus:ring-red-500 @enderror"/>
+                    <div class="flex items-center border rounded-md px-3 focus-within:ring-2 focus-within:ring-green-400 transition duration-300 @error('dataInput.harga_per_kg') border-red-500 focus-within:ring-red-500 @enderror">
+                        <span class="text-gray-700 select-none">Rp.</span>
+                        <input type="number" name="harga_per_kg" step="0.01"
+                               wire:model.defer="dataInput.harga_per_kg"
+                               class="flex-1 px-2 py-2 placeholder:text-sm border-none focus:outline-none"
+                        />
+                        <span class="text-gray-700 select-none">/kg</span>
+                    </div>
                     @error('dataInput.harga_per_kg')
                     <div class="text-red-500 text-xs mt-1">{{ $message }}</div>
                     @enderror
                 </div>
+
 
                 <div class="flex justify-end space-x-3">
                     <button type="button"
