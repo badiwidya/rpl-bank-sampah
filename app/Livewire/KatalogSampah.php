@@ -29,7 +29,8 @@ class KatalogSampah extends Component
         'harga_per_kg' => '',
     ];
 
-    public $image;
+    public $imageUpload = null;
+    public $imagePath = null;
 
     protected $rules = [
         'dataInput.nama' => 'required|string|max:255',
@@ -47,7 +48,7 @@ class KatalogSampah extends Component
         $this->sampahToEdit = $sampah;
         $this->dataInput['harga_per_kg'] = $sampah->harga_per_kg;
         $this->dataInput['nama'] = $sampah->nama;
-        $this->image = $sampah->image_url;
+        $this->imagePath = $sampah->image_url;
         $this->editModal = true;
     }
 
@@ -56,17 +57,23 @@ class KatalogSampah extends Component
         $this->authorize('update', $this->sampahToEdit);
         $this->validate();
         $this->validate([
-            'image' => 'nullable|sometimes|mimes:jpg,jpeg,png|max:4096',
+            'imageUpload' => 'nullable|sometimes|mimes:jpg,jpeg,png|max:4096',
         ]);
         try {
 
-            if ($this->image) {
-                $this->dataInput['image_url'] = $this->image->store('sampah', 'public');
+            if ($this->imageUpload) {
+                $this->dataInput['image_url'] = $this->imageUpload->store('sampah', 'public');
             }
 
             $this->sampahToEdit->update($this->dataInput);
             $this->editModal = false;
             $this->sampahToEdit = null;
+            $this->imageUpload = null;
+            $this->imagePath = null;
+            $this->dataInput = [
+                'nama' => '',
+                'harga_per_kg' => '',
+            ];
             Toaster::success('Sampah berhasil diperbarui');
         } catch (\Exception $e) {
             Toaster::error('Terjadi kesalahan saat memperbarui sampah');
