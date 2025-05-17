@@ -52,6 +52,7 @@ class KatalogSampah extends Component
         $this->dataInput['nama'] = $sampah->nama;
         $this->imagePath = $sampah->image_url;
         $this->mode = 'edit';
+        $this->imageUpload = null;
         $this->editModal = true;
     }
 
