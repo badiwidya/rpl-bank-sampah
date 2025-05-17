@@ -8,12 +8,13 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use Masmerise\Toaster\Toaster;
 use Pest\Plugins\Profile;
 
 class AdminProfileSettings extends Component
 {
-
+    use WithFileUploads;
     protected ProfileService $service;
 
     public $nama_depan;
@@ -25,6 +26,8 @@ class AdminProfileSettings extends Component
     public $no_telepon;
 
     public $image;
+
+    public $isDelete = false;
 
     protected function rules()
     {
@@ -62,6 +65,7 @@ class AdminProfileSettings extends Component
 
             if ($this->image) {
                 $this->service->updateAvatar($user, $this->image);
+                $this->image = null;
             }
 
             if ($isChangeEmail) {
@@ -73,6 +77,20 @@ class AdminProfileSettings extends Component
             Toaster::success('Informasi profil Anda telah diperbarui.');
         } catch (\Exception $e) {
             Toaster::error('Gagal memperbarui informasi profil Anda.');
+        }
+    }
+
+    public function deleteAvatar()
+    {
+        $user = Auth::user();
+
+        try {
+            $this->service->deleteAvatar($user);
+            $this->isDelete = false;
+            $this->image = null;
+            Toaster::success('Avatar Anda telah dihapus.');
+        } catch (\Exception $e) {
+            Toaster::error('Gagal menghapus avatar Anda.');
         }
     }
 
