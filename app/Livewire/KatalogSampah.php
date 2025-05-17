@@ -3,13 +3,15 @@
 namespace App\Livewire;
 
 use App\Models\Sampah;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 use Masmerise\Toaster\Toaster;
 
 class KatalogSampah extends Component
 {
-    use WithPagination;
+    use WithPagination, WithFileUploads;
 
     public string $term = '';
     public string $sortField = 'harga_per_kg';
@@ -27,6 +29,8 @@ class KatalogSampah extends Component
         'harga_per_kg' => '',
     ];
 
+    public $image;
+
     protected $rules = [
         'dataInput.nama' => 'required|string|max:255',
         'dataInput.harga_per_kg' => 'required|numeric|min:0',
@@ -43,6 +47,7 @@ class KatalogSampah extends Component
         $this->sampahToEdit = $sampah;
         $this->dataInput['harga_per_kg'] = $sampah->harga_per_kg;
         $this->dataInput['nama'] = $sampah->nama;
+        $this->image = $sampah->image_url;
         $this->editModal = true;
     }
 
@@ -50,7 +55,15 @@ class KatalogSampah extends Component
     {
         $this->authorize('update', $this->sampahToEdit);
         $this->validate();
+        $this->validate([
+            'image' => 'nullable|sometimes|mimes:jpg,jpeg,png|max:4096',
+        ]);
         try {
+
+            if ($this->image) {
+                $this->dataInput['image_url'] = $this->image->store('sampah', 'public');
+            }
+
             $this->sampahToEdit->update($this->dataInput);
             $this->editModal = false;
             $this->sampahToEdit = null;
@@ -73,7 +86,9 @@ class KatalogSampah extends Component
         $this->authorize('delete', $this->sampahToDelete);
 
         try {
-
+            if ($this->sampahToDelete->image_url) {
+                Storage::disk('public')->delete($this->sampahToDelete->image_url);
+            }
             $this->sampahToDelete->delete();
             $this->deleteConfirmation = false;
             $this->sampahToDelete = null;
