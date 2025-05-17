@@ -103,8 +103,8 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
         return Attribute::make(
             get: function (?string $value) {
                 return $value
-                    ? asset('storage/' . $value)
-                    : asset('avatars/default.jpg');
+                    ? 'storage/' . $value
+                    : 'avatars/default.jpg';
             }
         );
     }
