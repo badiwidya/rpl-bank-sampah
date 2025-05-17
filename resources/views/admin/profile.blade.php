@@ -1,5 +1,7 @@
 <x-layouts.app title="Pengaturan Profil - Bank Sampah">
-
-    <livewire:admin-profile-settings />
+    
+    <div class="bg-gray-200 min-h-full flex justify-center items-center">
+        <livewire:admin-profile-settings />
+    </div>
 
 </x-layouts.app>
