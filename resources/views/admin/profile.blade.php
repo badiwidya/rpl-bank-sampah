@@ -1,3 +1,5 @@
-<div>
-    <!-- The only way to do great work is to love what you do. - Steve Jobs -->
-</div>
+<x-layouts.app title="Pengaturan Profil - Bank Sampah">
+
+
+
+</x-layouts.app>

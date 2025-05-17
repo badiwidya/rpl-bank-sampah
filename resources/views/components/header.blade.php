@@ -5,7 +5,7 @@
             @if(auth()->check())
                 <button
                     @click="sidebarOpen = true"
-                    class="p-2 text-emerald-600 hover:bg-gray-100 rounded-lg"
+                    class="p-2 text-emerald-600 hover:bg-gray-100 rounded-lg cursor-pointer"
                 >
 
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
@@ -18,7 +18,7 @@
 
             <!-- Logo -->
             <a href="/" class="flex items-center space-x-2 font-semibold text-lg">
-                <img src="{{ asset('/assets/bank-sampah-logo.svg') }}" alt="Logo bank sampah" class="w-6 h-6"/>
+                <img src="{{ asset('assets/bank-sampah-logo.svg') }}" alt="Logo bank sampah" class="w-6 h-6"/>
                 <span>Bank Sampah</span>
             </a>
         </div>
@@ -62,20 +62,25 @@
         >
             <a href="{{ route(auth()->user()->role.'.dashboard.profile') }}">
                 <div class="flex items-center mb-4 gap-6">
-                    <div class="rounded-full border-2">
-                        <img src="{{ asset('/avatars/default.jpg') }}"
-                             alt="{{ auth()->user()->nama_depan . ' profle picture' }}" class="rounded-full w-18 h-18">
+                    <div class="rounded-full border-2 w-18 h-18 overflow-hidden">
+                        <img src="{{ asset(auth()->user()->avatar_url) }}"
+                             alt="{{ auth()->user()->nama_depan . ' profle picture' }}" class="object-cover h-full w-full">
                     </div>
                     <div class="flex flex-col gap-1">
                         <h1 class="text-white text-lg font-semibold">{{ auth()->user()->nama_depan.' '.auth()->user()->nama_belakang }}</h1>
-                        <p class="text-gray-200 text-xs font-light">{{ auth()->user()->email }}</p>
+                        <p class="text-gray-200 text-xs font-light">{{ auth()->user()->role === 'admin' ? auth()->user()->email : 'Rp '.number_format(auth()->user()->profile->saldo, 0, ',', '.') }}</p>
                     </div>
                 </div>
             </a>
             <ul class="space-y- mt-6">
-                <li><a href="#" class="block px-2 py-1 hover:underline rounded">Dashboard</a></li>
-                <li><a href="#" class="block px-2 py-1 hover:underline rounded">Transaksi</a></li>
-                <li><a href="#" class="block px-2 py-1 hover:underline rounded">Keluar</a></li>
+                <li><a href="{{ route(auth()->user()->role.'.dashboard.profile') }}" class="block px-2 py-1 hover:underline rounded">Pengaturan Profil</a></li>
+                <li><a href="{{  route(auth()->user()->role.'.dashboard.sampah') }}" class="block px-2 py-1 hover:underline rounded">Katalog Sampah</a></li>
+                <li>
+                    <form id="logout-submit" action="{{  route('auth.logout') }}" method="post">
+                        @csrf
+                        <a @click="document.getElementById('logout-submit').submit()" class="block px-2 py-1 hover:underline rounded cursor-pointer">Keluar</a>
+                    </form>
+                </li>
             </ul>
         </div>
     @endif

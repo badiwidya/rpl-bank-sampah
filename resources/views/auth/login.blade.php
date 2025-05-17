@@ -15,7 +15,7 @@
             <!-- Right Panel -->
             <div class="w-1/2 flex items-center justify-center bg-white">
                 <div
-                    class="bg-white p-8 rounded-xl shadow-2xl border border-gray-100 w-80 text-center hover:shadow-green-200 transition">
+                    class="bg-white p-8 rounded-xl shadow-2xl border border-gray-100 w-80 text-center hover:shadow-emerald-200 transition">
                     <div class="flex justify-center mb-4">
                         <img src="https://img.icons8.com/ios-filled/50/0eb784/user-male-circle.png" alt="User Icon"
                              class="w-12 h-12"/>
@@ -29,10 +29,10 @@
 
                     <!-- Pengguna Button -->
                     <a href="{{ route('nasabah.login.show') }}"
-                       class="block bg-green-600 text-white w-full py-2 rounded-md hover:bg-green-700 transition">Nasabah</a>
+                       class="block bg-emerald-600 text-white w-full py-2 rounded-md hover:bg-emerald-700 transition">Nasabah</a>
 
                     <p class="mt-6 text-xs text-gray-500">
-                        Tidak Memiliki Akun? <a href="{{ route('nasabah.register.show') }}" class="text-green-600 hover:underline">Daftar Disini</a>
+                        Tidak Memiliki Akun? <a href="{{ route('nasabah.register.show') }}" class="text-emerald-600 hover:underline">Daftar Disini</a>
                     </p>
                 </div>
             </div>

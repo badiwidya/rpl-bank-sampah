@@ -20,7 +20,7 @@
                     <div class="flex-1">
                         <label class="block text-sm font-medium text-gray-700 mb-1" for="firstName">Nama Depan</label>
                         <input id="firstName" name="nama_depan" type="text" placeholder="John"
-                               class="w-full px-4 py-2 placeholder:text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400 transition duration-300 @error('nama_depan') border-red-500 focus:ring-red-500 @enderror"
+                               class="w-full px-4 py-2 placeholder:text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-400 transition duration-300 @error('nama_depan') border-red-500 focus:ring-red-500 @enderror"
                                value="{{ old('nama_depan') }}"
                         />
                         @error('nama_depan')
@@ -32,7 +32,7 @@
                     <div class="flex-1">
                         <label class="block text-sm font-medium text-gray-700 mb-1" for="lastName">Nama Belakang</label>
                         <input id="lastName" name="nama_belakang" type="text" placeholder="Doe"
-                               class="w-full px-4 py-2 placeholder:text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400 transition duration-300 @error('nama_belakang') border-red-500 focus:ring-red-500 @enderror"
+                               class="w-full px-4 py-2 placeholder:text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-400 transition duration-300 @error('nama_belakang') border-red-500 focus:ring-red-500 @enderror"
                                value="{{ old('nama_belakang') }}"
                         />
                         @error('nama_belakang')
@@ -45,7 +45,7 @@
                 <div class="mb-4">
                     <label class="block text-sm font-medium text-gray-700 mb-1" for="phone">No. Telepon</label>
                     <input id="phone" name="no_telepon" type="text" placeholder="08123456789"
-                           class="w-full px-4 py-2 placeholder:text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400 transition duration-300 @error('no_telepon') border-red-500 focus:ring-red-500 @enderror"
+                           class="w-full px-4 py-2 placeholder:text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-400 transition duration-300 @error('no_telepon') border-red-500 focus:ring-red-500 @enderror"
                            value="{{ old('no_telepon') }}"
                     />
                     @error('no_telepon')
@@ -55,9 +55,9 @@
 
                 <!-- Email -->
                 <div class="mb-4">
-                    <label class="block text-sm font-medium text-gray-700 mb-1" for="email">Alamat email</label>
+                    <label class="block text-sm font-medium text-gray-700 mb-1" for="email">Alamat Email</label>
                     <input id="email" name="email" type="email" placeholder="johndoe@example.com"
-                           class="w-full px-4 py-2 placeholder:text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400 transition duration-300 @error('email') border-red-500 focus:ring-red-500 @enderror"
+                           class="w-full px-4 py-2 placeholder:text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-400 transition duration-300 @error('email') border-red-500 focus:ring-red-500 @enderror"
                            value="{{ old('email') }}"
                     />
                     @error('email')
@@ -70,7 +70,7 @@
                     <label class="block text-sm font-medium text-gray-700 mb-1" for="password">Password</label>
                     <div class="relative password-wrapper">
                         <input id="password" name="password" type="password" placeholder="Masukkan password Anda"
-                               class="w-full px-4 py-2 placeholder:text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400 transition duration-300 @error('password') border-red-500 focus:ring-red-500 @enderror"/>
+                               class="w-full px-4 py-2 placeholder:text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-400 transition duration-300 @error('password') border-red-500 focus:ring-red-500 @enderror"/>
                         <div class="absolute inset-y-0 right-3 flex items-center cursor-pointer toggle-password">
                             <!-- Eye Open -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-400 eye-open"
@@ -103,7 +103,7 @@
                     <div class="relative password-wrapper">
                         <input id="confirmPassword" name="password_confirmation" type="password"
                                placeholder="Masukkan password Anda"
-                               class="w-full px-4 py-2 placeholder:text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400 transition duration-300 @error('password') border-red-500 focus:ring-red-500 @enderror"/>
+                               class="w-full px-4 py-2 placeholder:text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-400 transition duration-300 @error('password') border-red-500 focus:ring-red-500 @enderror"/>
                         <div
                             class="absolute inset-y-0 right-3 flex items-center cursor-pointer toggle-password">
                             <!-- Eye Open -->
@@ -130,13 +130,13 @@
 
                 <!-- Sign Up Button -->
                 <button type="submit"
-                        class="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700 transition cursor-pointer">
+                        class="w-full bg-emerald-600 text-white py-2 rounded-md hover:bg-emerald-700 transition cursor-pointer">
                     Daftar Sekarang
                 </button>
             </form>
 
             <p class="text-center text-sm text-gray-600 mt-6">
-                Sudah punya akun? <a href="{{ route('auth.login.choice') }}" class="text-green-600 hover:underline">Masuk
+                Sudah punya akun? <a href="{{ route('auth.login.choice') }}" class="text-emerald-600 hover:underline">Masuk
                     ke akun</a>
             </p>
 

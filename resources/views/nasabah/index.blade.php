@@ -1,6 +1,5 @@
-<div>
-    <form action="{{ route('auth.logout') }}" method="post">
-        @csrf
-        <button type="submit">Logout</button>
-    </form>
-</div>
+<x-layouts.app title="Dashboard - Bank Sampah">
+
+
+
+</x-layouts.app>

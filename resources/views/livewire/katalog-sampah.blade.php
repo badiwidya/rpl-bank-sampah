@@ -243,13 +243,15 @@
 
             <form wire:submit.prevent="{{ $mode === 'edit' ? 'update' : 'store' }}">
                 <div class="mb-4 flex items-center gap-2">
-                    <div>
+                    <div class="flex items-center justify-center h-36 w-36 overflow-hidden rounded-md border-1 border-dashed bg-gray-300">
                         @if($imageUpload)
-                            <img class="h-36 w-36 block rounded-md" src="{{ $imageUpload->temporaryUrl() }}"
+                            <img class="h-full w-full object-cover" src="{{ $imageUpload->temporaryUrl() }}"
                                  alt="Image upload">
                         @elseif($imagePath)
-                            <img class="h-36 w-36 block rounded-md border-dashed border-1" src="{{ asset($imagePath) }}"
+                            <img class="h-full w-full object-cover" src="{{ asset($imagePath) }}"
                                  alt="Image default">
+                        @else
+                            <p class="font-semibold text-gray-400">NO IMAGE</p>
                         @endif
                     </div>
                     <button type="button"
@@ -266,7 +268,7 @@
                 <div class="mb-4">
                     <label class="block text-sm font-medium text-gray-700 mb-1">Nama Sampah</label>
                     <input type="text" name="nama" wire:model.defer="dataInput.nama"
-                           class="w-full px-4 py-2 placeholder:text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400 transition duration-300 @error('dataInput.nama') border-red-500 focus:ring-red-500 @enderror"/>
+                           class="w-full px-4 py-2 placeholder:text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-400 transition duration-300 @error('dataInput.nama') border-red-500 focus:ring-red-500 @enderror"/>
                     @error('dataInput.nama')
                     <div class="text-red-500 text-xs mt-1">{{ $message }}</div>
                     @enderror
@@ -274,7 +276,7 @@
 
                 <div class="mb-4">
                     <label class="block text-sm font-medium text-gray-700 mb-1">Harga per kg</label>
-                    <div class="flex items-center border rounded-md px-3 focus-within:ring-2 focus-within:ring-green-400 transition duration-300 @error('dataInput.harga_per_kg') border-red-500 focus-within:ring-red-500 @enderror">
+                    <div class="flex items-center border rounded-md px-3 focus-within:ring-2 focus-within:ring-emerald-400 transition duration-300 @error('dataInput.harga_per_kg') border-red-500 focus-within:ring-red-500 @enderror">
                         <span class="text-gray-700 select-none">Rp.</span>
                         <input type="number" name="harga_per_kg" step="0.01"
                                wire:model.defer="dataInput.harga_per_kg"
