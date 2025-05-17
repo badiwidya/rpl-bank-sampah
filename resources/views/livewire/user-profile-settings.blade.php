@@ -5,7 +5,7 @@
             <h1 class="font-medium text-2xl">Pengaturan Profil</h1>
         </section>
 
-        <form wire:submit.prevent="update">
+        <form wire:submit.prevent="{{ $mode === 'admin' ? 'updateAdmin' : 'updateNasabah' }}">
             <section class="mb-8">
                 <h3 class="font-light text-md text-gray-600 mb-4">Foto Profil</h3>
                 <div class="flex">
@@ -43,6 +43,7 @@
                     <div class="flex-1">
                         <label class="block text-sm font-medium text-gray-700 mb-1" for="firstName">Nama Depan</label>
                         <input id="firstName" name="nama_depan" type="text" wire:model.defer="nama_depan"
+                            placeholder="Masukkan nama depan Anda..."
                             class="w-full px-4 py-2 placeholder:text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-400 transition duration-300 @error('nama_depan') border-red-500 focus:ring-red-500 @enderror" />
                         @error('nama_depan')
                             <div class="text-red-500 text-xs my-1 self-end">{{ $message }}</div>
@@ -53,6 +54,7 @@
                     <div class="flex-1">
                         <label class="block text-sm font-medium text-gray-700 mb-1" for="lastName">Nama Belakang</label>
                         <input id="lastName" name="nama_belakang" type="text" wire:model.defer="nama_belakang"
+                            placeholder="Masukkan nama belakang Anda..."
                             class="w-full px-4 py-2 placeholder:text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-400 transition duration-300 @error('nama_belakang') border-red-500 focus:ring-red-500 @enderror" />
                         @error('nama_belakang')
                             <div class="text-red-500 text-xs my-1 self-end">{{ $message }}</div>
@@ -60,10 +62,11 @@
                     </div>
                 </div>
 
-                <div class="flex gap-8 mb-12">
+                <div class="flex gap-8 mb-4">
                     <div class="flex-1">
                         <label class="block text-sm font-medium text-gray-700 mb-1" for="email">Alamat Email</label>
                         <input id="email" name="email" type="email" wire:model.defer="email"
+                            placeholder="Masukkan alamat email Anda..."
                             class="w-full px-4 py-2 placeholder:text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-400 transition duration-300 @error('email') border-red-500 focus:ring-red-500 @enderror" />
                         @error('email')
                             <div class="text-red-500 text-xs my-1 self-end">{{ $message }}</div>
@@ -72,6 +75,7 @@
                     <div class="flex-1">
                         <label class="block text-sm font-medium text-gray-700 mb-1" for="tel">No. Telepon</label>
                         <input id="tel" name="no_telepon" type="tel" wire:model.defer="no_telepon"
+                            placeholder="Masukkan nomor telepon Anda..."
                             class="w-full px-4 py-2 placeholder:text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-400 transition duration-300 @error('no_telepon') border-red-500 focus:ring-red-500 @enderror" />
                         @error('no_telepon')
                             <div class="text-red-500 text-xs my-1 self-end">{{ $message }}</div>
@@ -80,6 +84,46 @@
                 </div>
 
             </section>
+
+            @if ($mode === 'nasabah')
+                <section class="flex gap-8 mb-4">
+                    <div x-data="{ open: false, selected: @entangle('metode_pembayaran_utama') }" class="relative flex-1">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Metode Pembayaran Utama</label>
+
+                        <!-- Dropdown Trigger -->
+                        <div @click="open = !open"
+                            class="w-full px-4 py-2 bg-white border border-gray-300 rounded-md text-sm text-gray-800 cursor-pointer focus:outline-none focus:ring-2 focus:ring-emerald-400 transition duration-300"
+                            :class="{ 'ring-2 ring-emerald-400': open }">
+                            <span x-text="selected || 'Pilih metode pembayaran'"></span>
+                            <svg class="w-4 h-4 inline-block float-right mt-1 text-gray-600" fill="none"
+                                stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+
+                        <!-- Dropdown Options -->
+                        <div x-show="open" @click.away="open = false"
+                            class="absolute z-10 mt-1 w-full bg-white border border-gray-300 rounded-md shadow-lg">
+                            <template x-for="option in ['Gopay', 'Dana', 'OVO', 'LinkAja']" :key="option">
+                                <div @click="selected = option; open = false"
+                                    class="px-4 py-2 text-sm text-gray-700 hover:bg-emerald-100 hover:text-emerald-600 cursor-pointer transition">
+                                    <span x-text="option"></span>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+
+
+                    <div class="flex-1"></div>
+                </section>
+
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-1" for="alamat">Alamat</label>
+                    <textarea id="alamat" name="alamat" wire:model.defer="alamat" rows="3"
+                        class="w-full px-4 py-2 placeholder:text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-400 transition duration-300 @error('alamat') border-red-500 focus:ring-red-500 @enderror"
+                        placeholder="Masukkan alamat lengkap..."></textarea>
+                </div>
+            @endif
 
             <section>
                 <h3 class="font-regular text-xl text-black mb-4">Keamanan</h3>
@@ -120,11 +164,13 @@
         </div>
     </div>
 
-    @if (session()->has('email'))
-        @push('scripts')
-            <script>
-                Toaster.success('Berhasil mengganti email!');
-            </script>
-        @endpush
+    @if (session('email'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                setTimeout(() => {
+                    Toaster.success('Email Anda berhasil diganti!');
+                }, 500);
+            });
+        </script>
     @endif
 </div>

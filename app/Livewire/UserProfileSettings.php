@@ -28,6 +28,12 @@ class UserProfileSettings extends Component
 
     public $isDelete = false;
 
+    public $mode;
+
+    public $alamat;
+
+    public $metode_pembayaran_utama;
+
     protected function rules()
     {
         return [
@@ -46,6 +52,9 @@ class UserProfileSettings extends Component
         $this->nama_belakang = $user->nama_belakang;
         $this->email = $user->email;
         $this->no_telepon = $user->no_telepon;
+        $this->mode = $user->role;
+        $this->alamat = $user->profile?->alamat;
+        $this->metode_pembayaran_utama = $user->profile?->metode_pembayaran_utama;
     }
 
     public function boot(ProfileService $service)
@@ -53,12 +62,14 @@ class UserProfileSettings extends Component
         $this->service = $service;
     }
 
-    public function update()
+    public function updateAdmin()
     {
         $validated = $this->validate();
         $user = Auth::user();
 
         try {
+
+            $message = 'Informasi profil Anda telah diperbarui.';
 
             $isChangeEmail = $this->service->updateEmail($user, $validated['email']);
 
@@ -68,12 +79,47 @@ class UserProfileSettings extends Component
             }
 
             if ($isChangeEmail) {
-                Toaster::success('Silakan periksa email baru Anda untuk mengganti email.');
+                $message = $message . ' Silakan periksa email baru Anda untuk mengganti email';
             }
 
-            $user->update(Arr::except($validated, ['image']));
+            $user->update(Arr::except($validated, ['image', 'email']));
 
-            Toaster::success('Informasi profil Anda telah diperbarui.');
+            Toaster::success($message);
+        } catch (\Exception $e) {
+            Toaster::error('Gagal memperbarui informasi profil Anda.');
+        }
+    }
+
+    public function updateNasabah()
+    {
+        $validated = $this->validate();
+
+        $validatedProfile = $this->validate([
+            'alamat' => 'nullable|string',
+            'metode_pembayaran_utama' => 'nullable|string',
+        ]);
+
+        $user = Auth::user();
+
+        try {
+            $message = 'Informasi profil Anda telah diperbarui.';
+
+            $isChangeEmail = $this->service->updateEmail($user, $validated['email']);
+
+            if ($this->image) {
+                $this->service->updateAvatar($user, $this->image);
+                $this->image = null;
+            }
+
+            if ($isChangeEmail) {
+                $message = $message . ' Silakan periksa email baru Anda untuk mengganti email';
+            }
+
+            $user->update(Arr::except($validated, ['image', 'email']));
+
+            $user->profile()->update($validatedProfile);
+
+            Toaster::success($message);
         } catch (\Exception $e) {
             Toaster::error('Gagal memperbarui informasi profil Anda.');
         }
