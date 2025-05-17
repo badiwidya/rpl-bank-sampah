@@ -243,13 +243,15 @@
 
             <form wire:submit.prevent="{{ $mode === 'edit' ? 'update' : 'store' }}">
                 <div class="mb-4 flex items-center gap-2">
-                    <div>
+                    <div class="flex items-center justify-center h-36 w-36 overflow-hidden rounded-md border-1 border-dashed bg-gray-300">
                         @if($imageUpload)
-                            <img class="h-36 w-36 block rounded-md" src="{{ $imageUpload->temporaryUrl() }}"
+                            <img class="h-full w-full object-cover" src="{{ $imageUpload->temporaryUrl() }}"
                                  alt="Image upload">
                         @elseif($imagePath)
-                            <img class="h-36 w-36 block rounded-md border-dashed border-1" src="{{ asset($imagePath) }}"
+                            <img class="h-full w-full object-cover" src="{{ asset($imagePath) }}"
                                  alt="Image default">
+                        @else
+                            <p class="font-semibold text-gray-400">NO IMAGE</p>
                         @endif
                     </div>
                     <button type="button"
