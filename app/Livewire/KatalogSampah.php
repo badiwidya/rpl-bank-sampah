@@ -32,6 +32,8 @@ class KatalogSampah extends Component
     public $imageUpload = null;
     public $imagePath = null;
 
+    public $mode = '';
+
     protected $rules = [
         'dataInput.nama' => 'required|string|max:255',
         'dataInput.harga_per_kg' => 'required|numeric|min:0',
@@ -49,7 +51,34 @@ class KatalogSampah extends Component
         $this->dataInput['harga_per_kg'] = $sampah->harga_per_kg;
         $this->dataInput['nama'] = $sampah->nama;
         $this->imagePath = $sampah->image_url;
+        $this->mode = 'edit';
         $this->editModal = true;
+    }
+
+    public function createSampah()
+    {
+        $this->authorize('create', Sampah::class);
+        $this->mode = 'create';
+        $this->resetInput();
+        $this->editModal = true;
+    }
+
+    public function store()
+    {
+        $this->authorize('create', Sampah::class);
+        $this->validate();
+        $this->validate([
+            'imageUpload' => 'required|mimes:jpg,jpeg,png|max:4096',
+        ]);
+        try {
+            $this->dataInput['image_url'] = $this->imageUpload->store('sampah', 'public');
+            Sampah::create($this->dataInput);
+            $this->editModal = false;
+            $this->resetInput();
+            Toaster::success('Sampah berhasil ditambahkan');
+        } catch (\Exception $e) {
+            Toaster::error('Terjadi kesalahan saat menambahkan sampah');
+        }
     }
 
     public function update()
@@ -68,12 +97,7 @@ class KatalogSampah extends Component
             $this->sampahToEdit->update($this->dataInput);
             $this->editModal = false;
             $this->sampahToEdit = null;
-            $this->imageUpload = null;
-            $this->imagePath = null;
-            $this->dataInput = [
-                'nama' => '',
-                'harga_per_kg' => '',
-            ];
+            $this->resetInput();
             Toaster::success('Sampah berhasil diperbarui');
         } catch (\Exception $e) {
             Toaster::error('Terjadi kesalahan saat memperbarui sampah');
@@ -103,6 +127,16 @@ class KatalogSampah extends Component
         } catch (\Exception $e) {
             Toaster::error('Terjadi kesalahan saat menghapus sampah');
         }
+    }
+
+    public function resetInput()
+    {
+        $this->imageUpload = null;
+        $this->imagePath = null;
+        $this->dataInput = [
+            'nama' => '',
+            'harga_per_kg' => '',
+        ];
     }
 
     public function sortBy($field)
