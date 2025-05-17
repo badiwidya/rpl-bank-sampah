@@ -7,6 +7,7 @@ use App\Services\ProfileService;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Masmerise\Toaster\Toaster;
@@ -94,6 +95,7 @@ class AdminProfileSettings extends Component
         }
     }
 
+    #[Title('Pengaturan Profil - Bank Sampah')]
     public function render()
     {
         return view('livewire.admin-profile-settings');
