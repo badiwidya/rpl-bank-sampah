@@ -13,7 +13,7 @@ use Livewire\WithFileUploads;
 use Masmerise\Toaster\Toaster;
 use Pest\Plugins\Profile;
 
-class AdminProfileSettings extends Component
+class UserProfileSettings extends Component
 {
     use WithFileUploads;
     protected ProfileService $service;
@@ -98,6 +98,6 @@ class AdminProfileSettings extends Component
     #[Title('Pengaturan Profil - Bank Sampah')]
     public function render()
     {
-        return view('livewire.admin-profile-settings');
+        return view('livewire.user-profile-settings');
     }
 }
