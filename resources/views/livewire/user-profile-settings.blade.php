@@ -23,7 +23,7 @@
                         <button type="button" @click="$refs.fileInput.click()"
                             class="border-emerald-600 text-emerald-600 py-2 w-36 border-1 rounded-3xl text-sm hover:text-white hover:cursor-pointer hover:bg-emerald-700 transition duration-300">Unggah
                             Foto Baru</button>
-                        @if (auth()->user()->avatar_url !== 'avatars/default.jpg')
+                        @if (auth()->user()->avatar_url !== 'avatars/default.png')
                             <button type="button" wire:click="isDelete = true"
                                 class="border-red-600 border-1 text-red-600 hover:text-white py-2 w-36 rounded-3xl text-sm hover:cursor-pointer hover:bg-red-600 transition duration-300">Hapus
                                 Foto Profil</button>
