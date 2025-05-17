@@ -1,3 +1,5 @@
-<div>
-    <!-- Always remember that you are absolutely unique. Just like everyone else. - Margaret Mead -->
-</div>
+<x-layouts.app title="Pengaturan Profil - Bank Sampah">
+
+
+
+</x-layouts.app>
