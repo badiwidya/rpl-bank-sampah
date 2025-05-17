@@ -2,3 +2,4 @@
 - Ubah bahasa aplikasi ke Indonesia
 - Specify atribut untuk validation error
 - Buat warna border lebih halus (gray)
+- Ubah header sama sidebar jadi Livewire semua (biar dashboard pake livewire semua)
