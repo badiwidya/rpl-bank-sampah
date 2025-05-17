@@ -11,7 +11,7 @@
         <main class="flex-1">
         {{ $slot }}
         </main>
-
+    <x-toaster-hub/>
     @stack('scripts')
     </body>
 </html>

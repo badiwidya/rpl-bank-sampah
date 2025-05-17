@@ -41,6 +41,12 @@ Route::name('nasabah.')->group(function () {
         Route::put('/profile', [NasabahProfileController::class, 'update'])->name('profile.submit');
         Route::get('/profile/change-password', [ChangePasswordController::class, 'create'])->name('password');
         Route::post('/profile/change-password', [ChangePasswordController::class, 'update'])->name('password.update');
+
+        // Rute sementara katalog sampah
+        Route::get('/sampah', function () {
+            return view('nasabah.sampah');
+        });
+
     });
 
 });
@@ -66,6 +72,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::put('/profile', [AdminProfileController::class, 'update'])->name('profile.submit');
         Route::get('/profile/change-password', [ChangePasswordController::class, 'create'])->name('password');
         Route::post('/profile/change-password', [ChangePasswordController::class, 'update'])->name('password.update');
+
+        // Sementara
+        Route::get('/sampah', function() {
+            return view('admin.sampah');
+        });
     });
 
 });
@@ -110,7 +121,8 @@ Route::get('/test-admin', function () {
     $user = \App\Models\User::where('role', 'admin')->first();
 
     if (! $user) {
-        $user = \App\Models\User::factory()->create(['role' => 'admin'])->profile()->create();
+        $user = \App\Models\User::factory()->create(['role' => 'admin']);
+        $user->profile()->create();
     }
 
     \Illuminate\Support\Facades\Auth::login($user);
