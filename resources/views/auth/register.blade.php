@@ -55,7 +55,7 @@
 
                 <!-- Email -->
                 <div class="mb-4">
-                    <label class="block text-sm font-medium text-gray-700 mb-1" for="email">Alamat email</label>
+                    <label class="block text-sm font-medium text-gray-700 mb-1" for="email">Alamat Email</label>
                     <input id="email" name="email" type="email" placeholder="johndoe@example.com"
                            class="w-full px-4 py-2 placeholder:text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-400 transition duration-300 @error('email') border-red-500 focus:ring-red-500 @enderror"
                            value="{{ old('email') }}"
