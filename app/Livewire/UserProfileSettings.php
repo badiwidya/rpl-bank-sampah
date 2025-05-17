@@ -2,7 +2,6 @@
 
 namespace App\Livewire;
 
-use App\Models\User;
 use App\Services\ProfileService;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
@@ -11,7 +10,6 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Masmerise\Toaster\Toaster;
-use Pest\Plugins\Profile;
 
 class UserProfileSettings extends Component
 {
