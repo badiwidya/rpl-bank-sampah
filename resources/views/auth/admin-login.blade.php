@@ -28,7 +28,7 @@
                 <div class="text-sm font-light text-red-500 text-center">{{ $message }}</div>
             @enderror
             @if(session('status'))
-                <div class="text-sm font-light text-green-500 text-center">{{ session('status') }}</div>
+                <div class="text-sm font-light text-emerald-500 text-center">{{ session('status') }}</div>
             @endif
             <h2 class="text-xl font-semibold text-center">Masuk Sebagai Admin</h2>
             <p class="text-center text-sm text-gray-500 mb-6">Akses akun Bank Sampah Anda</p>
@@ -39,7 +39,7 @@
                 <div class="mb-4">
                     <label class="block text-sm font-medium text-gray-700 mb-1">Email/No. Telepon</label>
                     <input type="text" placeholder="Masukkan Email/No. Telepon" name="login"
-                           class="w-full px-4 py-2 placeholder:text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400 transition duration-300 @error('login') border-red-500 focus:ring-red-500 @enderror"
+                           class="w-full px-4 py-2 placeholder:text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-400 transition duration-300 @error('login') border-red-500 focus:ring-red-500 @enderror"
                            value="{{ old('login') }}"
                     />
                     @error('login')
@@ -52,7 +52,7 @@
                     <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
                     <div class="relative">
                         <input type="password" placeholder="Masukkan Password" name="password"
-                               class="w-full px-4 py-2 placeholder:text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400 transition duration-300 @error('password') border-red-500 focus:ring-red-500 @enderror"/>
+                               class="w-full px-4 py-2 placeholder:text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-400 transition duration-300 @error('password') border-red-500 focus:ring-red-500 @enderror"/>
                         <div class="absolute inset-y-0 right-3 flex items-center cursor-pointer toggle-password">
                             <!-- Eye Open -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-400 eye-open"
@@ -81,16 +81,16 @@
                 <!-- Remember me & forgot -->
                 <div class="flex justify-between items-center mb-6 text-sm">
                     <label class="flex items-center space-x-2 text-gray-600">
-                        <input type="checkbox" name="remember_me" class="form-checkbox text-green-600"/>
+                        <input type="checkbox" name="remember_me" class="form-checkbox text-emerald-600"/>
                         <span>Ingat saya</span>
                     </label>
-                    <a href="{{ route('auth.password.request') }}" class="text-green-500 hover:underline">Lupa
+                    <a href="{{ route('auth.password.request') }}" class="text-emerald-500 hover:underline">Lupa
                         Password?</a>
                 </div>
 
                 <!-- Login as Anchor -->
                 <button type="submit"
-                        class="block text-center w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700 transition cursor-pointer">
+                        class="block text-center w-full bg-emerald-600 text-white py-2 rounded-md hover:bg-emerald-700 transition cursor-pointer">
                     Login
                 </button>
             </form>

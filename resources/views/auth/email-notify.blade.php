@@ -12,7 +12,7 @@
             <form action="{{ route('mail.verification.resend') }}" method="post">
                 @csrf
                 <button type="submit"
-                        class="block py-2 text-center w-full text-white rounded-md bg-green-600 hover:bg-green-700 transition cursor-pointer disabled:opacity-50 @if(session()->hasAny(['success', 'error'])) disabled:hover:bg-green-600 disabled:cursor-auto @endif"
+                        class="block py-2 text-center w-full text-white rounded-md bg-emerald-600 hover:bg-emerald-700 transition cursor-pointer disabled:opacity-50 @if(session()->hasAny(['success', 'error'])) disabled:hover:bg-emerald-600 disabled:cursor-auto @endif"
                         @if(session()->hasAny(['success', 'error'])) disabled @endif >Kirim Ulang
                 </button>
             </form>
@@ -21,7 +21,7 @@
                 <p id="timer" class="font-bold text-red-950 text-center text-sm mt-2">01:00</p>
 
                 @if(session()->has('success'))
-                    <div class="text-sm font-light text-green-500 text-center mt-2">{{ session('success') }}</div>
+                    <div class="text-sm font-light text-emerald-500 text-center mt-2">{{ session('success') }}</div>
                 @endif
 
                 @if(session()->has('error'))

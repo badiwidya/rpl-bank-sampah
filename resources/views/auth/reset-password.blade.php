@@ -11,7 +11,7 @@
                 <div class="mb-4">
                     <label class="block text-sm font-medium text-gray-700 mb-1" for="email">Alamat email</label>
                     <input id="email" name="email" type="email"
-                           class="w-full px-4 py-2 placeholder:text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400 transition duration-300  read-only:opacity-80 read-only:bg-gray-200"
+                           class="w-full px-4 py-2 placeholder:text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-400 transition duration-300  read-only:opacity-80 read-only:bg-gray-200"
                            value="{{ $email }}"
                            readonly
                     />
@@ -21,7 +21,7 @@
                     <label class="block text-sm font-medium text-gray-700 mb-1" for="password">Password baru</label>
                     <div class="relative password-wrapper">
                         <input id="password" name="password" type="password" placeholder="Masukkan password baru Anda"
-                               class="w-full px-4 py-2 placeholder:text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400 transition duration-300 @error('password') border-red-500 focus:ring-red-500 @enderror"/>
+                               class="w-full px-4 py-2 placeholder:text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-400 transition duration-300 @error('password') border-red-500 focus:ring-red-500 @enderror"/>
                         <div class="absolute inset-y-0 right-3 flex items-center cursor-pointer toggle-password">
 
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-400 eye-open"
@@ -54,7 +54,7 @@
                     <div class="relative password-wrapper">
                         <input id="confirmPassword" name="password_confirmation" type="password"
                                placeholder="Masukkan password baru Anda"
-                               class="w-full px-4 py-2 placeholder:text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400 transition duration-300 @error('password') border-red-500 focus:ring-red-500 @enderror"/>
+                               class="w-full px-4 py-2 placeholder:text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-400 transition duration-300 @error('password') border-red-500 focus:ring-red-500 @enderror"/>
                         <div
                             class="absolute inset-y-0 right-3 flex items-center cursor-pointer toggle-password">
 
@@ -79,7 +79,7 @@
                 </div>
 
                     <button type="submit"
-                            class="block py-2 mt-6 text-center w-full text-white rounded-md bg-green-600 hover:bg-green-700 transition cursor-pointer disabled:opacity-50 @if(session()->hasAny(['success', 'error'])) disabled:hover:bg-green-600 disabled:cursor-auto @endif">
+                            class="block py-2 mt-6 text-center w-full text-white rounded-md bg-emerald-600 hover:bg-emerald-700 transition cursor-pointer disabled:opacity-50 @if(session()->hasAny(['success', 'error'])) disabled:hover:bg-emerald-600 disabled:cursor-auto @endif">
                         Ganti Password
                     </button>
             </form>
