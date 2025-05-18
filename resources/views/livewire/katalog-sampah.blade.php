@@ -1,4 +1,5 @@
-<div class="py-6 w-4/5 mx-auto @cannot('create', \App\Models\Sampah::class) max-w-3/5 @endcannot">
+<div class="flex justify-center bg-gray-200 min-h-full min-w-full">
+<div class="py-8 w-4/5 mx-auto @cannot('create', \App\Models\Sampah::class) max-w-3/5 @endcannot">
 
 
     <div class="flex justify-between items-center mb-6">
@@ -307,4 +308,5 @@
     @endif
 
 
+</div>
 </div>

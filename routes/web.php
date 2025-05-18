@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\SessionController;
 use App\Http\Controllers\Auth\UserEmailVerificationController;
 use App\Livewire\ChangePassword;
+use App\Livewire\KatalogSampah;
 use App\Livewire\UserProfileSettings;
 use Illuminate\Support\Facades\Route;
 
@@ -40,9 +41,7 @@ Route::name('nasabah.')->group(function () {
         Route::get('/profile/change-password', ChangePassword::class)->name('password');
 
         // Rute sementara katalog sampah
-        Route::get('/sampah', function () {
-            return view('nasabah.sampah');
-        })->name('sampah');
+        Route::get('/sampah', KatalogSampah::class)->name('sampah');
 
     });
 
@@ -69,9 +68,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/profile/change-password', ChangePassword::class)->name('password');
 
         // Sementara
-        Route::get('/sampah', function() {
-            return view('admin.sampah');
-        })->name('sampah');
+        Route::get('/sampah', KatalogSampah::class)->name('sampah');
     });
 
 });
