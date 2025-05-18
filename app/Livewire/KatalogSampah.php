@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Sampah;
 use Illuminate\Support\Facades\Storage;
+use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
@@ -12,7 +13,7 @@ use Masmerise\Toaster\Toaster;
 class KatalogSampah extends Component
 {
     use WithPagination, WithFileUploads;
-
+    #[Url('query')]
     public string $term = '';
     public string $sortField = 'harga_per_kg';
     public string $sortDirection = 'asc';
