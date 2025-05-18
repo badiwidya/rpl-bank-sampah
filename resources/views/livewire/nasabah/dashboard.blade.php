@@ -37,7 +37,7 @@
         </div>
 
 
-        <div class="flex flex-1 items-center justify-between gap-6 bg-white backdrop-blur-md rounded-xl shadow-xl p-8">
+        <div class="flex flex-1 max-w-100 items-center justify-between gap-6 bg-white backdrop-blur-md rounded-xl shadow-xl p-8">
             <div class="flex flex-col items-start gap-2">
                 <p class="text-md font-regular text-gray-600">Total Sampah Terkumpul</p>
                 <p class="font-semibold text-lg">{{ $totalBeratSampah . ' kg' }}</p>
@@ -47,7 +47,7 @@
             </div>
         </div>
 
-        <div class="flex flex-1 items-center justify-between gap-6 bg-white backdrop-blur-md rounded-xl shadow-xl p-8">
+        <div class="flex flex-1 max-w-100 items-center justify-between gap-6 bg-white backdrop-blur-md rounded-xl shadow-xl p-8">
             <div class="flex flex-col items-start gap-2">
                 <div>
                     <p class="text-md font-regular text-gray-600">Setoran Hari Ini</p>
