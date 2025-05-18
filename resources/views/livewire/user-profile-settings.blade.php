@@ -127,9 +127,9 @@
 
             <section>
                 <h3 class="font-regular text-xl text-black mb-4">Keamanan</h3>
-                <button
-                    class="px-8 py-2 bg-emerald-600 rounded-2xl text-sm hover:bg-emerald-700 hover:cursor-pointer text-white">Ganti
-                    Password</button>
+                <a href="{{ route(auth()->user()->role . '.dashboard.password') }}" wire:navigate
+                    class="block w-fit px-8 py-2 bg-emerald-600 rounded-2xl text-sm hover:bg-emerald-700 hover:cursor-pointer text-white">Ganti
+                    Password</a>
             </section>
 
             <section class="flex justify-end mt-12">
