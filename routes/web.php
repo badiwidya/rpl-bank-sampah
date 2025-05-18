@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\SessionController;
 use App\Http\Controllers\Auth\UserEmailVerificationController;
+use App\Livewire\Admin\CreateSetoran;
 use App\Livewire\ChangePassword;
 use App\Livewire\KatalogSampah;
 use App\Livewire\RiwayatTransaksi;
@@ -70,6 +71,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // Sementara
         Route::get('/sampah', KatalogSampah::class)->name('sampah');
         Route::get('/riwayat', RiwayatTransaksi::class)->name('riwayat');
+        Route::get('/setoran/create', CreateSetoran::class)->name('setoran.create');
     });
 
 });

@@ -17,14 +17,14 @@
             </div>
         </div>
         @if (auth()->user()->role === 'admin')
-            <button wire:click="createSampah"
-                class="bg-emerald-600 hover:bg-emerald-700 drop-shadow-md hover:cursor-pointer text-white font-medium py-2 px-4 rounded-lg flex items-center transition duration-150 ease-in-out">
+            <a href="{{ route('admin.dashboard.setoran.create') }}" wire:navigate
+                class="block bg-emerald-600 hover:bg-emerald-700 drop-shadow-md hover:cursor-pointer text-white font-medium py-2 px-4 rounded-lg flex items-center transition duration-150 ease-in-out">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                 </svg>
                 Tambah Setoran
-            </button>
+            </a>
         @endif
 
     </div>
@@ -166,7 +166,8 @@
                             </div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <button type="button" wire:click="seeDetail({{ $item->id }})" class="p-2 rounded-lg bg-gray-400 hover:bg-gray-600 hover:text-white hover:cursor-pointer">
+                            <button type="button" wire:click="seeDetail({{ $item->id }})"
+                                class="p-2 rounded-lg bg-gray-400 hover:bg-gray-600 hover:text-white hover:cursor-pointer">
                                 Detail
                             </button>
                         </td>
