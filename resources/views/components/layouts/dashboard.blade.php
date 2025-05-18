@@ -8,7 +8,7 @@
         @livewireStyles
     </head>
     <body class="font-poppins h-screen flex flex-col">
-        <x-header></x-header>
+        <livewire:components.header />
         <main class="flex-1">
             {{ $slot }}
         </main>
