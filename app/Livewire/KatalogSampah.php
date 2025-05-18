@@ -68,6 +68,7 @@ class KatalogSampah extends Component
     public function store()
     {
         $this->authorize('create', Sampah::class);
+        $this->trimInput();
         $this->validate();
         $this->validate([
             'imageUpload' => 'required|mimes:jpg,jpeg,png|max:4096',
@@ -86,6 +87,7 @@ class KatalogSampah extends Component
     public function update()
     {
         $this->authorize('update', $this->sampahToEdit);
+        $this->trimInput();
         $this->validate();
         $this->validate([
             'imageUpload' => 'nullable|sometimes|mimes:jpg,jpeg,png|max:4096',
@@ -139,6 +141,11 @@ class KatalogSampah extends Component
             'nama' => '',
             'harga_per_kg' => '',
         ];
+    }
+
+    public function trimInput()
+    {
+        $this->dataInput['nama'] = str(trim($this->dataInput['nama']))->squish()->toString();
     }
 
     public function sortBy($field)
