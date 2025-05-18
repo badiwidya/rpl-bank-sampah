@@ -87,6 +87,8 @@ class UserProfileSettings extends Component
 
             $user->update(Arr::except($validated, ['image', 'email']));
 
+            $this->dispatch('profile_updated')->to(Header::class);
+
             Toaster::success($message);
         } catch (\Exception $e) {
             Toaster::error('Gagal memperbarui informasi profil Anda.');
@@ -136,7 +138,8 @@ class UserProfileSettings extends Component
         $this->nama_depan = str(trim($this->nama_depan))->squish()->toString();
         $this->nama_belakang = str(trim($this->nama_belakang))->squish()->toString();
         $this->email = str(trim($this->email))->squish()->toString();
-        $this->alamat = str(trim($this->alamat))->squish()->toString();
+        if ($this->alamat)
+            $this->alamat = str(trim($this->alamat))->squish()->toString();
     }
 
     public function deleteAvatar()
