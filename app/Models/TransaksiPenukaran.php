@@ -10,10 +10,7 @@ class TransaksiPenukaran extends Model
 {
     protected $table = 'transaksi_penukaran';
 
-    protected $guarded = [
-        'total_berat',
-        'total_harga',
-    ];
+    protected $guarded = [];
 
     public function nasabah(): BelongsTo
     {
