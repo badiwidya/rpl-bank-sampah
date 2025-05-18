@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Livewire\Components\Header;
 use App\Services\ProfileService;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
@@ -122,6 +123,8 @@ class UserProfileSettings extends Component
 
             $user->profile()->update($validatedProfile);
 
+            $this->dispatch('profile_updated')->to(Header::class);
+
             Toaster::success($message);
         } catch (\Exception $e) {
             Toaster::error('Gagal memperbarui informasi profil Anda.');
@@ -144,6 +147,7 @@ class UserProfileSettings extends Component
             $this->service->deleteAvatar($user);
             $this->isDelete = false;
             $this->image = null;
+            $this->dispatch('profile_updated')->to(Header::class);
             Toaster::success('Avatar Anda telah dihapus.');
         } catch (\Exception $e) {
             Toaster::error('Gagal menghapus avatar Anda.');
