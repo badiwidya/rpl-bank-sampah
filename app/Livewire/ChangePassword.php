@@ -4,8 +4,8 @@ namespace App\Livewire;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Validation\Rules\Password;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 use Masmerise\Toaster\Toaster;
@@ -15,12 +15,13 @@ class ChangePassword extends Component
     public $currentPassword;
 
     public $password;
+    public $password_confirmation;
 
     public function rules()
     {
         return [
             'currentPassword' => 'required|string',
-            'password' => ['required', 'string', 'confirmerd', Password::min(8)->letters()->numbers()]
+            'password' => ['required', 'string', 'confirmed', Password::min(8)->letters()->numbers()]
         ];
     }
 
@@ -39,9 +40,11 @@ class ChangePassword extends Component
                 'password' => Hash::make($validated['password'])
             ]);
 
-            return Redirect::route($user->role.'.dashboard.profile')
-                ->info('Password berhasil diganti!');
+            $this->password = null;
+            $this->currentPassword = null;
+            $this->password_confirmation = null;
 
+            return Redirect::route($user->role.'.dashboard.profile')->success('Ganti password berhasil!');
         } catch (\Exception $e) {
             Toaster::error('Terjadi kesalahan saat mengganti password.');
         }
