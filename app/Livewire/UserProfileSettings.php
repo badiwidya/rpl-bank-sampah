@@ -64,6 +64,7 @@ class UserProfileSettings extends Component
 
     public function updateAdmin()
     {
+        $this->trimInput();
         $validated = $this->validate();
         $user = Auth::user();
 
@@ -92,6 +93,7 @@ class UserProfileSettings extends Component
 
     public function updateNasabah()
     {
+        $this->trimInput();
         $validated = $this->validate();
 
         $validatedProfile = $this->validate([
@@ -123,6 +125,14 @@ class UserProfileSettings extends Component
         } catch (\Exception $e) {
             Toaster::error('Gagal memperbarui informasi profil Anda.');
         }
+    }
+
+    public function trimInput()
+    {
+        $this->nama_depan = str(trim($this->nama_depan))->squish()->toString();
+        $this->nama_belakang = str(trim($this->nama_belakang))->squish()->toString();
+        $this->email = str(trim($this->email))->squish()->toString();
+        $this->alamat = str(trim($this->alamat))->squish()->toString();
     }
 
     public function deleteAvatar()
