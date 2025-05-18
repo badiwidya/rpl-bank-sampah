@@ -41,7 +41,7 @@ class ProfileService
     public function deleteAvatar(User $user)
     {
         if ($user->avatar_url != null) {
-            Storage::disk('public')->delete($user->avatar_url);
+            Storage::disk('public')->delete($user->getRawOriginal('avatar_url'));
             $user->update([
                 'avatar_url' => null,
             ]);
