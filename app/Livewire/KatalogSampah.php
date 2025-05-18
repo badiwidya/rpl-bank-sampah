@@ -124,7 +124,7 @@ class KatalogSampah extends Component
 
         try {
             if ($this->sampahToDelete->image_url) {
-                Storage::disk('public')->delete($this->sampahToDelete->image_url);
+                Storage::disk('public')->delete($this->sampahToDelete->getRawOriginal('image_url'));
             }
             $this->sampahToDelete->delete();
             $this->deleteConfirmation = false;
