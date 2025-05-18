@@ -4,6 +4,8 @@ namespace App\Livewire;
 
 use App\Models\Sampah;
 use Illuminate\Support\Facades\Storage;
+use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -163,6 +165,8 @@ class KatalogSampah extends Component
         $this->resetPage();
     }
 
+    #[Layout('components.layouts.dashboard')]
+    #[Title('Katalog Sampah - Bank Sampah')]
     public function render()
     {
         $query = Sampah::query();

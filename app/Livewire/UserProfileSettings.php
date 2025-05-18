@@ -6,6 +6,7 @@ use App\Services\ProfileService;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
+use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -149,6 +150,7 @@ class UserProfileSettings extends Component
         }
     }
 
+    #[Layout('components.layouts.dashboard')]
     #[Title('Pengaturan Profil - Bank Sampah')]
     public function render()
     {
