@@ -11,10 +11,10 @@
         <h1 class="font-semibold text-gray-800 text-4xl">Sudahkah Anda menyetorkan sampah hari ini?</h2>
             <div class="flex gap-4 mt-8">
                 <a wire:navigate href="{{ route('nasabah.dashboard.sampah') }}"
-                    class="block px-3 py-2 bg-emerald-600 text-white hover:bg-emerald-700 rounded-xl">Daftar Harga
+                    class="block px-3 py-2 bg-emerald-600 text-white hover:bg-emerald-700 rounded-xl transition duration-300">Daftar Harga
                     Sampah</a>
                 <a href="/news"
-                    class="block px-3 py-2 bg-emerald-600 text-white hover:bg-emerald-700 rounded-xl">Berita Sampah
+                    class="block px-3 py-2 bg-emerald-600 text-white hover:bg-emerald-700 rounded-xl transition duration-300">Berita Sampah
                     Terkini</a>
             </div>
     </div>
@@ -65,9 +65,6 @@
 
 
     </div>
-
-
-
 
     @push('scripts')
         <script>
