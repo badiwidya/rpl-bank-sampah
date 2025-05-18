@@ -1,13 +1,13 @@
 <div x-data="{ sidebarOpen: false }" class="relative">
 
     <header class="flex justify-between items-center bg-white drop-shadow-md z-50 fixed w-full">
-        <div class="flex items-center px-4 py-4 space-x-2">
+        <div class="flex items-center px-4 py-4 space-x-4">
                 <button
                     @click="sidebarOpen = true"
-                    class="p-2 text-emerald-600 hover:bg-gray-100 rounded-lg cursor-pointer"
+                    class="p-2 text-white bg-emerald-600 hover:bg-emerald-700 rounded-lg cursor-pointer transition duration-300"
                 >
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none"
                          viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round"
                               stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
