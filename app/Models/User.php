@@ -98,14 +98,14 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
         return $this->hasMany(TransaksiPenukaran::class);
     }
 
-    // protected function avatarUrl(): Attribute
-    // {
-    //     return Attribute::make(
-    //         get: function (?string $value) {
-    //             return $value
-    //                 ? asset('storage/' . $value)
-    //                 : asset('avatars/default.jpg');
-    //         }
-    //     );
-    // }
+    protected function avatarUrl(): Attribute
+    {
+        return Attribute::make(
+            get: function (?string $value) {
+                return $value
+                    ? 'storage/' . $value
+                    : 'avatars/default.png';
+            }
+        );
+    }
 }

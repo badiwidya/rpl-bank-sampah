@@ -1,12 +1,12 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminProfileController;
-use App\Http\Controllers\Auth\ChangePasswordController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\SessionController;
 use App\Http\Controllers\Auth\UserEmailVerificationController;
-use App\Http\Controllers\Nasabah\NasabahProfileController;
+use App\Livewire\ChangePassword;
+use App\Livewire\KatalogSampah;
+use App\Livewire\UserProfileSettings;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -37,15 +37,11 @@ Route::name('nasabah.')->group(function () {
         Route::get('/', function () {
             return view('nasabah.index');
         })->name('index');
-        Route::get('/profile', [NasabahProfileController::class, 'edit'])->name('profile');
-        Route::put('/profile', [NasabahProfileController::class, 'update'])->name('profile.submit');
-        Route::get('/profile/change-password', [ChangePasswordController::class, 'create'])->name('password');
-        Route::post('/profile/change-password', [ChangePasswordController::class, 'update'])->name('password.update');
+        Route::get('/profile', UserProfileSettings::class)->name('profile');
+        Route::get('/profile/change-password', ChangePassword::class)->name('password');
 
         // Rute sementara katalog sampah
-        Route::get('/sampah', function () {
-            return view('nasabah.sampah');
-        })->name('sampah');
+        Route::get('/sampah', KatalogSampah::class)->name('sampah');
 
     });
 
@@ -68,15 +64,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/', function () {
             return view('admin.index');
         })->name('index');
-        Route::get('/profile', [AdminProfileController::class, 'edit'])->name('profile');
-        Route::put('/profile', [AdminProfileController::class, 'update'])->name('profile.submit');
-        Route::get('/profile/change-password', [ChangePasswordController::class, 'create'])->name('password');
-        Route::post('/profile/change-password', [ChangePasswordController::class, 'update'])->name('password.update');
+        Route::get('/profile', UserProfileSettings::class)->name('profile');
+        Route::get('/profile/change-password', ChangePassword::class)->name('password');
 
         // Sementara
-        Route::get('/sampah', function() {
-            return view('admin.sampah');
-        })->name('sampah');
+        Route::get('/sampah', KatalogSampah::class)->name('sampah');
     });
 
 });
