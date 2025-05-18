@@ -44,6 +44,8 @@ class ChangePassword extends Component
             $this->currentPassword = null;
             $this->password_confirmation = null;
 
+            $user->notify(new \App\Notifications\ChangePassword());
+
             return Redirect::route($user->role.'.dashboard.profile')->success('Ganti password berhasil!');
         } catch (\Exception $e) {
             Toaster::error('Terjadi kesalahan saat mengganti password.');
