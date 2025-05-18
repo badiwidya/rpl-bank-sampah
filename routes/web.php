@@ -34,9 +34,7 @@ Route::name('nasabah.')->group(function () {
     // Prefix rute '/dashboard' dan prefix nama 'dashboard.'
     Route::prefix('dashboard')->middleware(['auth', 'verified', 'role:nasabah'])->name('dashboard.')->group(function () {
 
-        Route::get('/', function () {
-            return view('nasabah.index');
-        })->name('index');
+        Route::get('/', \App\Livewire\Nasabah\Dashboard::class)->name('index');
         Route::get('/profile', UserProfileSettings::class)->name('profile');
         Route::get('/profile/change-password', ChangePassword::class)->name('password');
 

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\Rules\Password;
+use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 use Masmerise\Toaster\Toaster;
@@ -52,6 +53,7 @@ class ChangePassword extends Component
         }
     }
 
+    #[Layout('components.layouts.dashboard')]
     #[Title('Ganti Password - Bank Sampah')]
     public function render()
     {

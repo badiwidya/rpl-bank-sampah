@@ -2,10 +2,12 @@
 
 namespace App\Livewire;
 
+use App\Livewire\Components\Header;
 use App\Services\ProfileService;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
+use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -85,6 +87,8 @@ class UserProfileSettings extends Component
 
             $user->update(Arr::except($validated, ['image', 'email']));
 
+            $this->dispatch('profile_updated')->to(Header::class);
+
             Toaster::success($message);
         } catch (\Exception $e) {
             Toaster::error('Gagal memperbarui informasi profil Anda.');
@@ -121,6 +125,8 @@ class UserProfileSettings extends Component
 
             $user->profile()->update($validatedProfile);
 
+            $this->dispatch('profile_updated')->to(Header::class);
+
             Toaster::success($message);
         } catch (\Exception $e) {
             Toaster::error('Gagal memperbarui informasi profil Anda.');
@@ -132,7 +138,8 @@ class UserProfileSettings extends Component
         $this->nama_depan = str(trim($this->nama_depan))->squish()->toString();
         $this->nama_belakang = str(trim($this->nama_belakang))->squish()->toString();
         $this->email = str(trim($this->email))->squish()->toString();
-        $this->alamat = str(trim($this->alamat))->squish()->toString();
+        if ($this->alamat)
+            $this->alamat = str(trim($this->alamat))->squish()->toString();
     }
 
     public function deleteAvatar()
@@ -143,12 +150,14 @@ class UserProfileSettings extends Component
             $this->service->deleteAvatar($user);
             $this->isDelete = false;
             $this->image = null;
+            $this->dispatch('profile_updated')->to(Header::class);
             Toaster::success('Avatar Anda telah dihapus.');
         } catch (\Exception $e) {
             Toaster::error('Gagal menghapus avatar Anda.');
         }
     }
 
+    #[Layout('components.layouts.dashboard')]
     #[Title('Pengaturan Profil - Bank Sampah')]
     public function render()
     {
