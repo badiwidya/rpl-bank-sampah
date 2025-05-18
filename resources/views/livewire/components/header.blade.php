@@ -24,12 +24,11 @@
         <!-- Navbar -->
         <nav class="flex h-full text-sm font-medium pr-8">
             <a href="/"
-               class="px-4 flex items-center text-gray-700 hover:text-emerald-400 hover:underline transition duration-300">Home</a>
+               class="px-4 flex items-center text-gray-700 hover:text-emerald-400 hover:underline transition duration-300">Beranda</a>
             <a href="/about-us"
-               class="px-4 flex items-center text-gray-700 hover:text-emerald-400 hover:underline transition duration-300">About
-                Us</a>
+               class="px-4 flex items-center text-gray-700 hover:text-emerald-400 hover:underline transition duration-300">Tentang Kami</a>
             <a href="/profile"
-               class="px-4 flex items-center text-gray-700 hover:text-emerald-400 hover:underline transition duration-300">Profile</a>
+               class="px-4 flex items-center text-gray-700 hover:text-emerald-400 hover:underline transition duration-300">Profil</a>
         </nav>
     </header>
 
@@ -64,18 +63,18 @@
         >
             <a href="{{ route($user->role.'.dashboard.profile') }}">
                 <div class="flex items-center mb-4 gap-6">
-                    <div class="rounded-full border-2 w-18 h-18 overflow-hidden">
+                    <div class="rounded-full border-1 border-gray-300 w-18 h-18 overflow-hidden">
                         <img src="{{ asset($user->avatar_url) }}"
                              alt="{{ $user->nama_depan . ' profle picture' }}" class="object-cover h-full w-full">
                     </div>
                     <div class="flex flex-col gap-1">
                         <h1 class="text-white text-lg font-semibold">{{ $user->nama_depan.' '.$user->nama_belakang }}</h1>
-                        <p class="text-gray-200 text-xs font-light">{{ $user->role === 'admin' ? $user->email : 'Rp '.number_format($user->profile->saldo, 0, ',', '.') }}</p>
+                        <p class="text-gray-200 text-sm font-light">{{ $user->role === 'admin' ? $user->email : 'Rp ' . number_format($user->profile->saldo, 2, ',', '.') }}</p>
                     </div>
                 </div>
             </a>
             <ul class="space-y- mt-6">
-                <li><a href="{{ route($user->role.'.dashboard.profile') }}" class="block px-2 py-1 hover:underline rounded">Dashboard</a></li>
+                <li><a href="{{ route($user->role.'.dashboard.index') }}" class="block px-2 py-1 hover:underline rounded" wire:navigate>Dashboard</a></li>
                 <li><a href="{{ route($user->role.'.dashboard.profile') }}" class="block px-2 py-1 hover:underline rounded" wire:navigate>Pengaturan Profil</a></li>
                 <li><a href="{{  route($user->role.'.dashboard.sampah') }}" class="block px-2 py-1 hover:underline rounded" wire:navigate>Katalog Sampah</a></li>
                 <li>
