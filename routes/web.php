@@ -1,11 +1,10 @@
 <?php
 
-use App\Http\Controllers\Auth\ChangePasswordController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\SessionController;
 use App\Http\Controllers\Auth\UserEmailVerificationController;
-use App\Http\Controllers\Nasabah\NasabahProfileController;
+use App\Livewire\ChangePassword;
 use App\Livewire\UserProfileSettings;
 use Illuminate\Support\Facades\Route;
 
@@ -38,8 +37,7 @@ Route::name('nasabah.')->group(function () {
             return view('nasabah.index');
         })->name('index');
         Route::get('/profile', UserProfileSettings::class)->name('profile');
-        Route::get('/profile/change-password', [ChangePasswordController::class, 'create'])->name('password');
-        Route::post('/profile/change-password', [ChangePasswordController::class, 'update'])->name('password.update');
+        Route::get('/profile/change-password', ChangePassword::class)->name('password');
 
         // Rute sementara katalog sampah
         Route::get('/sampah', function () {
@@ -68,8 +66,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
             return view('admin.index');
         })->name('index');
         Route::get('/profile', UserProfileSettings::class)->name('profile');
-        Route::get('/profile/change-password', [ChangePasswordController::class, 'create'])->name('password');
-        Route::post('/profile/change-password', [ChangePasswordController::class, 'update'])->name('password.update');
+        Route::get('/profile/change-password', ChangePassword::class)->name('password');
 
         // Sementara
         Route::get('/sampah', function() {
