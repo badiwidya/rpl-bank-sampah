@@ -13,8 +13,18 @@ class RiwayatSetoran extends Component
 
     public $term = '';
     public $sortField;
-    public $sortDirection;
+    public $sortDirection = 'asc';
     public $dateFilter;
+
+    public function sortBy($field)
+    {
+        if ($this->sortField === $field) {
+            $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
+        } else {
+            $this->sortField = $field;
+            $this->sortDirection = 'asc';
+        }
+    }
 
     public function render()
     {
