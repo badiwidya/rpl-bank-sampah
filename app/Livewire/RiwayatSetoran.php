@@ -26,6 +26,12 @@ class RiwayatSetoran extends Component
         }
     }
 
+    public function seeDetail($id) {
+        $setoran = TransaksiPenukaran::with(['nasabah', 'sampah'])->findOrFail($id);
+
+        // logika to be added
+    }
+
     public function render()
     {
         $query = TransaksiPenukaran::query();
