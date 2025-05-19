@@ -155,7 +155,7 @@
                             </td>
                         @endif
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <div class="text-sm text-gray-900">{{ number_format($item->total_berat, 0, ',', '.') . ' kg' }}</div>
+                            <div class="text-sm text-gray-900">{{ number_format($item->total_berat, 2, ',', '.') . ' kg' }}</div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm text-gray-900">Rp {{ number_format($item->total_harga, 2, ',', '.') }}
