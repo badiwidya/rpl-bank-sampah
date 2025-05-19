@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Admin;
 
+use App\Models\Sampah;
 use App\Models\User;
 use Illuminate\Support\Facades\Redirect;
 use Livewire\Attributes\Layout;
@@ -14,6 +15,8 @@ class CreateSetoran extends Component
     public $searchuser = '';
     public $selectedUser;
     public $isUserSelected = false;
+
+    public $searchsampah = '';
 
     public $selectedSampah = [];
 
@@ -102,6 +105,17 @@ class CreateSetoran extends Component
     #[Title('Buat Setoran Baru - Bank Sampah')]
     public function render()
     {
-        return view('livewire.admin.create-setoran');
+        $query = Sampah::query();
+
+        if ($this->searchsampah) {
+            $query->where(function ($q) {
+                $q->where('nama', 'like', '%' . $this->searchsampah . '%')
+                    ->orWhere('harga_per_kg', 'like', '%' . $this->searchsampah . '%');
+            });
+        }
+
+        $allSampah = $query->get();
+
+        return view('livewire.admin.create-setoran', compact('allSampah'));
     }
 }
