@@ -146,7 +146,7 @@
                 @forelse($riwayat as $item)
                     <tr wire:key="{{ $item->id }}" class="hover:bg-gray-50">
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <div class="text-sm text-gray-900">{{ $item->createdAt->format('M d, Y') }}</div>
+                            <div class="text-sm text-gray-900">{{ $item->created_at->format('M d, Y') }}</div>
                         </td>
                         @if (auth()->user()->role === 'admin')
                             <td class="px-6 py-4 whitespace-nowrap">
