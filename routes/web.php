@@ -104,7 +104,8 @@ Route::get('/test-nasabah', function () {
     $user = \App\Models\User::where('role', 'nasabah')->first();
 
     if (! $user) {
-        $user = \App\Models\User::factory()->create()->profile()->create();
+        $user = \App\Models\User::factory()->create();
+        $user->profile()->create();
     }
 
     \Illuminate\Support\Facades\Auth::login($user);
