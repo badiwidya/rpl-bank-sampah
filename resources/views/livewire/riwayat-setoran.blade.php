@@ -235,7 +235,7 @@
                             </div>
                         </div>
 
-                        <div class="md:ml-6 flex flex-wrap gap-x-6 gap-y-2 flex-1">
+                        <div class="md:ml-6 flex items-center flex-wrap gap-x-6 gap-y-2 flex-1">
                             <div>
                                 <p class="text-xs text-gray-500">Tanggal & Waktu</p>
                                 <p class="font-medium">{{ $transaksi->created_at->format('H:i, d F Y') }}</p>
