@@ -17,6 +17,7 @@ class RiwayatSetoran extends Component
     public $sortField;
     public $sortDirection = 'asc';
     public $dateFilter;
+    public $transaksi;
 
     public function sortBy($field)
     {
@@ -28,8 +29,10 @@ class RiwayatSetoran extends Component
         }
     }
 
-    public function seeDetail($id) {
-        $setoran = TransaksiPenukaran::with(['nasabah', 'sampah'])->findOrFail($id);
+    public function seeDetail(TransaksiPenukaran $transaksi) {
+        $transaksi->load(['nasabah', 'sampah']);
+
+        $this->transaksi = $transaksi;
 
         // logika to be added
     }
