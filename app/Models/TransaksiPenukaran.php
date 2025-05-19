@@ -14,7 +14,7 @@ class TransaksiPenukaran extends Model
 
     public function nasabah(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function sampah(): BelongsToMany
