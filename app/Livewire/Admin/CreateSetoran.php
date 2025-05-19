@@ -44,7 +44,16 @@ class CreateSetoran extends Component
         ]);
 
         try {
+
+            if (!$this->selectedUser) {
+                throw new \Exception('Tolong pilih nasabah terlebih dahulu.');
+            }
+
             $transaksi = $this->selectedUser->transaksiPenukaran()->create();
+
+            if (!$this->selectedSampah) {
+                throw new \Exception('Sampah tidak boleh kosong.');
+            }
 
             $hargaTotal = 0;
             $beratTotal = 0;
@@ -65,8 +74,8 @@ class CreateSetoran extends Component
             ]);
 
             return Redirect::route('admin.dashboard.riwayat')->success('Setoran baru berhasil dibuat!');
-        } catch (\Exception $e) {
-            Toaster::error('Terjadi kesalahan saat membuat setoran.');
+        } catch (\Throwable $e) {
+            Toaster::error($e->getMessage());
         }
     }
 
