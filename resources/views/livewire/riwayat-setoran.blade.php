@@ -155,19 +155,15 @@
                             </td>
                         @endif
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <div class="text-sm text-gray-900">{{ $item->total_berat . ' kg' }}</div>
+                            <div class="text-sm text-gray-900">{{ number_format($item->total_berat, 0, ',', '.') . ' kg' }}</div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm text-gray-900">Rp {{ number_format($item->total_harga, 2, ',', '.') }}
                             </div>
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <div class="text-sm text-gray-900">{{ $item->created_at->format('d/m/y') }}
-                            </div>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
+                        <td class="px-6 py-4 whitespace-nowrap flex justify-center">
                             <button type="button" wire:click="seeDetail({{ $item->id }})"
-                                class="p-2 rounded-lg bg-gray-400 hover:bg-gray-600 hover:text-white hover:cursor-pointer">
+                                class="text-xs p-2 border border-emerald-600 bg-white text-emerald-600 rounded-md hover:bg-emerald-600 hover:text-white hover:cursor-pointer transition">
                                 Detail
                             </button>
                         </td>
