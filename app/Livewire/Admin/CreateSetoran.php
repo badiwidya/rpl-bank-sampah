@@ -5,6 +5,7 @@ namespace App\Livewire\Admin;
 use App\Models\Sampah;
 use App\Models\User;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -39,11 +40,12 @@ class CreateSetoran extends Component
 
     public function store()
     {
-        $this->validate([
-            'selectedSampah.*.berat' => 'required|numeric|min:0.01'
-        ]);
-
         try {
+
+            $this->validate([
+                'selectedSampah.*.berat' => 'required|numeric|min:0.01'
+            ]);
+
 
             if (!$this->selectedUser) {
                 throw new \Exception('Tolong pilih nasabah terlebih dahulu.');
@@ -69,13 +71,17 @@ class CreateSetoran extends Component
             }
 
             $transaksi->update([
-                'harga_total' => $hargaTotal,
-                'berat_total' => $beratTotal
+                'total_harga' => $hargaTotal,
+                'total_berat' => $beratTotal
             ]);
 
             return Redirect::route('admin.dashboard.riwayat')->success('Setoran baru berhasil dibuat!');
         } catch (\Throwable $e) {
-            Toaster::error($e->getMessage());
+            if ($e instanceof ValidationException) {
+                Toaster::error('Harap lengkapi berat sampah.');
+            } else {
+                Toaster::error($e->getMessage());
+            }
         }
     }
 
