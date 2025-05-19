@@ -4,6 +4,8 @@ namespace App\Livewire;
 
 use App\Models\TransaksiPenukaran;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -36,7 +38,9 @@ class RiwayatSetoran extends Component
     {
         $this->resetPage();
     }
-
+    
+    #[Layout('components.layouts.dashboard')]
+    #[Title('Riwayat Transaksi - Bank Sampah')]
     public function render()
     {
         $query = TransaksiPenukaran::query();

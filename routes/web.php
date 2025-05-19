@@ -7,7 +7,7 @@ use App\Http\Controllers\Auth\UserEmailVerificationController;
 use App\Livewire\Admin\CreateSetoran;
 use App\Livewire\ChangePassword;
 use App\Livewire\KatalogSampah;
-use App\Livewire\RiwayatTransaksi;
+use App\Livewire\RiwayatSetoran;
 use App\Livewire\UserProfileSettings;
 use Illuminate\Support\Facades\Route;
 
@@ -42,7 +42,7 @@ Route::name('nasabah.')->group(function () {
 
         // Rute sementara katalog sampah
         Route::get('/sampah', KatalogSampah::class)->name('sampah');
-        Route::get('/riwayat', RiwayatTransaksi::class)->name('riwayat');
+        Route::get('/setoran', RiwayatSetoran::class)->name('setoran');
 
     });
 
@@ -70,7 +70,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         // Sementara
         Route::get('/sampah', KatalogSampah::class)->name('sampah');
-        Route::get('/riwayat', RiwayatTransaksi::class)->name('riwayat');
+        Route::get('/setoran', RiwayatSetoran::class)->name('setoran');
         Route::get('/setoran/create', CreateSetoran::class)->name('setoran.create');
     });
 

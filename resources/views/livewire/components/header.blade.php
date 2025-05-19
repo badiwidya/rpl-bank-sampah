@@ -77,7 +77,7 @@
                 <li><a href="{{ route($user->role.'.dashboard.index') }}" class="block px-2 py-1 hover:underline rounded" wire:navigate>Dashboard</a></li>
                 <li><a href="{{ route($user->role.'.dashboard.profile') }}" class="block px-2 py-1 hover:underline rounded" wire:navigate>Pengaturan Profil</a></li>
                 <li><a href="{{  route($user->role.'.dashboard.sampah') }}" class="block px-2 py-1 hover:underline rounded" wire:navigate>Katalog Sampah</a></li>
-                <li><a href="{{  route($user->role.'.dashboard.riwayat') }}" class="block px-2 py-1 hover:underline rounded" wire:navigate>Riwayat Transaksi</a></li>
+                <li><a href="{{  route($user->role.'.dashboard.setoran') }}" class="block px-2 py-1 hover:underline rounded" wire:navigate>{{ $user->role === 'admin' ? 'Setoran Sampah' : 'Riwayat Setoran' }}</a></li>
                 
                 <li>
                     <form id="logout-submit" action="{{  route('auth.logout') }}" method="post">
