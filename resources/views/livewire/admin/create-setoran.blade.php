@@ -69,8 +69,45 @@
 
     </div>
 
+    <div x-cloak x-show="openModal" class="fixed inset-0 bg-black/50 z-50" x.transition.opacity></div>
 
+    {{-- delete confirmation modal --}}
+    <div x-cloak x-show="openModal"
+        class="fixed w-[70vw] h-[80vh] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-lg p-6 z-50 overflow-y-auto"
+        @click.away="openModal = false">
 
+        <!-- Header + Search Bar -->
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-lg font-semibold">Pilih Sampah</h2>
+            <input type="text" placeholder="Cari sampah..."
+                class="border border-gray-300 rounded-md px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-400"
+                wire:model.live.debounce.300ms="searchsampah">
+        </div>
+
+        <!-- Grid Sampah -->
+        <div class="flex justify-start flex-wrap gap-4">
+            @forelse ($allSampah as $sampah)
+                <div class="flex-shrink-0 border {{ isset($selectedSampah[$sampah->id]) ? 'bg-emerald-700' : 'bg-emerald-600' }} border-gray-300 rounded p-4 flex flex-col justify-between hover:bg-emerald-700 transition cursor-pointer"
+                    wire:click="selectSampah('{{ $sampah->id }}', '{{ $sampah->nama }}', '{{ $sampah->image_url }}', '{{ $sampah->harga_per_kg }}')">
+                    <img src="{{ asset($sampah->image_url) }}" alt="{{ $sampah->nama }}"
+                        class="w-24 h-24 object-cover rounded mb-2">
+                    <div class="text-sm text-center font-medium text-white">{{ $sampah->nama }}</div>
+                    <div class="text-xs text-center text-gray-200">
+                        Rp{{ number_format($sampah->harga_per_kg, 0, ',', '.') }} / kg
+                    </div>
+                </div>
+            @empty
+                <div class="flex flex-col w-full pt-12 items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-gray-400 mb-2" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <p class="text-gray-400">Tidak ada data sampah ditemukan</p>
+                </div>
+            @endforelse
+        </div>
+    </div>
 
 
 </div>
