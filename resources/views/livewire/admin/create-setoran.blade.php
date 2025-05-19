@@ -39,37 +39,38 @@
             </div>
         </div>
 
-        <div class="p-4 border-1 border-gray-300 mt-4 rounded-md w-full flex justify-center">
-            <form wire:submit.prevent="store">
-                <div class="mb-4">
-                    <label class="block text-sm font-medium text-gray-700 mb-1 text-center">Sampah</label>
-                    <button type="button" @click="openModal = true"
-                        class="w-full px-48 py-2 text-white bg-emerald-600 rounded-xl hover:bg-emerald-700 hover:cursor-pointer">Pilih
-                        Sampah</button>
-                </div>
+        <div class="self-center p-4 mt-4 rounded-md flex flex-col w-[60%] justify-center">
 
-                <div class="flex flex-col items-start border-1 border-gray-400 rounded-md h-[250px] overflow-y-auto">
-                    @foreach ($selectedSampah as $id => $data)
-                        <div class="flex items-center gap-4 p-4 rounded w-full hover:bg-gray-50 transition">
-                            <img src="{{ asset($data['gambar']) }}" alt="{{ $data['nama'] }}"
-                                class="w-12 h-12 object-cover rounded">
-                            <div class="flex-1">
-                                <div class="uppercase text-sm text-gray-600">{{ $data['nama'] }}</div>
-                                <input type="number" step="0.01" min="0"
-                                    wire:model.lazy="selectedSampah.{{ $id }}.berat"
-                                    class="border border-gray-400 text-sm px-2 py-0.5 rounded w-full focus:outline-none focus:ring-1 placeholder:text-xs focus:ring-emerald-400 transition"
-                                    placeholder="Masukkan berat dalam kg..">
-                            </div>
-                            <button type="button" wire:click="removeSampah({{ $id }})"
-                                class="block w-8 h-8 bg-red-600 hover:bg-red-700 hover:cursor-pointer text-white font-bold rounded-md">X</button>
+            <button type="button" @click="openModal = true"
+                class="mb-4 w-full py-1 text-white text-sm bg-emerald-600 rounded-md hover:bg-emerald-700 hover:cursor-pointer">Pilih
+                Sampah</button>
+
+            <div class="flex flex-col items-start border-1 border-gray-400 rounded-md h-[200px] overflow-y-auto mb-4">
+                @foreach ($selectedSampah as $id => $data)
+                    <div class="flex items-center gap-4 p-4 rounded w-full hover:bg-gray-50 transition">
+                        <img src="{{ asset($data['gambar']) }}" alt="{{ $data['nama'] }}"
+                            class="w-12 h-12 object-cover rounded">
+                        <div class="flex-1">
+                            <div class="uppercase text-sm text-gray-600">{{ $data['nama'] }}</div>
+                            <input type="number" step="0.01" min="0"
+                                wire:model.lazy="selectedSampah.{{ $id }}.berat"
+                                class="border border-gray-400 text-sm px-2 py-0.5 rounded w-full focus:outline-none focus:ring-1 placeholder:text-xs focus:ring-emerald-400 transition"
+                                placeholder="Masukkan berat dalam kg..">
                         </div>
-                    @endforeach
-                </div>
-
-
-            </form>
+                        <button type="button" wire:click="removeSampah({{ $id }})"
+                            class="block w-8 h-8 bg-red-600 hover:bg-red-700 hover:cursor-pointer text-white font-bold rounded-md">X</button>
+                    </div>
+                @endforeach
+            </div>
         </div>
-
+        <button type="button" wire:click="store"
+            class="self-end py-2 px-4 bg-emerald-600 text-white hover:bg-emerald-700 hover:cursor-pointer rounded-xl">Buat
+            Setoran</button>
 
     </div>
+
+
+
+
+
 </div>
