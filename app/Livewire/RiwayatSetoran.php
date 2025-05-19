@@ -32,6 +32,11 @@ class RiwayatSetoran extends Component
         // logika to be added
     }
 
+    public function updatedTerm()
+    {
+        $this->resetPage();
+    }
+
     public function render()
     {
         $query = TransaksiPenukaran::query();
