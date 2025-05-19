@@ -74,7 +74,8 @@
     {{-- delete confirmation modal --}}
     <div x-cloak x-show="openModal"
         class="fixed flex flex-col w-11/12 md:w-4/5 lg:w-[70vw] h-[80vh] max-h-[90vh] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-xl p-4 md:p-6 z-50 overflow-hidden"
-        @click.away="openModal = false">
+        @click.away="openModal = false"
+        x-transition>
 
         <!-- Header + Search Bar -->
         <div class="flex flex-col sm:flex-row justify-between items-center mb-4 gap-2">
