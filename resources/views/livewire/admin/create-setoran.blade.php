@@ -73,40 +73,60 @@
 
     {{-- delete confirmation modal --}}
     <div x-cloak x-show="openModal"
-        class="fixed w-[70vw] h-[80vh] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-lg p-6 z-50 overflow-y-auto"
+        class="fixed flex flex-col w-11/12 md:w-4/5 lg:w-[70vw] h-[80vh] max-h-[90vh] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-xl p-4 md:p-6 z-50 overflow-hidden"
         @click.away="openModal = false">
 
         <!-- Header + Search Bar -->
-        <div class="flex justify-between items-center mb-4">
+        <div class="flex flex-col sm:flex-row justify-between items-center mb-4 gap-2">
             <h2 class="text-lg font-semibold">Pilih Sampah</h2>
             <input type="text" placeholder="Cari sampah..."
-                class="border border-gray-300 rounded-md px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-400"
+                class="w-full sm:w-auto border border-gray-300 rounded-md px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-400"
                 wire:model.live.debounce.300ms="searchsampah">
         </div>
 
         <!-- Grid Sampah -->
-        <div class="flex justify-start flex-wrap gap-4">
-            @forelse ($allSampah as $sampah)
-                <div class="flex-shrink-0 border {{ isset($selectedSampah[$sampah->id]) ? 'bg-emerald-700' : 'bg-emerald-600' }} border-gray-300 rounded p-4 flex flex-col justify-between hover:bg-emerald-700 transition cursor-pointer"
-                    wire:click="selectSampah('{{ $sampah->id }}', '{{ $sampah->nama }}', '{{ $sampah->image_url }}', '{{ $sampah->harga_per_kg }}')">
-                    <img src="{{ asset($sampah->image_url) }}" alt="{{ $sampah->nama }}"
-                        class="w-24 h-24 object-cover rounded mb-2">
-                    <div class="text-sm text-center font-medium text-white">{{ $sampah->nama }}</div>
-                    <div class="text-xs text-center text-gray-200">
-                        Rp{{ number_format($sampah->harga_per_kg, 0, ',', '.') }} / kg
+        <div class="flex-1 border border-gray-200 rounded-md bg-gray-100 p-2 overflow-y-auto">
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+                @forelse ($allSampah as $sampah)
+                    <div class="border {{ isset($selectedSampah[$sampah->id]) ? 'bg-emerald-700' : 'bg-emerald-600' }} border-gray-300 rounded-md p-3 flex flex-col justify-between hover:bg-emerald-700 transition cursor-pointer"
+                        wire:click="{{ isset($selectedSampah[$sampah->id])
+                            ? 'removeSampah(' . $sampah->id . ')'
+                            : 'selectSampah(\'' .
+                                $sampah->id .
+                                '\', \'' .
+                                $sampah->nama .
+                                '\', \'' .
+                                $sampah->image_url .
+                                '\', \'' .
+                                $sampah->harga_per_kg .
+                                '\')' }}">
+                        <div class="flex justify-center">
+                            <img src="{{ asset($sampah->image_url) }}" alt="{{ $sampah->nama }}"
+                                class="w-20 h-20 object-cover rounded-md mb-2">
+                        </div>
+                        <div class="text-sm text-center font-medium text-white">{{ $sampah->nama }}</div>
+                        <div class="text-xs text-center text-gray-200">
+                            Rp{{ number_format($sampah->harga_per_kg, 0, ',', '.') }} / kg
+                        </div>
                     </div>
-                </div>
-            @empty
-                <div class="flex flex-col w-full pt-12 items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-gray-400 mb-2" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <p class="text-gray-400">Tidak ada data sampah ditemukan</p>
-                </div>
-            @endforelse
+                @empty
+                    <div class="col-span-full flex flex-col items-center justify-center py-8">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-gray-400 mb-2" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <p class="text-gray-400">Tidak ada data sampah ditemukan</p>
+                    </div>
+                @endforelse
+            </div>
         </div>
+
+        <div class="mt-4 flex justify-end">
+            <button type="button" @click="openModal = false"
+                class="px-4 py-2 text-white rounded-md bg-emerald-600 hover:bg-emerald-700 hover:cursor-pointer transition">Simpan</button>
+        </div>
+
     </div>
 
 
