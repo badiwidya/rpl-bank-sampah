@@ -75,7 +75,7 @@ class CreateSetoran extends Component
                 'total_berat' => $beratTotal
             ]);
 
-            return Redirect::route('admin.dashboard.riwayat')->success('Setoran baru berhasil dibuat!');
+            return Redirect::route('admin.dashboard.setoran')->success('Setoran baru berhasil dibuat!');
         } catch (\Throwable $e) {
             if ($e instanceof ValidationException) {
                 Toaster::error('Harap lengkapi berat sampah.');
