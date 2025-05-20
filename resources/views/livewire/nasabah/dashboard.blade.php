@@ -1,4 +1,4 @@
-<div x-data="{ tarikSaldo: false }" class="flex flex-col min-h-full min-w-full"
+<div x-data="{ tarikSaldo: @entangle('tarikSaldo') }" class="flex flex-col min-h-full min-w-full"
     style="background: linear-gradient(179deg, #F4F4F4 15.93%, #C7E4DB 57.49%, #99D4C2 99.05%); background-repeat: no-repeat;">
 
     <div class="w-full flex flex-col flex-1 justify-center items-center">
@@ -117,7 +117,7 @@
 
 
     <div x-cloak x-show="tarikSaldo" @click.away="tarikSaldo = false"
-        class="w-1/2 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-lg p-6 z-50"
+        class="w-4/5 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-lg p-6 z-50"
         x-transition>
         <livewire:nasabah.tarik-saldo />
     </div>

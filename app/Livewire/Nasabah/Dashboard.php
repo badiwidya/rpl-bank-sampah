@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
+use Livewire\Attributes\Url;
 use Livewire\Component;
 
 class Dashboard extends Component
@@ -20,6 +21,9 @@ class Dashboard extends Component
     public $totalSetoranHariIni;
 
     public $totalSetoranBulanIni;
+
+    #[Url('tarik-saldo')]
+    public $tarikSaldo = false;
 
     public function mount()
     {
