@@ -1,0 +1,100 @@
+<div x-data="{ payment: @entangle('paymentMethod'), confirm: false }" class="w-full h-full flex">
+    <div class="flex flex-col w-[60%]">
+        <h2 class="font-semibold text-lg mb-4">Buat Permohonan Penarikan Saldo</h2>
+
+        <div class="flex justify-start items-center gap-2 mb-8">
+            <div @click="payment = 'Gopay'"
+                :class="payment === 'Gopay' ? 'grayscale-0 shadow-lg scale-105' : 'grayscale-100'"
+                class="w-18 h-8 active:scale-100 active:shadow-none overflow-hidden p-2 border-1 border-gray-300 rounded-xl hover:shadow-lg hover:scale-105 transition duration-300 hover:cursor-pointer hover:grayscale-0">
+                <img src="{{ asset('assets/gopay.svg') }}" alt="Gopay" class="object-cover">
+            </div>
+            <div @click="payment = 'Dana'"
+                :class="payment === 'Dana' ? 'grayscale-0 shadow-lg scale-105' : 'grayscale-100'"
+                class="w-18 h-8 active:scale-100 active:shadow-none overflow-hidden p-2 border-1 border-gray-300 rounded-xl hover:shadow-lg hover:scale-105 transition duration-300 hover:cursor-pointer hover:grayscale-0">
+                <img src="{{ asset('assets/dana.svg') }}" alt="Dana" class="object-cover">
+            </div>
+            <div @click="payment = 'OVO'"
+                :class="payment === 'OVO' ? 'grayscale-0 shadow-lg scale-105' : 'grayscale-100'"
+                class="w-18 h-8 active:scale-100 active:shadow-none overflow-hidden p-2 border-1 border-gray-300 rounded-xl hover:shadow-lg hover:scale-105 transition duration-300 hover:cursor-pointer hover:grayscale-0">
+                <img src="{{ asset('assets/ovo.svg') }}" alt="OVO" class="object-cover">
+            </div>
+            <div @click="payment = 'LinkAja'"
+                :class="payment === 'LinkAja' ? 'grayscale-0 shadow-lg scale-105' : 'grayscale-100'"
+                class="w-18 h-8 active:scale-100 active:shadow-none overflow-hidden p-2 border-1 border-gray-300 rounded-xl hover:shadow-lg hover:scale-105 transition duration-300 hover:cursor-pointer hover:grayscale-0">
+                <img src="{{ asset('assets/linkaja.png') }}" alt="Linkaja" class="object-cover">
+            </div>
+        </div>
+        <div class="flex flex-col">
+            <label class="text-sm">Nominal</label>
+            <div
+                class="flex items-center border-gray-300 border rounded-md pl-3 focus-within:ring-2 focus-within:ring-emerald-400 transition duration-300 @error('withdrawAmount')
+                        border-red-400 focus-within:ring-red-400
+                    @enderror">
+                <span class="text-gray-700 select-none">Rp.</span>
+                <input type="number" wire:model.live.debounce.300ms="withdrawAmount" placeholder="Masukkan nominal..."
+                    min="10000"
+                    class="p-2 border-0 w-full border-gray-400 rounded-md placeholder:text-sm text-sm focus:outline-none">
+            </div>
+            @error('withdrawAmount')
+                <div class="text-xs text-red-400">{{ $message }}</div>
+            @enderror
+
+            <label class="mt-4 text-sm">No. E-wallet</label>
+            <input type="tel" wire:model.blur="ewalletNumber" placeholder="Masukkan nomor e-wallet..."
+                min="10000"
+                class="p-2 w-full border-1 border-gray-300 rounded-md placeholder:text-sm text-sm focus:outline-none focus:ring-2 focus:ring-emerald-400 transition duration-300 @error('ewalletNumber')
+                        border-red-400 focus-within:ring-red-400
+                    @enderror">
+            @error('ewalletNumber')
+                <div class="text-xs text-red-400">{{ $message }}</div>
+            @enderror
+            <div class="mt-24 text-gray-400 text-xs mb-4"><span class="text-red-400">*</span>Penarikan saldo akan
+                diproses
+                dalam
+                <span class="font-bold">1x24 jam</span>
+            </div>
+
+            <div x-cloak x-show="confirm" class="bg-gray-50 p-4 rounded-lg mb-4 border border-gray-300">
+                <h3 class="text-md font-semibold mb-2">Konfirmasi Penarikan</h3>
+                <p class="mb-4 text-sm text-gray-700">Apakah Anda yakin ingin melakukan penarikan saldo? Pastikan data
+                    Anda telah sesuai, karena bisa saja admin mengirimkan ke nomor yang salah.</p>
+
+                <div class="flex justify-end space-x-3">
+                    <button type="button"
+                        class="px-3 py-1 text-sm hover:cursor-pointer rounded bg-gray-300 hover:bg-gray-400 text-gray-700 font-semibold"
+                        @click="confirm = false">
+                        Batal
+                    </button>
+                    <button type="button"
+                        class="px-3 py-1 text-sm hover:cursor-pointer rounded bg-emerald-600 hover:bg-emerald-700 text-white font-semibold"
+                        wire:click="action">
+                        Konfirmasi
+                    </button>
+                </div>
+            </div>
+
+            <button x-show="!confirm" type="button" @click="confirm = true"
+                class="py-2 bg-emerald-600 text-white hover:bg-emerald-700 hover:cursor-pointer rounded-md transition duration-300">
+                Ajukan Penarikan
+            </button>
+        </div>
+    </div>
+    <div class="flex h-auto w-[40%] justify-center pt-8">
+        <div class="w-[80%] h-[70%] border-1 border-gray-300 rounded-xl shadow-lg p-4 flex flex-col">
+            <div class="flex items-center w-full justify-center gap-4">
+                <div class="flex flex-col text-right overflow-hidden">
+                    <p class="text-md font-semibold truncate">{{ $user->nama_depan . ' ' . $user->nama_belakang }}</p>
+                    <p class="text-sm text-gray-600">{{ $ewalletNumber }}</p>
+                </div>
+                <div class="w-18 h-18 border-1 border-gray-300 rounded-full overflow-hidden flex-shrink-0">
+                    <img src="{{ asset($user->avatar_url) }}" alt="{{ $user->nama_depan }}'s profile picture"
+                        class="w-full h-full object-cover">
+                </div>
+            </div>
+            <div class="flex h-full justify-center items-center">
+                <img :src="`/assets/${payment === 'LinkAja' ? 'linkaja.png' : payment.toLowerCase() + '.svg'}`"
+                    :alt="payment" class="max-h-32 max-w-48 object-contain">
+            </div>
+        </div>
+    </div>
+</div>
