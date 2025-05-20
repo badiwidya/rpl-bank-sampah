@@ -48,10 +48,16 @@
             @error('ewalletNumber')
                 <div class="text-xs text-red-400">{{ $message }}</div>
             @enderror
-            <div class="mt-24 text-gray-400 text-xs mb-4"><span class="text-red-400">*</span>Penarikan saldo akan
-                diproses
-                dalam
-                <span class="font-bold">1x24 jam</span>
+            <div class="mt-8 mb-4 bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-md shadow-sm">
+                <div class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <p class="text-sm font-medium text-gray-700">Perhatian</p>
+                </div>
+                <p class="mt-2 text-sm text-gray-600">
+                    Penarikan saldo akan diproses dalam <span class="font-bold text-emerald-600">1x24 jam</span> setelah permintaan diajukan.
+                </p>
             </div>
 
             <div x-cloak x-show="confirm" class="bg-gray-50 p-4 rounded-lg mb-4 border border-gray-300">
