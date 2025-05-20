@@ -18,7 +18,14 @@ class PenarikanSaldo extends Component
     public $sortDirection = 'asc';
     public $dateFilter = '';
     public $status = '';
-    public $transaksi;
+    public $penarikan;
+
+    public function seeDetail(TransaksiPenarikan $transaksi)
+    {
+        $transaksi->load(['nasabah', 'sampah']);
+
+        $this->penarikan = $transaksi;
+    }
 
     #[Layout('components.layouts.dashboard')]
     #[Title('Riwayat Penarikan - Bank Sampah')]
