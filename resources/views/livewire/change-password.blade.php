@@ -1,4 +1,4 @@
-<div class="flex justify-center items-center bg-gray-200 min-h-full min-w-full">
+<div class="flex justify-center items-center bg-gradient-to-b from-emerald-50 to-emerald-200 min-h-full min-w-full">
     <div class="bg-white bg-opacity-90 flex flex-col backdrop-blur-md p-8 rounded-xl shadow-xl w-full max-w-md">
         <h1 class="font-semibold text-xl mb-6">Ganti Password</h1>
         <form wire:submit.prevent="update">

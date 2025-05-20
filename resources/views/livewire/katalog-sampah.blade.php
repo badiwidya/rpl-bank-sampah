@@ -1,4 +1,4 @@
-<div class="flex justify-center bg-gray-200 min-h-full min-w-full">
+<div class="flex justify-center bg-gradient-to-b from-emerald-50 to-emerald-200 min-h-full min-w-full">
 <div class="py-8 w-4/5 mx-auto @cannot('create', \App\Models\Sampah::class) max-w-3/5 @endcannot">
 
 
