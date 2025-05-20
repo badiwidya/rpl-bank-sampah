@@ -27,7 +27,7 @@ class Dashboard extends Component
         $this->nasabahTotal = User::where('role', 'nasabah')->count();
         $this->setoranBulanIni = TransaksiPenukaran::whereMonth('created_at', now()->month)->count();
 
-        $this->setoranSampahTerkini = TransaksiPenukaran::latest()->limit(5)->get();
+        $this->setoranSampahTerkini = TransaksiPenukaran::with(['nasabah', 'sampah'])->latest()->limit(5)->get();
         $this->permintaanPenarikanPending = TransaksiPenarikan::where('status', 'pending')->latest()->limit(5)->get();
     }
 
