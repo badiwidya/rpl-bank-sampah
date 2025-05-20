@@ -16,7 +16,7 @@ class RiwayatSetoran extends Component
     public $term = '';
     public $sortField;
     public $sortDirection = 'asc';
-    public $dateFilter;
+    public $dateFilter = '';
     public $transaksi;
 
     public function sortBy($field)

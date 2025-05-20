@@ -3,7 +3,7 @@
 
 
         <div class="flex justify-between items-center mb-6">
-            <div class="w-1/2">
+            <div class="w-1/3">
                 <div class="relative">
                     <input type="text" wire:model.live.debounce.300ms="term"
                         class="bg-white w-full pl-10 pr-4 py-2 rounded-lg border drop-shadow-sm border-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition duration-300"
@@ -17,6 +17,45 @@
                     </div>
                 </div>
             </div>
+
+            <div class="flex items-center">
+                <span class="mr-2 text-sm text-gray-600">Filter berdasarkan waktu:</span>
+                <div x-data="{
+                    openTimeFilter: false,
+                    selected: @entangle('dateFilter'),
+                    options: {
+                        '': 'Semua waktu',
+                        today: 'Hari ini',
+                        week: 'Seminggu terakhir',
+                        month: 'Sebulan terakhir',
+                        year: 'Setahun terakhir',
+                    }
+                }" class="relative w-52">
+    
+                    <!-- Dropdown Trigger -->
+                    <div @click="openTimeFilter = !openTimeFilter"
+                        class="flex justify-between items-center w-full px-4 py-2 bg-white border border-gray-300 rounded-md text-sm text-gray-800 cursor-pointer focus:outline-none focus:ring-2 focus:ring-emerald-400 transition duration-300"
+                        :class="{ 'ring-2 ring-emerald-400': openTimeFilter }">
+                        <span class="truncate mr-2" x-text="options[selected] || 'Filter berdasar waktu'"></span>
+                        <svg class="w-4 h-4 flex-shrink-0 text-gray-600" fill="none"
+                            stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </div>
+    
+                    <!-- Dropdown Options -->
+                    <div x-show="openTimeFilter" @click.away="openTimeFilter = false"
+                        class="absolute z-10 mt-1 w-full bg-white border border-gray-300 rounded-md shadow-lg">
+                        <template x-for="(label, value) in options" :key="value">
+                            <div @click="openTimeFilter = false; $wire.set('dateFilter', value)"
+                                class="px-4 py-2 text-sm text-gray-700 hover:bg-emerald-100 hover:text-emerald-600 cursor-pointer transition">
+                                <span x-text="label"></span>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+
             @if (auth()->user()->role === 'admin')
                 <a href="{{ route('admin.dashboard.setoran.create') }}" wire:navigate
                     class="bg-emerald-600 hover:bg-emerald-700 drop-shadow-md hover:cursor-pointer text-white font-medium py-2 px-4 rounded-lg flex items-center transition duration-150 ease-in-out">
@@ -161,7 +200,7 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="text-sm text-gray-900">Rp
-                                    {{ number_format($item->total_harga, 2, ',', '.') }}
+                                    {{ number_format($item->total_harga, 0, ',', '.') }}
                                 </div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap flex justify-center">
@@ -202,13 +241,13 @@
 
     <div x-cloak x-show="openModal"
         class="fixed flex flex-col w-11/12 md:w-4/5 lg:w-[70vw] max-h-[90vh] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-xl p-4 md:p-6 z-50 overflow-hidden"
-        @click.away="openModal = false"
-        x-transition>
+        @click.away="openModal = false" x-transition>
 
         <h2 class="text-xl font-semibold text-gray-800 mb-4">Detail Transaksi</h2>
 
         <div class="overflow-y-auto flex-1">
-            <div wire:loading wire:target="seeDetail" class="min-w-full flex-1 flex items-center justify-center py-12">
+            <div wire:loading wire:target="seeDetail"
+                class="min-w-full flex-1 flex items-center justify-center py-12">
                 <div class="flex flex-col items-center justify-center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-emerald-500 mb-3 animate-spin"
                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -242,7 +281,8 @@
                             </div>
                             <div>
                                 <p class="text-xs text-gray-500">Total Berat</p>
-                                <p class="font-medium">{{ number_format($transaksi->total_berat, 2, ',', '.') }} kg</p>
+                                <p class="font-medium">{{ number_format($transaksi->total_berat, 2, ',', '.') }} kg
+                                </p>
                             </div>
                             <div>
                                 <p class="text-xs text-gray-500">Total Harga</p>
@@ -284,7 +324,8 @@
                                         </tr>
                                     @endforeach
                                     <tr class="bg-gray-50 border-t-2 border-gray-200">
-                                        <td colspan="2" class="py-3 px-4 text-sm font-medium text-gray-700 text-right">
+                                        <td colspan="2"
+                                            class="py-3 px-4 text-sm font-medium text-gray-700 text-right">
                                             TOTAL:</td>
                                         <td class="py-3 px-4 text-sm font-medium text-gray-700">
                                             {{ number_format($transaksi->total_berat, 2, ',', '.') }} kg</td>
@@ -293,7 +334,8 @@
                                     </tr>
                                 @else
                                     <tr>
-                                        <td colspan="4" class="py-6 text-center text-gray-500">Tidak ada data sampah
+                                        <td colspan="4" class="py-6 text-center text-gray-500">Tidak ada data
+                                            sampah
                                         </td>
                                     </tr>
                                 @endif
@@ -306,8 +348,8 @@
                     </div>
                 @else
                     <div class="flex flex-col items-center justify-center py-8">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-400 mb-3"
-                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-400 mb-3" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
