@@ -30,6 +30,11 @@ class PenarikanSaldo extends Component
         }
     }
 
+    public function updatedTerm()
+    {
+        $this->resetPage();
+    }
+
     public function seeDetail(TransaksiPenarikan $transaksi)
     {
         $transaksi->load('nasabah');
