@@ -73,7 +73,8 @@
                     </button>
                     <button type="button"
                         class="px-3 py-1 text-sm hover:cursor-pointer rounded bg-emerald-600 hover:bg-emerald-700 text-white font-semibold"
-                        wire:click="action">
+                        wire:click="action"
+                        @click="confirm = false">
                         Konfirmasi
                     </button>
                 </div>
