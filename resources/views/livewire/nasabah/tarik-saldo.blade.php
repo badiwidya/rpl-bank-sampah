@@ -48,7 +48,8 @@
             @error('ewalletNumber')
                 <div class="text-xs text-red-400">{{ $message }}</div>
             @enderror
-            <div class="mt-36 text-gray-400 text-xs mb-4"><span class="text-red-400">*</span>Penarikan saldo akan diproses
+            <div class="mt-36 text-gray-400 text-xs mb-4"><span class="text-red-400">*</span>Penarikan saldo akan
+                diproses
                 dalam
                 <span class="font-bold">1x24 jam</span>
             </div>
@@ -75,3 +76,4 @@
             </div>
         </div>
     </div>
+</div>
