@@ -53,8 +53,8 @@
                 dalam
                 <span class="font-bold">1x24 jam</span>
             </div>
-            
-            <div x-show="confirm" class="bg-gray-50 p-4 rounded-lg mb-4 border border-gray-300">
+
+            <div x-cloak x-show="confirm" class="bg-gray-50 p-4 rounded-lg mb-4 border border-gray-300">
                 <h3 class="text-md font-semibold mb-2">Konfirmasi Penarikan</h3>
                 <p class="mb-4 text-sm text-gray-700">Apakah Anda yakin ingin melakukan penarikan saldo? Pastikan data
                     Anda telah sesuai, karena bisa saja admin mengirimkan ke nomor yang salah.</p>
@@ -67,7 +67,7 @@
                     </button>
                     <button type="button"
                         class="px-3 py-1 text-sm hover:cursor-pointer rounded bg-emerald-600 hover:bg-emerald-700 text-white font-semibold"
-                        wire:click="delete">
+                        wire:click="action">
                         Konfirmasi
                     </button>
                 </div>
