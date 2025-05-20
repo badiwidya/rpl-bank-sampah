@@ -1,4 +1,4 @@
-<div x-data="{ payment: @entangle('paymentMethod') }" class="w-full h-full flex">
+<div x-data="{ payment: @entangle('paymentMethod'), confirm: false }" class="w-full h-full flex">
     <div class="flex flex-col w-[60%]">
         <h2 class="font-semibold text-lg mb-4">Buat Permohonan Penarikan Saldo</h2>
 
@@ -48,14 +48,35 @@
             @error('ewalletNumber')
                 <div class="text-xs text-red-400">{{ $message }}</div>
             @enderror
-            <div class="mt-36 text-gray-400 text-xs mb-4"><span class="text-red-400">*</span>Penarikan saldo akan
+            <div class="mt-24 text-gray-400 text-xs mb-4"><span class="text-red-400">*</span>Penarikan saldo akan
                 diproses
                 dalam
                 <span class="font-bold">1x24 jam</span>
             </div>
-            <button type="button"
-                class="py-2 bg-emerald-600 text-white hover:bg-emerald-700 hover:cursor-pointer rounded-md transition duration-300">Ajukan
-                Penarikan</button>
+            
+            <div x-show="confirm" class="bg-gray-50 p-4 rounded-lg mb-4 border border-gray-300">
+                <h3 class="text-md font-semibold mb-2">Konfirmasi Penarikan</h3>
+                <p class="mb-4 text-sm text-gray-700">Apakah Anda yakin ingin melakukan penarikan saldo? Pastikan data
+                    Anda telah sesuai, karena bisa saja admin mengirimkan ke nomor yang salah.</p>
+
+                <div class="flex justify-end space-x-3">
+                    <button type="button"
+                        class="px-3 py-1 text-sm hover:cursor-pointer rounded bg-gray-300 hover:bg-gray-400 text-gray-700 font-semibold"
+                        @click="confirm = false">
+                        Batal
+                    </button>
+                    <button type="button"
+                        class="px-3 py-1 text-sm hover:cursor-pointer rounded bg-emerald-600 hover:bg-emerald-700 text-white font-semibold"
+                        wire:click="delete">
+                        Konfirmasi
+                    </button>
+                </div>
+            </div>
+
+            <button x-show="!confirm" type="button" @click="confirm = true"
+                class="py-2 bg-emerald-600 text-white hover:bg-emerald-700 hover:cursor-pointer rounded-md transition duration-300">
+                Ajukan Penarikan
+            </button>
         </div>
     </div>
     <div class="flex h-auto w-[40%] justify-center pt-8">
