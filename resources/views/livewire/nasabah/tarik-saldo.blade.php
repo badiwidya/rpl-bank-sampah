@@ -82,11 +82,11 @@
     <div class="flex h-auto w-[40%] justify-center pt-8">
         <div class="w-[80%] h-[70%] border-1 border-gray-300 rounded-xl shadow-lg p-4 flex flex-col">
             <div class="flex items-center w-full justify-center gap-4">
-                <div class="flex flex-col text-right">
-                    <p class="text-md font-semibold">{{ $user->nama_depan . ' ' . $user->nama_belakang }}</p>
+                <div class="flex flex-col text-right overflow-hidden">
+                    <p class="text-md font-semibold truncate">{{ $user->nama_depan . ' ' . $user->nama_belakang }}</p>
                     <p class="text-sm text-gray-600">{{ $ewalletNumber }}</p>
                 </div>
-                <div class="w-18 h-18 border-1 border-gray-300 rounded-full overflow-hidden">
+                <div class="w-18 h-18 border-1 border-gray-300 rounded-full overflow-hidden flex-shrink-0">
                     <img src="{{ asset($user->avatar_url) }}" alt="{{ $user->nama_depan }}'s profile picture"
                         class="w-full h-full object-cover">
                 </div>
