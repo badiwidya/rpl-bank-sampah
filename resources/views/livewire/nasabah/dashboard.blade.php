@@ -116,7 +116,7 @@
     <div x-cloak x-show="tarikSaldo" class="fixed inset-0 bg-black/50 z-50"></div>
 
 
-    <div x-cloak x-show="tarikSaldo" @click.away="tarikSaldo = false"
+    <div x-cloak x-show="tarikSaldo" @click.away="tarikSaldo = false" x-on:tarik-success.window="tarikSaldo = false"
         class="w-4/5 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-lg p-6 z-50"
         x-transition>
         <livewire:nasabah.tarik-saldo />
