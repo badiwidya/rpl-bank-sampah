@@ -10,14 +10,11 @@ class TransaksiPenukaran extends Model
 {
     protected $table = 'transaksi_penukaran';
 
-    protected $guarded = [
-        'total_berat',
-        'total_harga',
-    ];
+    protected $guarded = [];
 
     public function nasabah(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function sampah(): BelongsToMany

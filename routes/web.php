@@ -4,8 +4,10 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\SessionController;
 use App\Http\Controllers\Auth\UserEmailVerificationController;
+use App\Livewire\Admin\CreateSetoran;
 use App\Livewire\ChangePassword;
 use App\Livewire\KatalogSampah;
+use App\Livewire\RiwayatSetoran;
 use App\Livewire\UserProfileSettings;
 use Illuminate\Support\Facades\Route;
 
@@ -40,6 +42,7 @@ Route::name('nasabah.')->group(function () {
 
         // Rute sementara katalog sampah
         Route::get('/sampah', KatalogSampah::class)->name('sampah');
+        Route::get('/setoran', RiwayatSetoran::class)->name('setoran');
 
     });
 
@@ -67,6 +70,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         // Sementara
         Route::get('/sampah', KatalogSampah::class)->name('sampah');
+        Route::get('/setoran', RiwayatSetoran::class)->name('setoran');
+        Route::get('/setoran/create', CreateSetoran::class)->name('setoran.create');
     });
 
 });
@@ -99,7 +104,8 @@ Route::get('/test-nasabah', function () {
     $user = \App\Models\User::where('role', 'nasabah')->first();
 
     if (! $user) {
-        $user = \App\Models\User::factory()->create()->profile()->create();
+        $user = \App\Models\User::factory()->create();
+        $user->profile()->create();
     }
 
     \Illuminate\Support\Facades\Auth::login($user);

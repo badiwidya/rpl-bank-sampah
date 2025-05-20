@@ -102,7 +102,7 @@
                         </div>
 
                         <!-- Dropdown Options -->
-                        <div x-show="open" @click.away="open = false"
+                        <div x-show="open" @click.away="open = false" x-transition
                             class="absolute z-10 mt-1 w-full bg-white border border-gray-300 rounded-md shadow-lg">
                             <template x-for="option in ['Gopay', 'Dana', 'OVO', 'LinkAja']" :key="option">
                                 <div @click="selected = option; open = false"
