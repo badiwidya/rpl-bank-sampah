@@ -103,228 +103,228 @@
         <!-- Tabel -->
         <div class="bg-white rounded-lg shadow-md overflow-hidden mx-auto">
             <table class="min-w-full divide-y divide-gray-200 table-fixed">
-            <thead class="bg-gray-50">
-                <tr>
-                <th scope="col"
-                    class="w-1/6 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
-                    wire:click="sortBy('created_at')">
-                    <div class="flex items-center">
-                    Tanggal
-                    <span class="ml-1">
-                        @if ($sortField === 'created_at')
-                        @if ($sortDirection === 'asc')
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M5 15l7-7 7 7" />
-                            </svg>
-                        @else
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M19 9l-7 7-7-7" />
-                            </svg>
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th scope="col"
+                            class="w-1/6 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+                            wire:click="sortBy('created_at')">
+                            <div class="flex items-center">
+                                Tanggal
+                                <span class="ml-1">
+                                    @if ($sortField === 'created_at')
+                                        @if ($sortDirection === 'asc')
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M5 15l7-7 7 7" />
+                                            </svg>
+                                        @else
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M19 9l-7 7-7-7" />
+                                            </svg>
+                                        @endif
+                                    @else
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-300"
+                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
+                                        </svg>
+                                    @endif
+                                </span>
+                            </div>
+                        </th>
+
+                        @if (auth()->user()->role === 'admin')
+                            <th scope="col"
+                                class="w-1/5 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Nasabah
+                            </th>
                         @endif
-                        @else
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-300"
-                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
-                        </svg>
-                        @endif
-                    </span>
-                    </div>
-                </th>
 
-                @if (auth()->user()->role === 'admin')
-                    <th scope="col"
-                    class="w-1/5 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Nasabah
-                    </th>
-                @endif
+                        <th scope="col"
+                            class="w-1/6 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            No. E-wallet
+                        </th>
 
-                <th scope="col"
-                    class="w-1/6 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    No. E-wallet
-                </th>
+                        <th scope="col"
+                            class="w-1/6 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            E-wallet
+                        </th>
 
-                <th scope="col"
-                    class="w-1/6 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    E-wallet
-                </th>
+                        <th scope="col"
+                            class="w-1/6 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+                            wire:click="sortBy('jumlah')">
+                            <div class="flex items-center">
+                                Jumlah
+                                <span class="ml-1">
+                                    @if ($sortField === 'jumlah')
+                                        @if ($sortDirection === 'asc')
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M5 15l7-7 7 7" />
+                                            </svg>
+                                        @else
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M19 9l-7 7-7-7" />
+                                            </svg>
+                                        @endif
+                                    @else
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-300"
+                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
+                                        </svg>
+                                    @endif
+                                </span>
+                            </div>
+                        </th>
 
-                <th scope="col"
-                    class="w-1/6 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
-                    wire:click="sortBy('jumlah')">
-                    <div class="flex items-center">
-                    Jumlah
-                    <span class="ml-1">
-                        @if ($sortField === 'jumlah')
-                        @if ($sortDirection === 'asc')
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M5 15l7-7 7 7" />
-                            </svg>
-                        @else
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M19 9l-7 7-7-7" />
-                            </svg>
-                        @endif
-                        @else
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-300"
-                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
-                        </svg>
-                        @endif
-                    </span>
-                    </div>
-                </th>
+                        <th scope="col"
+                            class="w-1/6 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+                            wire:click="sortBy('status')">
+                            <div class="flex items-center">
+                                Status
+                                <span class="ml-1">
+                                    @if ($sortField === 'status')
+                                        @if ($sortDirection === 'asc')
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M5 15l7-7 7 7" />
+                                            </svg>
+                                        @else
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M19 9l-7 7-7-7" />
+                                            </svg>
+                                        @endif
+                                    @else
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-300"
+                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
+                                        </svg>
+                                    @endif
+                                </span>
+                            </div>
+                        </th>
 
-                <th scope="col"
-                    class="w-1/6 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
-                    wire:click="sortBy('status')">
-                    <div class="flex items-center">
-                    Status
-                    <span class="ml-1">
-                        @if ($sortField === 'status')
-                        @if ($sortDirection === 'asc')
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M5 15l7-7 7 7" />
-                            </svg>
-                        @else
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M19 9l-7 7-7-7" />
-                            </svg>
-                        @endif
-                        @else
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-300"
-                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
-                        </svg>
-                        @endif
-                    </span>
-                    </div>
-                </th>
+                    </tr>
+                </thead>
 
-                </tr>
-            </thead>
-
-            <tbody class="bg-white divide-y divide-gray-200">
-                @forelse($riwayat as $item)
-                <tr wire:key="{{ $item->id }}" class="hover:bg-gray-50">
-                    <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm text-gray-900">{{ $item->created_at->format('M d, Y') }}</div>
-                    </td>
-                    @if (auth()->user()->role === 'admin')
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-gray-900 truncate max-w-[200px]">
-                        {{ $item->nasabah->nama_depan . ' ' . $item->nasabah->nama_belakang }}</div>
-                    </td>
-                    @endif
-                    <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm text-gray-900 truncate">
-                        {{ $item->no_telepon }}</div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                    <img src="{{ $item->metode_pembayaran === 'LinkAja' ? '/assets/linkaja.png' : '/assets//' . strtolower($item->metode_pembayaran) . '.svg' }}"
-                        alt="{{ $item->metode_pembayaran }}" class="max-h-8 max-w-16 object-contain">
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm text-gray-900">
-                        Rp {{ number_format($item->jumlah, 0, ',', '.') }}</div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="flex justify-center">
-                        @switch($item->status)
-                        @case('pending')
-                            <span wire:click="seeDetail({{ $item->id }})" @click="openModal = true"
-                            class="px-3 py-1 text-xs rounded-full bg-yellow-100 text-yellow-800 font-medium 
+                <tbody class="bg-white divide-y divide-gray-200">
+                    @forelse($riwayat as $item)
+                        <tr wire:key="{{ $item->id }}" class="hover:bg-gray-50">
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">{{ $item->created_at->format('M d, Y') }}</div>
+                            </td>
+                            @if (auth()->user()->role === 'admin')
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-900 truncate max-w-[200px]">
+                                        {{ $item->nasabah->nama_depan . ' ' . $item->nasabah->nama_belakang }}</div>
+                                </td>
+                            @endif
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900 truncate">
+                                    {{ $item->no_telepon }}</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <img src="{{ $item->metode_pembayaran === 'LinkAja' ? '/assets/linkaja.png' : '/assets//' . strtolower($item->metode_pembayaran) . '.svg' }}"
+                                    alt="{{ $item->metode_pembayaran }}" class="max-h-8 max-w-16 object-contain">
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">
+                                    Rp {{ number_format($item->jumlah, 0, ',', '.') }}</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="flex justify-center">
+                                    @switch($item->status)
+                                        @case('pending')
+                                            <span wire:click="seeDetail({{ $item->id }})" @click="openModal = true"
+                                                class="px-3 py-1 text-xs rounded-full bg-yellow-100 text-yellow-800 font-medium 
                             hover:bg-yellow-200 cursor-pointer transition-colors duration-200 
                             hover:shadow-sm inline-flex items-center">
-                            <span>Pending</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 ml-1"
-                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                            </svg>
-                            </span>
-                        @break
+                                                <span>Pending</span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 ml-1"
+                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                                </svg>
+                                            </span>
+                                        @break
 
-                        @case('completed')
-                            <span wire:click="seeDetail({{ $item->id }})" @click="openModal = true"
-                            class="px-3 py-1 text-xs rounded-full bg-green-100 text-green-800 font-medium 
+                                        @case('completed')
+                                            <span wire:click="seeDetail({{ $item->id }})" @click="openModal = true"
+                                                class="px-3 py-1 text-xs rounded-full bg-green-100 text-green-800 font-medium 
                             hover:bg-green-200 cursor-pointer transition-colors duration-200 
                             hover:shadow-sm inline-flex items-center">
-                            <span>Selesai</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 ml-1"
-                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                            </svg>
-                            </span>
-                        @break
+                                                <span>Selesai</span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 ml-1"
+                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                                </svg>
+                                            </span>
+                                        @break
 
-                        @case('rejected')
-                            <span wire:click="seeDetail({{ $item->id }})" @click="openModal = true"
-                            class="px-3 py-1 text-xs rounded-full bg-red-100 text-red-800 font-medium 
+                                        @case('rejected')
+                                            <span wire:click="seeDetail({{ $item->id }})" @click="openModal = true"
+                                                class="px-3 py-1 text-xs rounded-full bg-red-100 text-red-800 font-medium 
                             hover:bg-red-200 cursor-pointer transition-colors duration-200 
                             hover:shadow-sm inline-flex items-center">
-                            <span>Ditolak</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 ml-1"
-                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                            </svg>
-                            </span>
-                        @break
+                                                <span>Ditolak</span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 ml-1"
+                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                                </svg>
+                                            </span>
+                                        @break
 
-                        @default
-                            <span wire:click="seeDetail({{ $item->id }})" @click="openModal = true"
-                            class="px-3 py-1 text-xs rounded-full bg-gray-100 text-gray-800 font-medium 
+                                        @default
+                                            <span wire:click="seeDetail({{ $item->id }})" @click="openModal = true"
+                                                class="px-3 py-1 text-xs rounded-full bg-gray-100 text-gray-800 font-medium 
                             hover:bg-gray-200 cursor-pointer transition-colors duration-200 
                             hover:shadow-sm inline-flex items-center">
-                            <span>{{ ucfirst(strtolower($item->status)) }}</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 ml-1"
-                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                            </svg>
-                            </span>
-                        @endswitch
-                    </div>
-                    </td>
-                </tr>
-                @empty
-                    <tr>
-                    <td colspan="{{ auth()->user()?->role === 'admin' ? '6' : '5' }}"
-                        class="px-6 py-10 text-center text-gray-500">
-                        <div class="flex flex-col items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-gray-400 mb-2"
-                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        <p>Tidak ada data penarikan</p>
-                        </div>
-                    </td>
-                    </tr>
-                @endforelse
-                </tbody>
-            </table>
+                                                <span>{{ ucfirst(strtolower($item->status)) }}</span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 ml-1"
+                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                                </svg>
+                                            </span>
+                                    @endswitch
+                                </div>
+                            </td>
+                        </tr>
+                        @empty
+                            <tr>
+                                <td colspan="{{ auth()->user()?->role === 'admin' ? '6' : '5' }}"
+                                    class="px-6 py-10 text-center text-gray-500">
+                                    <div class="flex flex-col items-center justify-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-gray-400 mb-2"
+                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        <p>Tidak ada data penarikan</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
 
-            <!-- Pagination -->
-            <div class="px-6 py-3 bg-gray-50 border-t border-gray-200">
-                {{ $riwayat->links() }}
-            </div>
+                <!-- Pagination -->
+                <div class="px-6 py-3 bg-gray-50 border-t border-gray-200">
+                    {{ $riwayat->links() }}
+                </div>
             </div>
         </div>
 
@@ -455,7 +455,8 @@
                                         </button>
                                         <button type="button"
                                             class="px-3 py-1 text-sm hover:cursor-pointer rounded bg-red-600 hover:bg-red-700 text-white font-semibold"
-                                            wire:click="rejectWithdraw({{ $penarikan->id }})" @click="openModal = false">
+                                            wire:click="rejectWithdraw({{ $penarikan->id }})"
+                                            @click="openModal = false; showRejectConfirm = false">
                                             Tolak
                                         </button>
                                     </div>
@@ -479,7 +480,7 @@
                                         <button type="button"
                                             class="px-3 py-1 text-sm hover:cursor-pointer rounded bg-emerald-600 hover:bg-emerald-700 text-white font-semibold"
                                             wire:click="approveWithdraw({{ $penarikan->id }})"
-                                            @click="openModal = false">
+                                            @click="openModal = false; showApproveConfirm = false">
                                             Selesaikan
                                         </button>
                                     </div>
