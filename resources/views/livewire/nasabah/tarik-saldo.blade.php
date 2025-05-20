@@ -48,10 +48,16 @@
             @error('ewalletNumber')
                 <div class="text-xs text-red-400">{{ $message }}</div>
             @enderror
-            <div class="mt-24 text-gray-400 text-xs mb-4"><span class="text-red-400">*</span>Penarikan saldo akan
-                diproses
-                dalam
-                <span class="font-bold">1x24 jam</span>
+            <div class="mt-8 mb-4 bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-md shadow-sm">
+                <div class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <p class="text-sm font-medium text-gray-700">Perhatian</p>
+                </div>
+                <p class="mt-2 text-sm text-gray-600">
+                    Penarikan saldo akan diproses dalam <span class="font-bold text-emerald-600">1x24 jam</span> setelah permintaan diajukan.
+                </p>
             </div>
 
             <div x-cloak x-show="confirm" class="bg-gray-50 p-4 rounded-lg mb-4 border border-gray-300">
@@ -67,7 +73,8 @@
                     </button>
                     <button type="button"
                         class="px-3 py-1 text-sm hover:cursor-pointer rounded bg-emerald-600 hover:bg-emerald-700 text-white font-semibold"
-                        wire:click="action">
+                        wire:click="action"
+                        @click="confirm = false">
                         Konfirmasi
                     </button>
                 </div>
@@ -81,10 +88,11 @@
     </div>
     <div class="flex h-auto w-[40%] justify-center pt-8">
         <div class="w-[80%] h-[70%] border-1 border-gray-300 rounded-xl shadow-lg p-4 flex flex-col">
-            <div class="flex items-center w-full justify-center gap-4">
-                <div class="flex flex-col text-right overflow-hidden">
+            <div class="flex items-center w-full justify-between">
+                <div class="flex flex-col text-left overflow-hidden">
                     <p class="text-md font-semibold truncate">{{ $user->nama_depan . ' ' . $user->nama_belakang }}</p>
                     <p class="text-sm text-gray-600">{{ $ewalletNumber }}</p>
+                    <p class="text-sm text-gray-600 truncate">Rp {{ number_format($user->profile->saldo, 0, ',', '.') }}</p>
                 </div>
                 <div class="w-18 h-18 border-1 border-gray-300 rounded-full overflow-hidden flex-shrink-0">
                     <img src="{{ asset($user->avatar_url) }}" alt="{{ $user->nama_depan }}'s profile picture"

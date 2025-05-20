@@ -65,7 +65,8 @@
                 <h1 class="text-white text-lg font-semibold truncate">
                     {{ $user->nama_depan . ' ' . $user->nama_belakang }}</h1>
                 <a class="hover:underline flex items-center"
-                    href="{{ $user->role === 'nasabah' ? route('nasabah.dashboard.index') . '?tarik-saldo=true' : route('admin.dashboard.profile') }}" wire:navigate>
+                    href="{{ $user->role === 'nasabah' ? route('nasabah.dashboard.index') . '?tarik-saldo=true' : route('admin.dashboard.profile') }}"
+                    wire:navigate>
                     <p class="text-gray-200 text-sm">
                         @if ($user->role === 'admin')
                             <span class="flex items-center">
@@ -169,6 +170,21 @@
                                 clip-rule="evenodd" />
                         </svg>
                         <span>{{ $user->role === 'admin' ? 'Setoran Sampah' : 'Riwayat Setoran' }}</span>
+                    </a>
+                </li>
+
+                <!-- Riwayat Penarikan -->
+                <li>
+                    <a href="{{ route($user->role . '.dashboard.penarikan') }}" wire:navigate
+                        :class="activeMenu === '{{ $user->role }}.dashboard.penarikan' ? 'bg-white/20 text-white' :
+                            'text-white/80 hover:bg-white/10'"
+                        class="flex items-center px-4 py-3 rounded-lg transition duration-200 group">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M21 12a2.25 2.25 0 0 0-2.25-2.25H15a3 3 0 1 1-6 0H5.25A2.25 2.25 0 0 0 3 12m18 0v6a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 9m18 0V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v3" />
+                        </svg>
+                        <span>{{ $user->role === 'nasabah' ? 'Riwayat Penarikan' : 'Penarikan Saldo' }}</span>
                     </a>
                 </li>
             </ul>

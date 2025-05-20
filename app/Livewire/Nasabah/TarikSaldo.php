@@ -51,6 +51,10 @@ class TarikSaldo extends Component
                 'no_telepon' => $this->ewalletNumber,
             ]);
 
+            $this->withdrawAmount = null;
+
+            $this->paymentMethod = $this->user->profile->metode_pembayaran_utama;
+
             $this->dispatch('tarik-success');
             Toaster::success('Berhasil membuat pengajuan penarikan saldo!');
         } catch (\Throwable $e) {
