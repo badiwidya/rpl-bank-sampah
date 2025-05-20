@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\TransaksiPenarikan;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -18,7 +19,7 @@ class PenarikanSaldo extends Component
     public $sortField;
     public $sortDirection = 'asc';
     public $dateFilter = '';
-    public $status = 'pending';
+    public $status = '';
     public $penarikan;
 
     public function rejectWithdraw(TransaksiPenarikan $transaksi)
@@ -31,6 +32,25 @@ class PenarikanSaldo extends Component
             Toaster::success('Berhasil menolak permintaan penarikan!');
         } catch (\Throwable $e) {
             Toaster::error('Terjadi kesalahan saat menolak permintaan penarikan.');
+        }
+    }
+
+    public function approveWithdraw(TransaksiPenarikan $transaksi)
+    {
+        try {
+            DB::transaction(function () use ($transaksi) {
+                $user = $transaksi->nasabah;
+
+                $user->profile()->decrement('saldo', $transaksi->jumlah);
+
+                $transaksi->update([
+                    'status' => 'completed'
+                ]);
+            });
+
+            Toaster::success('Berhasil menyelesaikan permintaan transaksi!');
+        } catch (\Throwable $e) {
+            Toaster::error('Terjadi kesalahan saat menyelesaikan permintaan penarikan.');
         }
     }
 
