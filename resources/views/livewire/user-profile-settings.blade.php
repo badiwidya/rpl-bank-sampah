@@ -1,4 +1,4 @@
-<div class="flex justify-center bg-gray-200 min-h-full min-w-full">
+<div class="flex justify-center bg-gradient-to-b from-emerald-50 to-emerald-200 min-h-full min-w-full">
     <div class="bg-white bg-opacity-90 flex flex-col backdrop-blur-md p-8 rounded-xl shadow-xl w-full max-w-2/3 my-16">
 
         <section class="mb-4">
