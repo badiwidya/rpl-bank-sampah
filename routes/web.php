@@ -62,9 +62,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // Prefix url '/dashboard' (kalo digabungin sama yang atas jadi '/admin/dashboard') dan prefix nama 'dashboard.'
     Route::prefix('dashboard')->middleware(['auth', 'verified', 'role:admin'])->name('dashboard.')->group(function () {
 
-        Route::get('/', function () {
-            return view('admin.index');
-        })->name('index');
+        Route::get('/', \App\Livewire\Admin\Dashboard::class)->name('index');
         Route::get('/profile', UserProfileSettings::class)->name('profile');
         Route::get('/profile/change-password', ChangePassword::class)->name('password');
 
