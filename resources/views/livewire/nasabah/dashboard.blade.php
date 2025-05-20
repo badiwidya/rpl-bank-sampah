@@ -6,9 +6,9 @@
         setInterval(updateGreeting, 60000)">
             <h3 class="font-regular text-gray-600 text-2xl">Selamat <span x-text="greeting"></span>,
                 <span class="font-semibold text-emerald-600">{{ $user->nama_depan . ' ' . $user->nama_belakang }}</span>!
-                </h1>
+                </h3>
         </div>
-        <h1 class="font-semibold text-gray-800 text-4xl">Sudahkah Anda menyetorkan sampah hari ini?</h2>
+        <h1 class="font-semibold text-gray-800 text-4xl">Sudahkah Anda menyetorkan sampah hari ini?</h1>
             <div class="flex gap-4 mt-8">
                 <a wire:navigate href="{{ route('nasabah.dashboard.sampah') }}"
                     class="block px-3 py-2 bg-emerald-600 text-white hover:bg-emerald-700 rounded-xl transition duration-300">Daftar
@@ -21,52 +21,70 @@
             </div>
     </div>
 
-    <div class="flex mb-8 mx-8 gap-12">
+    <div class="flex mb-4 mx-4 gap-4">
         <div
-            class="flex flex-1 max-w-100 items-center justify-between gap-6 bg-white backdrop-blur-md rounded-xl shadow-xl p-8 hover:scale-103 transition duration-500">
-            <div class="flex flex-col items-start gap-2">
-                <div>
-                    <p class="text-md font-regular text-gray-600">Saldo</p>
-                    <p class="font-semibold text-lg">{{ 'Rp ' . number_format($user->profile->saldo, 2, ',', '.') }}</p>
+            class="flex flex-1 max-w-full lg:max-w-120 items-center justify-between gap-6 bg-white backdrop-blur-md rounded-xl shadow-xl p-8 hover:scale-103 transition duration-500">
+            <div class="flex flex-col items-start gap-2 overflow-hidden max-w-[70%]">
+                <div class="w-full">
+                    <p class="text-sm font-regular text-gray-600">Saldo</p>
+                    <p class="font-semibold text-md truncate">
+                        {{ 'Rp ' . number_format($user->profile->saldo, 2, ',', '.') }}</p>
                 </div>
-                <div>
-                    <p class="text-md font-regular text-gray-600">Total Pemasukan</p>
-                    <p class="font-semibold text-lg">{{ 'Rp ' . number_format($totalPendapatan, 2, ',', '.') }}</p>
+                <div class="w-full">
+                    <p class="text-sm font-regular text-gray-600">Total Pemasukan</p>
+                    <p class="font-semibold text-md truncate">{{ 'Rp ' . number_format($totalPendapatan, 2, ',', '.') }}
+                    </p>
                 </div>
             </div>
-            <div>
-                <img src="{{ asset('assets/money-bag.png') }}" alt="">
+            <div class="flex-shrink-0">
+                <img src="{{ asset('assets/money-bag.png') }}" alt="" class="w-full h-auto">
+            </div>
+        </div>
+
+        <div
+            class="flex flex-1 max-w-full lg:max-w-120 items-center justify-between gap-6 bg-white backdrop-blur-md rounded-xl shadow-xl p-8 hover:scale-103 transition duration-500">
+            <div class="flex flex-col items-start gap-2 overflow-hidden max-w-[70%]">
+                <div class="w-full">
+                    <p class="text-sm font-regular text-gray-600">Saldo</p>
+                    <p class="font-semibold text-md truncate">
+                        {{ 'Rp ' . number_format($user->profile->saldo, 2, ',', '.') }}</p>
+                </div>
+                <div class="w-full">
+                    <p class="text-sm font-regular text-gray-600">Total Pemasukan</p>
+                    <p class="font-semibold text-md truncate">{{ 'Rp ' . number_format($totalPendapatan, 2, ',', '.') }}</p>
+                </div>
+            </div>
+            <div  class="flex-shrink-0">
+                <img src="{{ asset('assets/money-bag.png') }}" alt="" class="w-full h-auto">
             </div>
         </div>
 
 
         <div
-            class="flex flex-1 max-w-100 items-center justify-between gap-6 bg-white backdrop-blur-md rounded-xl shadow-xl p-8 hover:scale-103 transition duration-500">
-            <div class="flex flex-col items-start gap-2">
-                <p class="text-md font-regular text-gray-600">Total Sampah Terkumpul</p>
-                <p class="font-semibold text-lg">{{ $totalBeratSampah . ' kg' }}</p>
+            class="flex flex-1 max-w-full lg:max-w-120 items-center justify-between gap-6 bg-white backdrop-blur-md rounded-xl shadow-xl p-8 hover:scale-103 transition duration-500">
+            <div class="flex flex-col items-start overflow-hidden max-w-[70%]">
+                <p class="text-sm font-regular text-gray-600">Total Sampah Terkumpul</p>
+                <p class="font-semibold text-md truncate">{{ $totalBeratSampah . ' kg' }}</p>
             </div>
-            <div>
-                <img src="{{ asset('assets/flat-trash-can.png') }}" alt="">
+            <div class="flex-shrink-0">
+                <img src="{{ asset('assets/flat-trash-can.png') }}" alt="" class="w-full h-auto">
             </div>
         </div>
 
-        <a class="flex-1 hover:scale-103 transition duration-500" href="{{ route('nasabah.dashboard.setoran') }}" wire:navigate>
-            <div
-                class="flex max-w-100 items-center justify-between gap-6 bg-white backdrop-blur-md rounded-xl shadow-xl p-8">
-                <div class="flex flex-col items-start gap-2">
-                    <div>
-                        <p class="text-md font-regular text-gray-600">Setoran Hari Ini</p>
-                        <p class="font-semibold text-lg">{{ $totalSetoranHariIni }}</p>
-                    </div>
-                    <div>
-                        <p class="text-md font-regular text-gray-600">Setoran Bulan Ini</p>
-                        <p class="font-semibold text-lg">{{ $totalSetoranBulanIni }}</p>
-                    </div>
+        <a class="w-full flex-1 flex items-center justify-between gap-6 bg-white backdrop-blur-md rounded-xl shadow-xl p-8 max-w-full lg:max-w-120 hover:scale-103 transition duration-500"
+            href="{{ route('nasabah.dashboard.setoran') }}" wire:navigate>
+            <div class="flex flex-col items-start gap-2 overflow-hidden max-w-[70%]">
+                <div class="w-full">
+                    <p class="text-sm font-regular text-gray-600">Setoran Hari Ini</p>
+                    <p class="font-semibold text-md truncate">{{ $totalSetoranHariIni }}</p>
                 </div>
-                <div>
-                    <img src="{{ asset('assets/trans.png') }}" alt="">
+                <div class="w-full">
+                    <p class="text-sm font-regular text-gray-600">Setoran Bulan Ini</p>
+                    <p class="font-semibold text-md truncate">{{ $totalSetoranBulanIni }}</p>
                 </div>
+            </div>
+            <div class="flex-shrink-0">
+                <img src="{{ asset('assets/trans.png') }}" alt="" class="w-full h-auto">
             </div>
         </a>
 
