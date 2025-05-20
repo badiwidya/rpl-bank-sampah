@@ -20,9 +20,19 @@ class PenarikanSaldo extends Component
     public $status = '';
     public $penarikan;
 
+    public function sortBy($field)
+    {
+        if ($this->sortField === $field) {
+            $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
+        } else {
+            $this->sortField = $field;
+            $this->sortDirection = 'asc';
+        }
+    }
+
     public function seeDetail(TransaksiPenarikan $transaksi)
     {
-        $transaksi->load(['nasabah', 'sampah']);
+        $transaksi->load('nasabah');
 
         $this->penarikan = $transaksi;
     }
