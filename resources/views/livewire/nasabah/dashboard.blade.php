@@ -1,4 +1,4 @@
-<div class="flex flex-col min-h-full min-w-full"
+<div x-data="{ tarikSaldo: false }" class="flex flex-col min-h-full min-w-full"
     style="background: linear-gradient(179deg, #F4F4F4 15.93%, #C7E4DB 57.49%, #99D4C2 99.05%); background-repeat: no-repeat;">
 
     <div class="w-full flex flex-col flex-1 justify-center items-center">
@@ -23,7 +23,7 @@
 
     <div class="flex mb-4 mx-4 gap-4">
 
-        <div
+        <div @click="tarikSaldo = true"
             class="group flex flex-col w-70 min-w-70 flex-grow-0 bg-white overflow-hidden backdrop-blur-md rounded-xl shadow-xl p-5 transition-all duration-500 hover:w-100 hover:shadow-2xl cursor-pointer">
 
             <h3 class="font-semibold text-base cursor-pointer">Tarik Saldo</h3>
@@ -34,7 +34,7 @@
                     <div class="relative">
                         <span
                             class="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm cursor-pointer">Rp</span>
-                        <input type="text" placeholder="Masukkan nominal..." disabled
+                        <input type="text" placeholder="Masukkan nominal..."
                             class="w-full bg-gray-50 border border-gray-300 pl-7 pr-2 py-1 rounded-md text-sm focus:ring-1 focus:ring-blue-300 focus:border-blue-500 focus:outline-none transition-all cursor-pointer">
                     </div>
                 </div>
@@ -111,6 +111,15 @@
                 <img src="{{ asset('assets/trans.png') }}" alt="" class="w-full h-auto">
             </div>
         </a>
+    </div>
+
+    <div x-cloak x-show="tarikSaldo" class="fixed inset-0 bg-black/50 z-50"></div>
+
+
+    <div x-cloak x-show="tarikSaldo" @click.away="tarikSaldo = false"
+        class="w-1/2 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-lg p-6 z-50"
+        x-transition>
+        <livewire:nasabah.tarik-saldo />
     </div>
 
     @push('scripts')
