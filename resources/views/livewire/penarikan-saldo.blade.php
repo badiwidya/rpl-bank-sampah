@@ -185,8 +185,34 @@
                         </th>
 
                         <th scope="col"
-                            class="w-24 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Status
+                            class="w-24 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+                            wire:click="sortBy('status')">
+                            <div class="flex items-center">
+                                Status
+                                <span class="ml-1">
+                                    @if ($sortField === 'status')
+                                        @if ($sortDirection === 'asc')
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M5 15l7-7 7 7" />
+                                            </svg>
+                                        @else
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M19 9l-7 7-7-7" />
+                                            </svg>
+                                        @endif
+                                    @else
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-300"
+                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
+                                        </svg>
+                                    @endif
+                                </span>
+                            </div>
                         </th>
 
                     </tr>
@@ -214,7 +240,7 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="text-sm text-gray-900">
-                                    {{ number_format($item->jumlah, 0, ',', '.') }}</div>
+                                    Rp {{ number_format($item->jumlah, 0, ',', '.') }}</div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="flex justify-center">
@@ -418,7 +444,8 @@
                                 <div x-cloak x-show="showRejectConfirm"
                                     class="bg-red-50 p-4 rounded-lg mb-4 border border-gray-300">
                                     <h3 class="text-md font-semibold mb-2">Konfirmasi Penolakan</h3>
-                                    <p class="mb-4 text-sm text-gray-700">Apakah Anda yakin ingin menolak permintaan penarikan saldo ini?</p>
+                                    <p class="mb-4 text-sm text-gray-700">Apakah Anda yakin ingin menolak permintaan
+                                        penarikan saldo ini?</p>
 
                                     <div class="flex justify-end space-x-3">
                                         <button type="button"
@@ -428,8 +455,7 @@
                                         </button>
                                         <button type="button"
                                             class="px-3 py-1 text-sm hover:cursor-pointer rounded bg-red-600 hover:bg-red-700 text-white font-semibold"
-                                            wire:click="rejectWithdraw({{ $penarikan->id }})"
-                                            @click="openModal = false">
+                                            wire:click="rejectWithdraw({{ $penarikan->id }})" @click="openModal = false">
                                             Tolak
                                         </button>
                                     </div>
@@ -438,7 +464,11 @@
                                 <div x-cloak x-show="showApproveConfirm"
                                     class="bg-green-50 p-4 rounded-lg mb-4 border border-gray-300">
                                     <h3 class="text-md font-semibold mb-2">Konfirmasi Penyelesaian</h3>
-                                    <p class="mb-4 text-sm text-gray-700">Apakah Anda yakin ingin menyelesaikan penarikan dari nasabah {{ $penarikan->nasabah->nama_depan }} {{ $penarikan->nasabah->nama_belakang }}? Pastikan Anda telah memeriksa dengan cermat dan telah mengirimkan uang kepada akun e-wallet nasabah. Karena saldo nasabah akan dikurangi ketika Anda menyelesaikannya.</p>
+                                    <p class="mb-4 text-sm text-gray-700">Apakah Anda yakin ingin menyelesaikan penarikan
+                                        dari nasabah {{ $penarikan->nasabah->nama_depan }}
+                                        {{ $penarikan->nasabah->nama_belakang }}? Pastikan Anda telah memeriksa dengan
+                                        cermat dan telah mengirimkan uang kepada akun e-wallet nasabah. Karena saldo nasabah
+                                        akan dikurangi ketika Anda menyelesaikannya.</p>
 
                                     <div class="flex justify-end space-x-3">
                                         <button type="button"
@@ -456,7 +486,8 @@
                                 </div>
 
                                 <!-- Action Buttons -->
-                                <div x-show="!showRejectConfirm && !showApproveConfirm" class="flex flex-col sm:flex-row sm:justify-end gap-3">
+                                <div x-show="!showRejectConfirm && !showApproveConfirm"
+                                    class="flex flex-col sm:flex-row sm:justify-end gap-3">
                                     <button type="button" @click="showRejectConfirm = true;"
                                         class="flex items-center justify-center px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 hover:cursor-pointer transition duration-200 font-medium">
                                         Tolak Penarikan
