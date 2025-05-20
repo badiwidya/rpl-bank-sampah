@@ -2,9 +2,11 @@
 
 namespace App\Livewire\Admin;
 
+use App\Mail\SetoranBaru;
 use App\Models\Sampah;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Layout;
@@ -51,17 +53,17 @@ class CreateSetoran extends Component
             if (!$this->selectedUser) {
                 throw new \Exception('Tolong pilih nasabah terlebih dahulu.');
             }
-            
+
             if (!$this->selectedSampah) {
                 throw new \Exception('Sampah tidak boleh kosong.');
             }
 
-            DB::transaction(function () {
+            $transaksi = DB::transaction(function () {
                 $transaksi = $this->selectedUser->transaksiPenukaran()->create();
 
                 $hargaTotal = 0;
                 $beratTotal = 0;
-    
+
                 foreach ($this->selectedSampah as $id => $data) {
                     $hargaSub = $data['berat'] * $data['harga_per_kg'];
                     $hargaTotal += $hargaSub;
@@ -71,15 +73,18 @@ class CreateSetoran extends Component
                         'harga_subtotal' => $hargaSub
                     ]);
                 }
-    
+
                 $transaksi->update([
                     'total_harga' => $hargaTotal,
                     'total_berat' => $beratTotal
                 ]);
 
                 $this->selectedUser->profile()->increment('saldo', $hargaTotal);
+
+                return $transaksi;
             });
 
+            Mail::to($this->selectedUser)->send(new SetoranBaru($this->selectedUser, $transaksi));
 
             return Redirect::route('admin.dashboard.setoran')->success('Setoran baru berhasil dibuat!');
         } catch (\Throwable $e) {
