@@ -8,6 +8,7 @@ use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Masmerise\Toaster\Toaster;
 
 class PenarikanSaldo extends Component
 {
@@ -17,8 +18,21 @@ class PenarikanSaldo extends Component
     public $sortField;
     public $sortDirection = 'asc';
     public $dateFilter = '';
-    public $status = '';
+    public $status = 'pending';
     public $penarikan;
+
+    public function rejectWithdraw(TransaksiPenarikan $transaksi)
+    {
+        try {
+            $transaksi->update([
+                'status' => 'rejected'
+            ]);
+
+            Toaster::success('Berhasil menolak permintaan penarikan!');
+        } catch (\Throwable $e) {
+            Toaster::error('Terjadi kesalahan saat menolak permintaan penarikan.');
+        }
+    }
 
     public function sortBy($field)
     {
