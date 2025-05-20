@@ -44,7 +44,7 @@
                     </div>
     
                     <!-- Dropdown Options -->
-                    <div x-show="openTimeFilter" @click.away="openTimeFilter = false"
+                    <div x-show="openTimeFilter" @click.away="openTimeFilter = false" x-transition
                         class="absolute z-10 mt-1 w-full bg-white border border-gray-300 rounded-md shadow-lg">
                         <template x-for="(label, value) in options" :key="value">
                             <div @click="openTimeFilter = false; $wire.set('dateFilter', value)"

@@ -11,16 +11,19 @@
         <h1 class="font-semibold text-gray-800 text-4xl">Sudahkah Anda menyetorkan sampah hari ini?</h2>
             <div class="flex gap-4 mt-8">
                 <a wire:navigate href="{{ route('nasabah.dashboard.sampah') }}"
-                    class="block px-3 py-2 bg-emerald-600 text-white hover:bg-emerald-700 rounded-xl transition duration-300">Daftar Harga
+                    class="block px-3 py-2 bg-emerald-600 text-white hover:bg-emerald-700 rounded-xl transition duration-300">Daftar
+                    Harga
                     Sampah</a>
                 <a href="/news"
-                    class="block px-3 py-2 bg-emerald-600 text-white hover:bg-emerald-700 rounded-xl transition duration-300">Berita Sampah
+                    class="block px-3 py-2 bg-emerald-600 text-white hover:bg-emerald-700 rounded-xl transition duration-300">Berita
+                    Sampah
                     Terkini</a>
             </div>
     </div>
 
     <div class="flex mb-8 mx-8 gap-12">
-        <div class="flex flex-1 max-w-100 items-center justify-between gap-6 bg-white backdrop-blur-md rounded-xl shadow-xl p-8">
+        <div
+            class="flex flex-1 max-w-100 items-center justify-between gap-6 bg-white backdrop-blur-md rounded-xl shadow-xl p-8 hover:scale-103 transition duration-500">
             <div class="flex flex-col items-start gap-2">
                 <div>
                     <p class="text-md font-regular text-gray-600">Saldo</p>
@@ -37,7 +40,8 @@
         </div>
 
 
-        <div class="flex flex-1 max-w-100 items-center justify-between gap-6 bg-white backdrop-blur-md rounded-xl shadow-xl p-8">
+        <div
+            class="flex flex-1 max-w-100 items-center justify-between gap-6 bg-white backdrop-blur-md rounded-xl shadow-xl p-8 hover:scale-103 transition duration-500">
             <div class="flex flex-col items-start gap-2">
                 <p class="text-md font-regular text-gray-600">Total Sampah Terkumpul</p>
                 <p class="font-semibold text-lg">{{ $totalBeratSampah . ' kg' }}</p>
@@ -47,21 +51,25 @@
             </div>
         </div>
 
-        <div class="flex flex-1 max-w-100 items-center justify-between gap-6 bg-white backdrop-blur-md rounded-xl shadow-xl p-8">
-            <div class="flex flex-col items-start gap-2">
-                <div>
-                    <p class="text-md font-regular text-gray-600">Setoran Hari Ini</p>
-                    <p class="font-semibold text-lg">{{ $totalSetoranHariIni }}</p>
+        <a class="flex-1 hover:scale-103 transition duration-500" href="{{ route('nasabah.dashboard.setoran') }}" wire:navigate>
+            <div
+                class="flex max-w-100 items-center justify-between gap-6 bg-white backdrop-blur-md rounded-xl shadow-xl p-8">
+                <div class="flex flex-col items-start gap-2">
+                    <div>
+                        <p class="text-md font-regular text-gray-600">Setoran Hari Ini</p>
+                        <p class="font-semibold text-lg">{{ $totalSetoranHariIni }}</p>
+                    </div>
+                    <div>
+                        <p class="text-md font-regular text-gray-600">Setoran Bulan Ini</p>
+                        <p class="font-semibold text-lg">{{ $totalSetoranBulanIni }}</p>
+                    </div>
                 </div>
                 <div>
-                    <p class="text-md font-regular text-gray-600">Setoran Bulan Ini</p>
-                    <p class="font-semibold text-lg">{{ $totalSetoranBulanIni }}</p>
+                    <img src="{{ asset('assets/trans.png') }}" alt="">
                 </div>
             </div>
-            <div>
-                <img src="{{ asset('assets/trans.png') }}" alt="">
-            </div>
-        </div>
+        </a>
+
 
 
     </div>
