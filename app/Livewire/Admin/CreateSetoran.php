@@ -4,6 +4,7 @@ namespace App\Livewire\Admin;
 
 use App\Models\Sampah;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Layout;
@@ -50,37 +51,44 @@ class CreateSetoran extends Component
             if (!$this->selectedUser) {
                 throw new \Exception('Tolong pilih nasabah terlebih dahulu.');
             }
-
-            $transaksi = $this->selectedUser->transaksiPenukaran()->create();
-
+            
             if (!$this->selectedSampah) {
                 throw new \Exception('Sampah tidak boleh kosong.');
             }
 
-            $hargaTotal = 0;
-            $beratTotal = 0;
+            DB::transaction(function () {
+                $transaksi = $this->selectedUser->transaksiPenukaran()->create();
 
-            foreach ($this->selectedSampah as $id => $data) {
-                $hargaSub = $data['berat'] * $data['harga_per_kg'];
-                $hargaTotal += $hargaSub;
-                $beratTotal += $data['berat'];
-                $transaksi->sampah()->attach($id, [
-                    'berat' => $data['berat'],
-                    'harga_subtotal' => $hargaSub
+                $hargaTotal = 0;
+                $beratTotal = 0;
+    
+                foreach ($this->selectedSampah as $id => $data) {
+                    $hargaSub = $data['berat'] * $data['harga_per_kg'];
+                    $hargaTotal += $hargaSub;
+                    $beratTotal += $data['berat'];
+                    $transaksi->sampah()->attach($id, [
+                        'berat' => $data['berat'],
+                        'harga_subtotal' => $hargaSub
+                    ]);
+                }
+    
+                $transaksi->update([
+                    'total_harga' => $hargaTotal,
+                    'total_berat' => $beratTotal
                 ]);
-            }
 
-            $transaksi->update([
-                'total_harga' => $hargaTotal,
-                'total_berat' => $beratTotal
-            ]);
+                $this->selectedUser->profile()->increment('saldo', $hargaTotal);
+            });
+
 
             return Redirect::route('admin.dashboard.setoran')->success('Setoran baru berhasil dibuat!');
         } catch (\Throwable $e) {
             if ($e instanceof ValidationException) {
                 Toaster::error('Harap lengkapi berat sampah.');
-            } else {
+            } else if ($e instanceof \Exception) {
                 Toaster::error($e->getMessage());
+            } else {
+                Toaster::error('Terjadi kesalahan saat membuat setoran baru.');
             }
         }
     }
