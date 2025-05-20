@@ -260,7 +260,7 @@
 
             <div wire:loading.remove wire:target="seeDetail">
                 @if ($transaksi)
-                    <div class="bg-gray-50 rounded-lg p-4 mb-5 flex flex-col md:flex-row gap-4">
+                    <div class="bg-gray-50 rounded-lg p-4 mb-5 flex flex-col md:flex-row justify-between gap-4">
                         <div class="flex items-center">
                             <div class="flex-shrink-0">
                                 <img src="{{ asset($transaksi->nasabah->avatar_url) }}"
@@ -274,7 +274,7 @@
                             </div>
                         </div>
 
-                        <div class="md:ml-6 flex items-center flex-wrap gap-x-6 gap-y-2 flex-1">
+                        <div class="md:ml-6 flex items-center flex-wrap gap-x-6 gap-y-2">
                             <div>
                                 <p class="text-xs text-gray-500">Tanggal & Waktu</p>
                                 <p class="font-medium">{{ $transaksi->created_at->format('H:i, d F Y') }}</p>
