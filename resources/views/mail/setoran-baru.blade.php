@@ -5,17 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Setoran Sampah Baru</title>
+    <style>
+        th, td {
+            border: 1px solid black;
+            text-align: center;
+        }
+    </style>
 </head>
 
-<body class="line-height: 1.6; background-color: #f5f5f5;">
-    <h1 class="margin-bottom: 8px;">Halo, {{ $user->nama_depan }}!</h1>
+<body style="font-family: Arial, sans-serif; line-height: 1.6; background-color: rgb(129, 245, 198);">
+    <h1 style="margin-bottom: 8px; font-size: 21px;">Halo, {{ $user->nama_depan }}!</h1>
 
     <p>Kamu berhasil melakukan setoran sampah baru.</p>
     <p>Total Harga: <strong>{{ $transaction->total_harga }}</strong></p>
     <p>Total Berat: <strong>{{ $transaction->total_berat }}</strong></p>
 
-    <h3 class="margin-top: 8px;">Detail Transaksi:</h3>
-    <table class="margin-bottom: 8px;">
+    <h3 style="margin-top: 8px;">Detail Transaksi:</h3>
+    <table style="width: 100%; margin-bottom: 8px; border-collapse: collapse;">
         <thead>
             <tr>
                 <th>Sampah</th>
@@ -39,7 +45,7 @@
         </tbody>
     </table>
 
-    <p class="margin-bottom: 4px;">Terima kasih!</p>
+    <p style="margin-bottom: 4px;">Terima kasih!</p>
 
     <p>Hormat kami,<br>Bank Sampah IPB</p>
 
