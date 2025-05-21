@@ -30,7 +30,7 @@ class Post extends Model
     {
         static::creating(function ($post) {
             if (empty($post->slug)) {
-                $post->slug = Str::slug($post->name);
+                $post->slug = Str::slug($post->judul) . '-' . Str::random(4);
             }
         });
     }
