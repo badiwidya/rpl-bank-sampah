@@ -79,6 +79,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/penarikan', PenarikanSaldo::class)->name('penarikan');
         Route::get('/posts', ManagePost::class)->name('post');
         Route::get('/posts/create', CreatePost::class)->name('post.create');
+        Route::get('/posts/{post}/edit')->name('post.edit');
     });
 
 });
