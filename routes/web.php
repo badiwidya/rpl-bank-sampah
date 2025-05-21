@@ -6,6 +6,9 @@ use App\Http\Controllers\Auth\SessionController;
 use App\Http\Controllers\Auth\UserEmailVerificationController;
 use App\Livewire\Admin\CreatePost;
 use App\Livewire\Admin\CreateSetoran;
+use App\Livewire\Admin\ManagePost;
+use App\Livewire\Admin\Dashboard as AdminDashboard;
+use App\Livewire\Nasabah\Dashboard as NasabahDashboard;
 use App\Livewire\ChangePassword;
 use App\Livewire\KatalogSampah;
 use App\Livewire\PenarikanSaldo;
@@ -38,7 +41,7 @@ Route::name('nasabah.')->group(function () {
     // Prefix rute '/dashboard' dan prefix nama 'dashboard.'
     Route::prefix('dashboard')->middleware(['auth', 'verified', 'role:nasabah'])->name('dashboard.')->group(function () {
 
-        Route::get('/', \App\Livewire\Nasabah\Dashboard::class)->name('index');
+        Route::get('/', NasabahDashboard::class)->name('index');
         Route::get('/profile', UserProfileSettings::class)->name('profile');
         Route::get('/profile/change-password', ChangePassword::class)->name('password');
 
@@ -65,7 +68,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // Prefix url '/dashboard' (kalo digabungin sama yang atas jadi '/admin/dashboard') dan prefix nama 'dashboard.'
     Route::prefix('dashboard')->middleware(['auth', 'verified', 'role:admin'])->name('dashboard.')->group(function () {
 
-        Route::get('/', \App\Livewire\Admin\Dashboard::class)->name('index');
+        Route::get('/', AdminDashboard::class)->name('index');
         Route::get('/profile', UserProfileSettings::class)->name('profile');
         Route::get('/profile/change-password', ChangePassword::class)->name('password');
 
@@ -74,7 +77,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/setoran', RiwayatSetoran::class)->name('setoran');
         Route::get('/setoran/create', CreateSetoran::class)->name('setoran.create');
         Route::get('/penarikan', PenarikanSaldo::class)->name('penarikan');
-        Route::get('/posts')->name('post');
+        Route::get('/posts', ManagePost::class)->name('post');
         Route::get('/posts/create', CreatePost::class)->name('post.create');
     });
 
