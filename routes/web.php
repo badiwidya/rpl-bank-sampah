@@ -8,6 +8,7 @@ use App\Livewire\Admin\CreatePost;
 use App\Livewire\Admin\CreateSetoran;
 use App\Livewire\Admin\ManagePost;
 use App\Livewire\Admin\Dashboard as AdminDashboard;
+use App\Livewire\Admin\EditPost;
 use App\Livewire\Nasabah\Dashboard as NasabahDashboard;
 use App\Livewire\ChangePassword;
 use App\Livewire\KatalogSampah;
@@ -79,7 +80,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/penarikan', PenarikanSaldo::class)->name('penarikan');
         Route::get('/posts', ManagePost::class)->name('post');
         Route::get('/posts/create', CreatePost::class)->name('post.create');
-        Route::get('/posts/{post}/edit')->name('post.edit');
+        Route::get('/posts/{post}/edit', EditPost::class)->name('post.edit');
     });
 
 });
