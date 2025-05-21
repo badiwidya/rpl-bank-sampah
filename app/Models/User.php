@@ -85,7 +85,7 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
 
     public function posts(): HasMany
     {
-        return $this->hasMany(Post::class);
+        return $this->hasMany(Post::class, 'author_id');
     }
 
     public function transaksiPenarikan(): HasMany
