@@ -6,6 +6,7 @@ use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
+use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -14,7 +15,9 @@ class CreatePost extends Component
     use WithFileUploads;
 
     public $user;
-    public $postTitle;
+
+    #[Validate]
+    public $postTitle = '';
     public $categories;
 
     public $categorySelected;
