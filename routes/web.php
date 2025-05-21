@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\SessionController;
 use App\Http\Controllers\Auth\UserEmailVerificationController;
 use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\PostinganController;
 use App\Livewire\Admin\CreatePost;
 use App\Livewire\Admin\CreateSetoran;
 use App\Livewire\Admin\ManagePost;
@@ -20,8 +21,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', LandingPageController::class);
 
-Route::get('/posts')->name('post.index');
-Route::get('/posts/{post:slug}')->name('post.show');
+Route::get('/posts', [PostinganController::class, 'index'])->name('post.index');
+Route::get('/posts/{post:slug}', [PostinganController::class, 'show'])->name('post.show');
 
 // Rute nasabah
 // prefix nama rute "nasabah."
