@@ -65,6 +65,36 @@ class CreatePost extends Component
             return ['error' => 'Gagal mengunggah gambar: ' . $e->getMessage()];
         }
     }
+    
+    public function deleteImage($imageUrl)
+    {
+        try {
+
+            $path = parse_url($imageUrl, PHP_URL_PATH);
+            if (!$path) {
+                return ['error' => 'URL gambar tidak valid'];
+            }
+            
+            $filename = basename($path);
+            
+            foreach ($this->temporaryImages as $index => $tempPath) {
+                if (basename($tempPath) === $filename) {
+                    $actualPath = $this->temporaryImages[$index];
+                    
+                    array_splice($this->temporaryImages, $index, 1);
+                    
+                    if (Storage::disk('public')->exists($actualPath)) {
+                        Storage::disk('public')->delete($actualPath);
+                        return ['success' => true];
+                    }
+                }
+            }
+            
+            return ['success' => false, 'error' => 'Gambar tidak ditemukan'];
+        } catch (\Exception $e) {
+            return ['error' => 'Gagal menghapus gambar: ' . $e->getMessage()];
+        }
+    }
 
     public function save()
     {
@@ -78,7 +108,7 @@ class CreatePost extends Component
                 'konten' => $cleanContent,
                 'category_id' => $this->categorySelected
             ]);
-
+            
             foreach ($this->temporaryImages as $imagePath) {
                 PostImage::create([
                     'post_id' => $post->id,
