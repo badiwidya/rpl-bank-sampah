@@ -20,6 +20,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', LandingPageController::class);
 
+Route::get('/posts')->name('post.index');
+Route::get('/posts/{post:slug}')->name('post.show');
+
 // Rute nasabah
 // prefix nama rute "nasabah."
 Route::name('nasabah.')->group(function () {
