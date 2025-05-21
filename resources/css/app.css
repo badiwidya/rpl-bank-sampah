@@ -21,6 +21,21 @@
     width: 100%;
 }
 
+.trix-editor img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.trix-nocaption .attachment__name {
+    display: none !important;
+}
+
+.trix-nocaption .attachment__size {
+    display: none !important;
+}
+
 .trix-editor h1 {
     font-size: 1.25rem !important;
     line-height: 1.25rem !important;
