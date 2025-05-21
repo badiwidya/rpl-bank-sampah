@@ -187,6 +187,23 @@
                         <span>{{ $user->role === 'nasabah' ? 'Riwayat Penarikan' : 'Penarikan Saldo' }}</span>
                     </a>
                 </li>
+
+                @if ($user->role === 'admin')
+                    <!-- Kelola Postingan -->
+                    <li>
+                        <a href="{{ route($user->role . '.dashboard.post') }}" wire:navigate
+                            :class="activeMenu === '{{ $user->role }}.dashboard.post' ? 'bg-white/20 text-white' :
+                                'text-white/80 hover:bg-white/10'"
+                            class="flex items-center px-4 py-3 rounded-lg transition duration-200 group">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
+                                    d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                            </svg>
+                            <span>Kelola Postingan</span>
+                        </a>
+                    </li>
+                @endif
             </ul>
 
             @if ($user->role === 'nasabah')
