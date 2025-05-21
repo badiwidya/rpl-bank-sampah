@@ -13,6 +13,7 @@ use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Masmerise\Toaster\Toaster;
+use Mews\Purifier\Facades\Purifier;
 
 class CreatePost extends Component
 {
@@ -70,9 +71,11 @@ class CreatePost extends Component
         try {
             $this->validate();
 
+            $cleanContent = Purifier::clean($this->content);
+
             $post = $this->user->posts()->create([
                 'judul' => $this->postTitle,
-                'konten' => $this->content,
+                'konten' => $cleanContent,
                 'category_id' => $this->categorySelected
             ]);
 
