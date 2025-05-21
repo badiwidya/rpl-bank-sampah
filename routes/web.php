@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\SessionController;
 use App\Http\Controllers\Auth\UserEmailVerificationController;
+use App\Http\Controllers\LandingPageController;
 use App\Livewire\Admin\CreatePost;
 use App\Livewire\Admin\CreateSetoran;
 use App\Livewire\Admin\ManagePost;
@@ -17,9 +18,7 @@ use App\Livewire\RiwayatSetoran;
 use App\Livewire\UserProfileSettings;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', LandingPageController::class);
 
 // Rute nasabah
 // prefix nama rute "nasabah."
