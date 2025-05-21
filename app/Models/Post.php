@@ -23,7 +23,7 @@ class Post extends Model
 
     public function category(): BelongsTo
     {
-        return $this->belongsTo(Category::class, 'post_id');
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
     protected static function booted()
