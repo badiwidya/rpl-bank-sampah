@@ -28,6 +28,9 @@
     margin-right: auto;
 }
 
+.trix-editor a:has(img) {
+    pointer-events:none;
+}
 
 .trix-nocaption .attachment__name {
     display: none !important;
