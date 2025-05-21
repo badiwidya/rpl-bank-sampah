@@ -4,13 +4,15 @@ namespace App\Livewire\Admin;
 
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
 class CreatePost extends Component
 {
     use WithFileUploads;
-    
+
     public $user;
     public $postTitle;
     public $categories;
@@ -36,6 +38,8 @@ class CreatePost extends Component
         $this->categories = Category::all();
     }
     
+    #[Layout('components.layouts.dashboard')]
+    #[Title('Buat Postingan - Bank Sampah')]
     public function render()
     {
         return view('livewire.admin.create-post');

@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\SessionController;
 use App\Http\Controllers\Auth\UserEmailVerificationController;
+use App\Livewire\Admin\CreatePost;
 use App\Livewire\Admin\CreateSetoran;
 use App\Livewire\ChangePassword;
 use App\Livewire\KatalogSampah;
@@ -73,6 +74,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/setoran', RiwayatSetoran::class)->name('setoran');
         Route::get('/setoran/create', CreateSetoran::class)->name('setoran.create');
         Route::get('/penarikan', PenarikanSaldo::class)->name('penarikan');
+        Route::get('/posts')->name('post');
+        Route::get('/posts/create', CreatePost::class)->name('post.create');
     });
 
 });
