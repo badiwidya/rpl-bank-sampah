@@ -22,13 +22,11 @@ class CreatePost extends Component
 
     public $categorySelected;
     public $content;
-    public $coverImage;
 
     public function rules()
     {
         return [
             'postTitle' => 'required|string|min:4',
-            'coverImage' => 'required|mimes:jpg,jpeg,png|max:9126',
             'content' => ['required']
         ];
     }
