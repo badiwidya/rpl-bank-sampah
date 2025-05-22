@@ -18,11 +18,19 @@ class ChangePassword extends Component
     public $password;
     public $password_confirmation;
 
-    public function rules()
+    protected function rules()
     {
         return [
             'currentPassword' => 'required|string',
             'password' => ['required', 'string', 'confirmed', Password::min(8)->letters()->numbers()]
+        ];
+    }
+
+    protected function validationAttributes()
+    {
+        return [
+            'currentPassword' => 'Password lama',
+            'password' => 'Password baru'
         ];
     }
 
