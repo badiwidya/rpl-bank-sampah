@@ -35,7 +35,7 @@ class EditPost extends Component
     public function rules()
     {
         return [
-            'postTitle' => 'required|string|min:4',
+            'postTitle' => 'required|string|min:4|max:255',
             'categorySelected' => 'required',
             'content' => ['required']
         ];
