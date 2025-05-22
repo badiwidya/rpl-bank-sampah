@@ -1,15 +1,15 @@
 <div class="flex justify-center bg-gradient-to-b from-emerald-50 to-emerald-200 min-h-full min-w-full">
-    <div class="bg-white bg-opacity-90 flex flex-col backdrop-blur-md p-8 rounded-xl shadow-xl w-full max-w-2/3 my-16">
+    <div class="bg-white bg-opacity-90 flex flex-col backdrop-blur-md p-4 sm:p-6 md:p-8 rounded-xl shadow-xl w-full max-w-2/3 my-8 md:my-16 mx-4 sm:mx-8">
 
         <section class="mb-4">
-            <h1 class="font-medium text-2xl">Pengaturan Profil</h1>
+            <h1 class="font-medium text-xl sm:text-2xl">Pengaturan Profil</h1>
         </section>
 
         <form wire:submit.prevent="{{ $mode === 'admin' ? 'updateAdmin' : 'updateNasabah' }}">
-            <section class="mb-8">
-                <h3 class="font-light text-md text-gray-600 mb-4">Foto Profil</h3>
-                <div class="flex">
-                    <div class="rounded-full border-1 border-gray-400 overflow-hidden w-24 h-24 mr-4">
+            <section class="mb-6 sm:mb-8">
+                <h3 class="font-light text-md text-gray-600 mb-3 sm:mb-4">Foto Profil</h3>
+                <div class="flex flex-col sm:flex-row">
+                    <div class="rounded-full border-1 border-gray-400 overflow-hidden w-20 h-20 sm:w-24 sm:h-24 mx-auto sm:mx-0 sm:mr-4 mb-4 sm:mb-0">
                         @if ($image)
                             <img src="{{ asset($image->temporaryUrl()) }}" alt="preview profile picture"
                                 class="object-cover w-full h-full">
@@ -19,7 +19,7 @@
                                 class="object-cover w-full h-full">
                         @endif
                     </div>
-                    <div class="flex flex-col items-center justify-center gap-2">
+                    <div class="flex flex-col items-center sm:justify-center gap-2">
                         <button type="button" @click="$refs.fileInput.click()"
                             class="border-emerald-600 text-emerald-600 py-2 w-36 border-1 rounded-3xl text-sm hover:text-white hover:cursor-pointer hover:bg-emerald-700 transition duration-300">Unggah
                             Foto Baru</button>
@@ -31,16 +31,16 @@
                     </div>
                 </div>
                 @error('image')
-                    <div class="text-red-500 text-xs my-1 self-end">{{ $message }}</div>
+                    <div class="text-red-500 text-xs my-1 text-center sm:text-left sm:self-end">{{ $message }}</div>
                 @enderror
                 <input x-ref="fileInput" type="file" wire:model="image" accept=".jpeg,.jpg,.png" class="hidden">
             </section>
 
             <section>
-                <h3 class="font-regular text-xl text-black mb-4">Informasi Personal</h3>
-                <div class="flex gap-8 mb-4">
+                <h3 class="font-regular text-lg sm:text-xl text-black mb-3 sm:mb-4">Informasi Personal</h3>
+                <div class="flex flex-col md:flex-row md:gap-8 mb-4">
                     <!-- Nama depan -->
-                    <div class="flex-1">
+                    <div class="flex-1 mb-4 md:mb-0">
                         <label class="block text-sm font-medium text-gray-700 mb-1" for="firstName">Nama Depan</label>
                         <input id="firstName" name="nama_depan" type="text" wire:model.defer="nama_depan"
                             placeholder="Masukkan nama depan Anda..."
@@ -62,8 +62,8 @@
                     </div>
                 </div>
 
-                <div class="flex gap-8 mb-4">
-                    <div class="flex-1">
+                <div class="flex flex-col md:flex-row md:gap-8 mb-4">
+                    <div class="flex-1 mb-4 md:mb-0">
                         <label class="block text-sm font-medium text-gray-700 mb-1" for="email">Alamat Email</label>
                         <input id="email" name="email" type="email" wire:model.defer="email"
                             placeholder="Masukkan alamat email Anda..."
@@ -86,8 +86,8 @@
             </section>
 
             @if ($mode === 'nasabah')
-                <section class="flex gap-8 mb-4">
-                    <div x-data="{ open: false, selected: @entangle('metode_pembayaran_utama') }" class="relative flex-1">
+                <section class="flex flex-col md:flex-row md:gap-8 mb-4">
+                    <div x-data="{ open: false, selected: @entangle('metode_pembayaran_utama') }" class="relative flex-1 mb-4 md:mb-0">
                         <label class="block text-sm font-medium text-gray-700 mb-1">Metode Pembayaran Utama</label>
 
                         <!-- Dropdown Trigger -->
@@ -113,7 +113,6 @@
                         </div>
                     </div>
 
-
                     <div class="flex-1"></div>
                 </section>
 
@@ -125,16 +124,16 @@
                 </div>
             @endif
 
-            <section>
-                <h3 class="font-regular text-xl text-black mb-4">Keamanan</h3>
+            <section class="mt-6 mb-6">
+                <h3 class="font-regular text-lg sm:text-xl text-black mb-3 sm:mb-4">Keamanan</h3>
                 <a href="{{ route(auth()->user()->role . '.dashboard.password') }}" wire:navigate
-                    class="block w-fit px-8 py-2 bg-emerald-600 rounded-2xl text-sm hover:bg-emerald-700 hover:cursor-pointer text-white">Ganti
+                    class="block w-fit px-6 sm:px-8 py-2 bg-emerald-600 rounded-2xl text-sm hover:bg-emerald-700 hover:cursor-pointer text-white">Ganti
                     Password</a>
             </section>
 
-            <section class="flex justify-end mt-12">
+            <section class="flex justify-center sm:justify-end mt-8 md:mt-12">
                 <button type="submit"
-                    class="px-4 py-2 bg-emerald-600 rounded-xl text-white hover:bg-emerald-700 hover:cursor-pointer">Simpan
+                    class="w-full sm:w-auto px-4 py-2 bg-emerald-600 rounded-xl text-white hover:bg-emerald-700 hover:cursor-pointer">Simpan
                     Perubahan</button>
             </section>
         </form>
@@ -143,21 +142,21 @@
     <div x-cloak x-show="$wire.isDelete" class="fixed inset-0 bg-black/50 z-50" x.transition.opacity></div>
 
     <div x-cloak wire:show="isDelete"
-        class="flex flex-col fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-lg p-6 z-50"
+        class="flex flex-col fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-lg p-4 sm:p-6 z-50 mx-4 w-11/12 max-w-md"
         @click.away="$wire.isDelete = false">
-        <h3 class="text-lg font-semibold mb-4">Konfirmasi Hapus</h3>
-        <p class="mb-6 text-gray-700">Apakah Anda yakin ingin menghapus foto profil Anda? Tindakan ini tidak dapat
+        <h3 class="text-lg font-semibold mb-3 sm:mb-4">Konfirmasi Hapus</h3>
+        <p class="mb-4 sm:mb-6 text-gray-700">Apakah Anda yakin ingin menghapus foto profil Anda? Tindakan ini tidak dapat
             dibatalkan.</p>
 
         <div class="flex justify-end space-x-3">
             <button type="button"
-                class="px-4 py-2 hover:cursor-pointer rounded bg-gray-300 hover:bg-gray-400 text-gray-700 font-semibold"
+                class="px-3 sm:px-4 py-2 hover:cursor-pointer rounded bg-gray-300 hover:bg-gray-400 text-gray-700 font-semibold text-sm"
                 @click="$wire.isDelete = false">
                 Batal
             </button>
 
             <button type="button"
-                class="px-4 py-2 hover:cursor-pointer rounded bg-red-600 hover:bg-red-700 text-white font-semibold"
+                class="px-3 sm:px-4 py-2 hover:cursor-pointer rounded bg-red-600 hover:bg-red-700 text-white font-semibold text-sm"
                 wire:click="deleteAvatar">
                 Hapus
             </button>
