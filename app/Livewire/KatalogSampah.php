@@ -40,14 +40,26 @@ class KatalogSampah extends Component
 
     public $mode = '';
 
-    protected $rules = [
-        'dataInput.nama' => 'required|string|max:255',
-        'dataInput.harga_per_kg' => 'required|numeric|min:0',
-    ];
+    protected function rules()
+    {      
+        return [
+            'dataInput.nama' => 'required|string|max:255',
+            'dataInput.harga_per_kg' => 'required|numeric|min:0',
+        ];
+    }
+
+    protected function validationAttributes()
+    {
+        return [
+        'dataInput.nama' => 'Nama',
+        'dataInput.harga_per_kg' => 'Harga per kg',
+        ];
+    }
+
 
     protected $validationAttributes = [
-        'dataInput.nama' => 'nama',
-        'dataInput.harga_per_kg' => 'harga per kg',
+        'dataInput.nama' => 'Nama',
+        'dataInput.harga_per_kg' => 'Harga per kg',
     ];
 
     public function editSampah(Sampah $sampah)

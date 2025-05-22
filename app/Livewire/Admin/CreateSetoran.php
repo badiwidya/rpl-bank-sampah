@@ -47,6 +47,8 @@ class CreateSetoran extends Component
 
             $this->validate([
                 'selectedSampah.*.berat' => 'required|numeric|min:0.01|max:2000'
+            ], [], [
+                'selectedSampah.*.berat' => 'Berat sampah'
             ]);
 
 

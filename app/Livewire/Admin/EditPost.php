@@ -32,7 +32,7 @@ class EditPost extends Component
     public $temporaryImages = [];
     public $existingImages = [];
 
-    public function rules()
+    protected function rules()
     {
         return [
             'postTitle' => 'required|string|min:4|max:255',
@@ -40,6 +40,16 @@ class EditPost extends Component
             'content' => ['required']
         ];
     }
+
+    protected function validationAttributes()
+    {
+        return [
+            'postTitle' => 'Judul postingan',
+            'categorySelected' => 'Kategori',
+            'content' => 'Isi postingan'
+        ];
+    }
+
 
     public function uploadImage($fileData)
     {
@@ -107,8 +117,8 @@ class EditPost extends Component
     
     public function update()
     {
+        $this->validate();
         try {
-            $this->validate();
 
             $cleanContent = Purifier::clean($this->content);
 

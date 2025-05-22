@@ -28,9 +28,12 @@
                         </button>
                     @endforeach
                 </div>
+                @error('categorySelected')
+                    <div class="text-sm text-red-400">{{ $message }}</div>
+                @enderror
             </div>
 
-            <div class="mb-4" wire:ignore>
+            <div wire:ignore>
                 <label>Konten</label>
                 <input id="x" x-ref="input" type="hidden" wire:model="content">
                 <trix-editor input="x" x-ref="editor"
@@ -39,10 +42,13 @@
                     @trix-attachment-add="handleImageUpload($event)"
                     @trix-attachment-remove="handleImageDelete($event)"></trix-editor>
             </div>
+            @error('categorySelected')
+                <div class="text-sm text-red-400">{{ $message }}</div>
+            @enderror
 
-            <div class="flex space-x-3">
-                <a href="{{ route('admin.dashboard.post') }}" 
-                   class="bg-gray-500 py-2 px-4 rounded-lg text-white hover:bg-gray-600 hover:cursor-pointer text-center">
+            <div class="mt-4 flex space-x-3">
+                <a href="{{ route('admin.dashboard.post') }}"
+                    class="bg-gray-500 py-2 px-4 rounded-lg text-white hover:bg-gray-600 hover:cursor-pointer text-center">
                     Batal
                 </a>
                 <button wire:click="update" type="button"
@@ -65,7 +71,9 @@
             document.addEventListener('trix-attachment-add', function(event) {
                 const attachment = event.attachment;
                 if (attachment) {
-                    attachment.setAttributes({ caption: '' });
+                    attachment.setAttributes({
+                        caption: ''
+                    });
                 }
             });
 
@@ -75,7 +83,9 @@
                     const attachments = editor.editor.getAttachments();
                     if (attachments && attachments.length > 0) {
                         attachments.forEach(attachment => {
-                            attachment.setAttributes({ caption: '' });
+                            attachment.setAttributes({
+                                caption: ''
+                            });
                         });
                     }
                 }
@@ -117,13 +127,13 @@
                     reader.readAsDataURL(attachment.file);
                 }
             }
-            
+
             function handleImageDelete(event) {
                 const attachment = event.attachment;
-                
+
                 if (attachment.attributes.values.url) {
                     const imageUrl = attachment.attributes.values.url;
-                    
+
                     @this.call('deleteImage', imageUrl)
                         .then(response => {
                             if (response.error) {

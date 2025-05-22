@@ -29,12 +29,21 @@ class CreatePost extends Component
     public $content = '';
     public $temporaryImages = [];
 
-    public function rules()
+    protected function rules()
     {
         return [
             'postTitle' => 'required|string|min:4|max:255',
             'categorySelected' => 'required',
             'content' => ['required']
+        ];
+    }
+
+    protected function validationAttributes()
+    {
+        return [
+            'postTitle' => 'Judul postingan',
+            'categorySelected' => 'Kategori',
+            'content' => 'Isi postingan'
         ];
     }
 
@@ -98,8 +107,8 @@ class CreatePost extends Component
 
     public function save()
     {
+        $this->validate();
         try {
-            $this->validate();
 
             $cleanContent = Purifier::clean($this->content);
 
