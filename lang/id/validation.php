@@ -160,6 +160,13 @@ return [
         ],
     ],
 
-    'attributes' => [],
+    'attributes' => [
+        'password' => 'Password',
+        'login' => 'Email/No. Telepon',
+        'nama_depan' => 'Nama depan',
+        'nama_belakang' => 'Nama belakang',
+        'no_telepon' => 'Nomor telepon',
+        'email' => 'Alamat email'
+    ],
 
 ];
