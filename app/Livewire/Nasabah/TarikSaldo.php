@@ -29,6 +29,15 @@ class TarikSaldo extends Component
         ];
     }
 
+    protected function validationAttributes()
+    {
+        return [
+            'paymentMethod' => 'Metode pembayaran',
+            'withdrawAmount' => 'Nominal',
+            'ewalletNumber' => 'Nomor e-wallet'
+        ];
+    }
+
     public function mount()
     {
         $this->user = Auth::user();
