@@ -15,7 +15,7 @@
             <!-- Right Panel -->
             <div class="w-1/2 flex items-center justify-center bg-white">
                 <div
-                    class="bg-white p-8 rounded-xl shadow-2xl border border-gray-100 w-80 text-center hover:shadow-emerald-200 transition">
+                    class="bg-white p-8 rounded-xl shadow-2xl border border-gray-100 w-80 text-center hover:shadow-emerald-200 hover:scale-105 transition-all duration-300">
                     <div class="flex justify-center mb-4">
                         <img src="https://img.icons8.com/ios-filled/50/0eb784/user-male-circle.png" alt="User Icon"
                              class="w-12 h-12"/>
