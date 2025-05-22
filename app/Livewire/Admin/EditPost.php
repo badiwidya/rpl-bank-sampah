@@ -41,6 +41,16 @@ class EditPost extends Component
         ];
     }
 
+    public function validationAttributes()
+    {
+        return [
+            'postTitle' => 'Judul postingan',
+            'categorySelected' => 'Kategori',
+            'content' => 'Isi postingan'
+        ];
+    }
+
+
     public function uploadImage($fileData)
     {
         try {
@@ -107,8 +117,8 @@ class EditPost extends Component
     
     public function update()
     {
+        $this->validate();
         try {
-            $this->validate();
 
             $cleanContent = Purifier::clean($this->content);
 

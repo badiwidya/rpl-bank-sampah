@@ -28,19 +28,25 @@
                     </button>
                 @endforeach
             </div>
+            @error('categorySelected')
+                <div class="text-sm text-red-400">{{ $message }}</div>
+            @enderror
         </div>
 
-        <div class="mb-4" wire:ignore>
+        <div wire:ignore>
             <label>Konten</label>
             <input id="x" x-ref="input" type="hidden" wire:model="content">
             <trix-editor input="x" x-ref="editor"
-                class="h-64 focus:ring-2 overflow-y-auto focus:outline-none focus:ring-emerald-400 transition duration-300 trix-editor trix-content"
+                class="h-64 focus:ring-2 overflow-y-auto focus:outline-none focus:ring-emerald-400 transition duration-300 @error('content') border-red-500 ring-red-500 @enderror trix-editor trix-content"
                 @trix-blur="$wire.set('content', $refs.input.value)" @trix-attachment-add="handleImageUpload($event)"
                 @trix-attachment-remove="handleImageDelete($event)"></trix-editor>
         </div>
+        @error('content')
+            <div class="text-sm text-red-400">{{ $message }}</div>
+        @enderror
 
         <button wire:click="save" type="button"
-            class="bg-emerald-600 py-2 rounded-lg text-white hover:bg-emerald-700 hover:cursor-pointer">Buat
+            class="mt-4 bg-emerald-600 py-2 rounded-lg text-white hover:bg-emerald-700 hover:cursor-pointer">Buat
             Postingan</button>
     </div>
 

@@ -38,6 +38,15 @@ class CreatePost extends Component
         ];
     }
 
+    public function validationAttributes()
+    {
+        return [
+            'postTitle' => 'Judul postingan',
+            'categorySelected' => 'Kategori',
+            'content' => 'Isi postingan'
+        ];
+    }
+
     public function uploadImage($fileData)
     {
         try {
@@ -98,8 +107,8 @@ class CreatePost extends Component
 
     public function save()
     {
+        $this->validate();
         try {
-            $this->validate();
 
             $cleanContent = Purifier::clean($this->content);
 
