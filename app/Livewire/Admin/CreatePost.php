@@ -29,7 +29,7 @@ class CreatePost extends Component
     public $content = '';
     public $temporaryImages = [];
 
-    public function rules()
+    protected function rules()
     {
         return [
             'postTitle' => 'required|string|min:4|max:255',
@@ -38,7 +38,7 @@ class CreatePost extends Component
         ];
     }
 
-    public function validationAttributes()
+    protected function validationAttributes()
     {
         return [
             'postTitle' => 'Judul postingan',

@@ -32,7 +32,7 @@ class EditPost extends Component
     public $temporaryImages = [];
     public $existingImages = [];
 
-    public function rules()
+    protected function rules()
     {
         return [
             'postTitle' => 'required|string|min:4|max:255',
@@ -41,7 +41,7 @@ class EditPost extends Component
         ];
     }
 
-    public function validationAttributes()
+    protected function validationAttributes()
     {
         return [
             'postTitle' => 'Judul postingan',
