@@ -30,33 +30,7 @@
                 </div>
             </header>
             
-            <!-- Post Images Gallery -->
-            @if($post->images->isNotEmpty())
-                <div class="relative">
-                    <div id="mainImage" class="overflow-hidden max-h-[500px]">
-                        <img 
-                            id="featuredImage"
-                            src="{{ asset('storage/' . $post->images->first()->image_url) }}" 
-                            alt="{{ $post->judul }}" 
-                            class="w-full object-cover"
-                        >
-                    </div>
-                    
-                    @if($post->images->count() > 1)
-                        <div class="p-4 flex flex-wrap gap-2 justify-center">
-                            @foreach($post->images as $index => $image)
-                                <img 
-                                    src="{{ asset('storage/' . $image->image_url) }}" 
-                                    alt="{{ $post->judul }} - Image {{ $index + 1 }}" 
-                                    class="h-20 w-20 object-cover rounded-md cursor-pointer hover:opacity-90 border-2 {{ $loop->first ? 'border-emerald-500' : 'border-transparent' }} transition-all"
-                                    onclick="changeMainImage('{{ asset('storage/' . $image->image_url) }}', this)"
-                                >
-                            @endforeach
-                        </div>
-                    @endif
-                </div>
-            @endif
-            
+         
             <!-- Post Content -->
             <div class="p-6 lg:p-8 trix-editor prose max-w-none flex flex-col items-center trix-content trix-nocaption">
                 {!! $post->konten !!}
