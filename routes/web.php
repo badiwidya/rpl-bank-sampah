@@ -11,6 +11,7 @@ use App\Livewire\Admin\CreateSetoran;
 use App\Livewire\Admin\ManagePost;
 use App\Livewire\Admin\Dashboard as AdminDashboard;
 use App\Livewire\Admin\EditPost;
+use App\Livewire\Admin\LogHargaSampah;
 use App\Livewire\Nasabah\Dashboard as NasabahDashboard;
 use App\Livewire\ChangePassword;
 use App\Livewire\KatalogSampah;
@@ -78,6 +79,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         // Sementara
         Route::get('/sampah', KatalogSampah::class)->name('sampah');
+        Route::get('/sampah/log', LogHargaSampah::class)->name('sampah.log');
         Route::get('/setoran', RiwayatSetoran::class)->name('setoran');
         Route::get('/setoran/create', CreateSetoran::class)->name('setoran.create');
         Route::get('/penarikan', PenarikanSaldo::class)->name('penarikan');

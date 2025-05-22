@@ -98,6 +98,11 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
         return $this->hasMany(TransaksiPenukaran::class);
     }
 
+    public function logs(): HasMany
+    {
+        return $this->hasMany(LogHargaSampah::class, 'user_id');
+    }
+
     protected function avatarUrl(): Attribute
     {
         return Attribute::make(

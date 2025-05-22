@@ -2,7 +2,10 @@
 
 namespace App\Livewire;
 
+use App\Models\LogHargaSampah;
 use App\Models\Sampah;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
@@ -100,7 +103,17 @@ class KatalogSampah extends Component
                 $this->dataInput['image_url'] = $this->imageUpload->store('sampah', 'public');
             }
 
-            $this->sampahToEdit->update($this->dataInput);
+            DB::transaction(function () {
+                if ($this->sampahToEdit->harga_per_kg !== $this->dataInput['harga_per_kg'])
+                    LogHargaSampah::create([
+                        'user_id' => Auth::id(),
+                        'sampah_id' => $this->sampahToEdit->id,
+                        'harga_lama' => $this->sampahToEdit->harga_per_kg,
+                        'harga_baru' => $this->dataInput['harga_per_kg']
+                    ]);
+                $this->sampahToEdit->update($this->dataInput);
+            });
+
             $this->editModal = false;
             $this->sampahToEdit = null;
             $this->resetInput();
