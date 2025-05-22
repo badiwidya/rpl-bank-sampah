@@ -6,7 +6,7 @@
         </h1>
     </div>
 
-    <div class="grid flex-1 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
         <!-- Card Statistik -->
         <div
             class="bg-white flex flex-col justify-between rounded-lg shadow-lg hover:scale-103 transition duration-300 p-6">
@@ -49,7 +49,7 @@
     </div>
 
     <!-- Grafik & Tabel -->
-    <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+    <div class="grid flex-1 grid-cols-1 lg:grid-cols-4 gap-6">
         <div class="lg:col-span-2 bg-white rounded-lg shadow-lg p-6">
             <div class="flex justify-between items-center mb-4">
                 <h2 class="font-semibold text-gray-600">Transaksi Sampah Terkini</h2>
