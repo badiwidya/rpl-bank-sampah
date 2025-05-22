@@ -47,6 +47,13 @@ class UserProfileSettings extends Component
         ];
     }
 
+    protected function validationAttributes()
+    {
+        return [
+            'image' => 'Foto profil',
+        ];
+    }
+
     public function mount()
     {
         $user = Auth::user();
