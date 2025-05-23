@@ -12,34 +12,34 @@
 
     <!-- Login Form -->
     <div
-        class="flex justify-center items-center h-full px-4 bg-cover bg-center"
+        class="flex justify-center items-center h-full px-3 sm:px-4 py-6 sm:py-8 bg-cover bg-center"
         style="
             background-image:
                 linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(0,61,38,1) 100%),
                 url('{{ asset('assets/bg-login-nasabah.jpeg') }}');
         "
     >
-        <div class="bg-white bg-opacity-90 backdrop-blur-md p-8 rounded-xl shadow-xl w-full max-w-md">
-            <div class="flex justify-center mb-6">
+        <div class="bg-white bg-opacity-90 backdrop-blur-md p-4 sm:p-6 md:p-8 rounded-lg sm:rounded-xl shadow-xl w-full max-w-xs sm:max-w-sm md:max-w-md">
+            <div class="flex justify-center mb-4 sm:mb-6">
                 <img src="https://img.icons8.com/ios-filled/50/0eb784/user-male-circle.png" alt="User Icon"
-                     class="w-12 h-12"/>
+                     class="w-10 h-10 sm:w-12 sm:h-12"/>
             </div>
             @error('wrong_route')
-            <div class="text-sm font-light text-red-500 text-center">{{ $message }}</div>
+            <div class="text-xs sm:text-sm font-light text-red-500 text-center">{{ $message }}</div>
             @enderror
             @if(session('status'))
-                <div class="text-sm font-light text-emerald-500 text-center">{{ session('status') }}</div>
+                <div class="text-xs sm:text-sm font-light text-emerald-500 text-center">{{ session('status') }}</div>
             @endif
-            <h2 class="text-xl font-semibold text-center">Masuk Sebagai Nasabah</h2>
-            <p class="text-center text-sm text-gray-500 mb-6">Akses akun Bank Sampah Anda</p>
+            <h2 class="text-lg sm:text-xl font-semibold text-center">Masuk Sebagai Nasabah</h2>
+            <p class="text-center text-xs sm:text-sm text-gray-500 mb-4 sm:mb-6">Akses akun Bank Sampah Anda</p>
 
             <form action="{{ route('nasabah.login.submit') }}" method="POST">
                 @csrf
                 <!-- Email -->
-                <div class="mb-4">
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Email/No. Telepon</label>
+                <div class="mb-3 sm:mb-4">
+                    <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Email/No. Telepon</label>
                     <input type="text" placeholder="Masukkan Email/No. Telepon" name="login"
-                           class="w-full px-4 py-2 placeholder:text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-400 transition duration-300 @error('login') border-red-500 focus:ring-red-500 @enderror"
+                           class="w-full px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm placeholder:text-xs sm:placeholder:text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-400 transition duration-300 @error('login') border-red-500 focus:ring-red-500 @enderror"
                            value="{{ old('login') }}"
                     />
                     @error('login')
@@ -48,14 +48,14 @@
                 </div>
 
                 <!-- Password -->
-                <div class="mb-4">
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                <div class="mb-3 sm:mb-4">
+                    <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Password</label>
                     <div class="relative">
                         <input type="password" placeholder="Masukkan Password" name="password"
-                               class="w-full px-4 py-2 placeholder:text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-400 transition duration-300 @error('password') border-red-500 focus:ring-red-500 @enderror"/>
+                               class="w-full px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm placeholder:text-xs sm:placeholder:text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-400 transition duration-300 @error('password') border-red-500 focus:ring-red-500 @enderror"/>
                         <div class="absolute inset-y-0 right-3 flex items-center cursor-pointer toggle-password">
                             <!-- Eye Open -->
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-400 eye-open"
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 eye-open"
                                  fill="none"
                                  viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -65,7 +65,7 @@
                             </svg>
 
                             <!-- Eye Closed -->
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-400 eye-closed hidden"
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 eye-closed hidden"
                                  fill="none"
                                  viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -79,8 +79,8 @@
                 </div>
 
                 <!-- Remember me & forgot -->
-                <div class="flex justify-between items-center mb-6 text-sm">
-                    <label class="flex items-center space-x-2 text-gray-600">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-0 mb-4 sm:mb-6 text-xs sm:text-sm">
+                    <label class="flex items-center space-x-1 sm:space-x-2 text-gray-600">
                         <input type="checkbox" name="remember_me" class="form-checkbox text-emerald-600"/>
                         <span>Ingat saya</span>
                     </label>
@@ -90,13 +90,13 @@
 
                 <!-- Login as Anchor -->
                 <button type="submit"
-                        class="block text-center w-full bg-emerald-600 text-white py-2 rounded-md hover:bg-emerald-700 transition cursor-pointer">
+                        class="block text-center w-full bg-emerald-600 text-white py-1.5 sm:py-2 text-xs sm:text-sm font-medium rounded-md hover:bg-emerald-700 transition cursor-pointer">
                     Login
                 </button>
             </form>
 
             <!-- Sign Up -->
-            <p class="text-center text-sm text-gray-600 mt-6">
+            <p class="text-center text-xs sm:text-sm text-gray-600 mt-4 sm:mt-6">
                 Belum punya akun? <a href="{{ route('nasabah.register.show') }}" class="text-emerald-600 hover:underline">Daftar
                     sekarang</a>
             </p>
