@@ -23,11 +23,10 @@
         <nav class="hidden md:flex h-full text-sm font-medium pr-6 lg:pr-8">
             <a href="/"
                 class="px-3 lg:px-4 flex items-center text-gray-700 hover:text-emerald-400 hover:underline transition duration-300">Beranda</a>
-            <a href="/about-us"
-                class="px-3 lg:px-4 flex items-center text-gray-700 hover:text-emerald-400 hover:underline transition duration-300">Tentang
-                Kami</a>
-            <a href="/profile"
-                class="px-3 lg:px-4 flex items-center text-gray-700 hover:text-emerald-400 hover:underline transition duration-300">Profil</a>
+            <a href="/posts"
+                class="px-3 lg:px-4 flex items-center text-gray-700 hover:text-emerald-400 hover:underline transition duration-300">Berita</a>
+            <a href="/#hubungi-kami"
+                class="px-3 lg:px-4 flex items-center text-gray-700 hover:text-emerald-400 hover:underline transition duration-300">Hubungi Kami</a>
         </nav>
     </header>
 

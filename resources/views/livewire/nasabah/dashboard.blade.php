@@ -26,7 +26,7 @@
                 </svg>
                 Daftar Harga Sampah
             </a>
-            <a href="/news"
+            <a href="/posts"
                 class="px-3 sm:px-4 md:px-5 py-2.5 sm:py-3 bg-white text-emerald-600 text-sm sm:text-base font-medium border-2 border-emerald-600 rounded-lg sm:rounded-xl hover:bg-emerald-50 transform hover:-translate-y-0.5 transition duration-300 flex items-center justify-center sm:justify-start w-full sm:w-auto">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5 mr-1.5 sm:mr-2" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
