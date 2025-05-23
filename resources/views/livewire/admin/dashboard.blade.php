@@ -106,7 +106,7 @@
         <div class="bg-white col-span-2 rounded-lg shadow-lg p-3 sm:p-4 md:p-6">
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-3 sm:mb-4 gap-2 sm:gap-0">
                 <h2 class="font-semibold text-sm sm:text-base text-gray-600">Penarikan Dengan Status Pending</h2>
-                <a href="{{ route('admin.dashboard.setoran') }}"
+                <a href="{{ route('admin.dashboard.penarikan') }}"
                     class="flex items-center gap-1 sm:gap-2 py-1 px-2 sm:px-4 bg-emerald-600 rounded text-white hover:bg-emerald-700 hover:cursor-pointer text-xs sm:text-sm transition duration-400"
                     wire:navigate>
                     Lihat Detail
