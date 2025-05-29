@@ -12,7 +12,7 @@ class ProfileService
 {
     public function updateAvatar(User $user, UploadedFile $avatar)
     {
-        $oldAvatarUrl = $user->avatar_url;
+        $oldAvatarUrl = $user->getRawOriginal('avatar_url');
 
         $avatarUrl = $avatar->store('avatars', 'public');
 
@@ -40,7 +40,7 @@ class ProfileService
 
     public function deleteAvatar(User $user)
     {
-        if ($user->avatar_url != null) {
+        if ($user->getRawOriginal('avatar_url') != null) {
             Storage::disk('public')->delete($user->getRawOriginal('avatar_url'));
             $user->update([
                 'avatar_url' => null,

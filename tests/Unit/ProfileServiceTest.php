@@ -18,7 +18,7 @@ test('Sukses update avatar dan taruh di storage', function () {
 
     $user = User::factory()->create();
 
-    expect($user->avatar_url)->toBe(null);
+    expect($user->getRawOriginal('avatar_url'))->toBe(null);
 
     $avatar = UploadedFile::fake()->image('avatar.jpg');
 
@@ -26,8 +26,8 @@ test('Sukses update avatar dan taruh di storage', function () {
 
     $service->updateAvatar($user, $avatar);
 
-    expect($user->fresh()->avatar_url)->toBeString();
-    Storage::disk('public')->assertExists($user->avatar_url);
+    expect($user->fresh()->getRawOriginal('avatar_url'))->toBeString();
+    Storage::disk('public')->assertExists($user->getRawOriginal('avatar_url'));
 
 });
 
@@ -35,11 +35,11 @@ test('Sukses update avatar yang sudah ada dan hapus avatar lama dari storage', f
     Storage::fake('public');
     $oldAvatar = UploadedFile::fake()->image('oldAvatar.jpg');
 
-    $oldPath = Storage::disk('public')->put('avatars', $oldAvatar);
+    $oldPath = $oldAvatar->store('avatars', 'public');
 
     $user = User::factory()->create(['avatar_url' => $oldPath]);
 
-    expect($user->avatar_url)->toBe($oldPath);
+    expect($user->getRawOriginal('avatar_url'))->toBe($oldPath);
 
     $avatar = UploadedFile::fake()->image('avatar.jpg');
 
@@ -47,9 +47,9 @@ test('Sukses update avatar yang sudah ada dan hapus avatar lama dari storage', f
 
     $service->updateAvatar($user, $avatar);
 
-    expect($user->fresh()->avatar_url)->toBeString();
+    expect($user->fresh()->getRawOriginal('avatar_url'))->toBeString();
+    Storage::disk('public')->assertExists($user->getRawOriginal('avatar_url'));
     Storage::disk('public')->assertMissing($oldPath);
-    Storage::disk('public')->assertExists($user->avatar_url);
 
 });
 
