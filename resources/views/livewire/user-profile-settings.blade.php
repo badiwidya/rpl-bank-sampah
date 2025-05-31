@@ -5,7 +5,7 @@
             <h1 class="font-medium text-xl sm:text-2xl">Pengaturan Profil</h1>
         </section>
 
-        <form wire:submit.prevent="{{ $mode === 'admin' ? 'updateAdmin' : 'updateNasabah' }}">
+        <form wire:submit.prevent="update">
             <section class="mb-6 sm:mb-8">
                 <h3 class="font-light text-md text-gray-600 mb-3 sm:mb-4">Foto Profil</h3>
                 <div class="flex flex-col sm:flex-row">
