@@ -26,7 +26,7 @@
             @click.away="open = false">
             <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Nomor Telepon Nasabah</label>
 
-            <input type="text" wire:model.live.debounce.100ms="searchuser" @focus="open = true"
+            <input type="text" wire:model.live.debounce.100ms="searchUser" @focus="open = true"
                 placeholder="Ketik nomor telepon..."
                 class="w-full px-3 sm:px-4 py-1.5 sm:py-2 border border-gray-300 rounded-md text-xs sm:text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-emerald-400 transition duration-300">
 

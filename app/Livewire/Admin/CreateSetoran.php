@@ -16,7 +16,7 @@ use Masmerise\Toaster\Toaster;
 
 class CreateSetoran extends Component
 {
-    public $searchuser = '';
+    public $searchUser = '';
     public $selectedUser;
     public $isUserSelected = false;
 
@@ -102,19 +102,26 @@ class CreateSetoran extends Component
 
     public function selectUser($phone)
     {
-        $this->searchuser = $phone;
+        $this->searchUser = $phone;
 
-        $this->selectedUser = User::where('no_telepon', $this->searchuser)->first();
+        $this->selectedUser = User::where('no_telepon', $this->searchUser)->first();
         $this->isUserSelected = true;
+    }
+
+    public function updatedSearchUser()
+    {
+        if ($this->searchUser === '') {
+            $this->isUserSelected = false;
+        }
     }
 
     public function filteredUsers()
     {
-        if (strlen($this->searchuser) < 2) {
+        if (strlen($this->searchUser) < 2) {
             return collect();
         }
 
-        $keywords = explode(' ', $this->searchuser);
+        $keywords = explode(' ', $this->searchUser);
 
         return User::where('role', 'nasabah')
             ->where(function ($query) use ($keywords) {
