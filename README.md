@@ -4,14 +4,14 @@ Aplikasi web Bank Sampah adalah sistem manajemen pengelolaan sampah berbasis Lar
 
 ## 📋 Daftar Isi
 
-- [🤓 Anggota Kelompok](#anggota-kelompok)
-- [🚀 Instalasi](#instalasi)
+- [🤓 Anggota Kelompok](#-anggota-kelompok)
+- [🚀 Instalasi](#-instalasi)
     - [Prasyarat](#prasyarat)
     - [Setup Proyek](#setup-proyek)
-- [🗃 Skema Database](#skema-database)
+- [🗃 Skema Database](#-skema-database)
     - [Tabel Utama](#tabel-utama)
     - [Relasi](#relasi)
-- [🚘 Routes](#routes)
+- [🚘 Routes](#-routes)
     - [Authentication Routes](#authentication-routes)
     - [Public Routes](#public-routes)
     - [Nasabah Routes](#nasabah-routes)
