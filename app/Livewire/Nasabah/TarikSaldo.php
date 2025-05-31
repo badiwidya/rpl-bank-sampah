@@ -25,15 +25,18 @@ class TarikSaldo extends Component
     {
         return [
             'paymentMethod' => [
-                'required', 
+                'required',
                 ValidationRule::in(['Gopay', 'Dana', 'OVO', 'LinkAja'])
             ],
             'withdrawAmount' => [
-                'required', 'numeric', 
-                'lte:' . $this->availableBalance,'gte:10000'
+                'required',
+                'numeric',
+                'lte:' . $this->availableBalance,
+                'gte:10000'
             ],
             'ewalletNumber' => [
-                'required', 'numeric', 
+                'required',
+                'numeric',
                 'digits_between:10,13'
             ]
         ];
@@ -76,7 +79,15 @@ class TarikSaldo extends Component
     {
         try {
             $this->validate();
-            
+
+            $alreadyRequested = $this->user
+                ->transaksiPenarikan()
+                ->where('status', 'pending')
+                ->sum('jumlah');
+
+            $this->availableBalance = $this->user->profile
+                ->saldo - $alreadyRequested;
+
             if ($this->availableBalance < $this->withdrawAmount) {
                 throw new \Exception('Saldo Anda tidak mencukupi!');
             }
