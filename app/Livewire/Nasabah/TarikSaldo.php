@@ -19,13 +19,30 @@ class TarikSaldo extends Component
 
     #[Validate]
     public $withdrawAmount;
+    public $availableBalance;
 
     protected function rules()
     {
         return [
-            'paymentMethod' => ['required', ValidationRule::in(['Gopay', 'Dana', 'OVO', 'LinkAja'])],
-            'withdrawAmount' => ['required', 'numeric', 'gte:10000'],
-            'ewalletNumber' => ['required', 'numeric', 'digits_between:10,13']
+            'paymentMethod' => [
+                'required', 
+                ValidationRule::in(['Gopay', 'Dana', 'OVO', 'LinkAja'])
+            ],
+            'withdrawAmount' => [
+                'required', 'numeric', 
+                'lte:' . $this->availableBalance,'gte:10000'
+            ],
+            'ewalletNumber' => [
+                'required', 'numeric', 
+                'digits_between:10,13'
+            ]
+        ];
+    }
+
+    protected function messages()
+    {
+        return [
+            'withdrawAmount.lte' => 'Anda sudah memiliki permintaan yang pending, saldo Anda tidak mencukupi'
         ];
     }
 
@@ -41,8 +58,18 @@ class TarikSaldo extends Component
     public function mount()
     {
         $this->user = Auth::user();
-        $this->paymentMethod = $this->user->profile->metode_pembayaran_utama;
+        $this->paymentMethod = $this->user->profile
+            ->metode_pembayaran_utama;
+
         $this->ewalletNumber = $this->user->no_telepon;
+
+        $alreadyRequested = $this->user
+            ->transaksiPenarikan()
+            ->where('status', 'pending')
+            ->sum('jumlah');
+
+        $this->availableBalance = $this->user->profile
+            ->saldo - $alreadyRequested;
     }
 
     public function action()
@@ -50,7 +77,7 @@ class TarikSaldo extends Component
         try {
             $this->validate();
             
-            if ($this->user->profile->saldo < $this->withdrawAmount) {
+            if ($this->availableBalance < $this->withdrawAmount) {
                 throw new \Exception('Saldo Anda tidak mencukupi!');
             }
 
