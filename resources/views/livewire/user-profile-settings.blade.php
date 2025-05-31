@@ -14,8 +14,8 @@
                             <img src="{{ asset($image->temporaryUrl()) }}" alt="preview profile picture"
                                 class="object-cover w-full h-full">
                         @else
-                            <img src="{{ asset(auth()->user()->avatar_url) }}"
-                                alt="{{ auth()->user()->nama_depan . ' profile picture' }}"
+                            <img src="{{ asset($user->avatar_url) }}"
+                                alt="{{ $user->nama_depan . ' profile picture' }}"
                                 class="object-cover w-full h-full">
                         @endif
                     </div>
@@ -23,7 +23,7 @@
                         <button type="button" @click="$refs.fileInput.click()"
                             class="border-emerald-600 text-emerald-600 py-2 w-36 border-1 rounded-3xl text-sm hover:text-white hover:cursor-pointer hover:bg-emerald-700 transition duration-300">Unggah
                             Foto Baru</button>
-                        @if (auth()->user()->avatar_url !== 'avatars/default.png')
+                        @if ($user->avatar_url !== 'avatars/default.png')
                             <button type="button" wire:click="isDelete = true"
                                 class="border-red-600 border-1 text-red-600 hover:text-white py-2 w-36 rounded-3xl text-sm hover:cursor-pointer hover:bg-red-600 transition duration-300">Hapus
                                 Foto Profil</button>
@@ -126,7 +126,7 @@
 
             <section class="mt-6 mb-6">
                 <h3 class="font-regular text-lg sm:text-xl text-black mb-3 sm:mb-4">Keamanan</h3>
-                <a href="{{ route(auth()->user()->role . '.dashboard.password') }}" wire:navigate
+                <a href="{{ route($user->role . '.dashboard.password') }}" wire:navigate
                     class="block w-fit px-6 sm:px-8 py-2 bg-emerald-600 rounded-2xl text-sm hover:bg-emerald-700 hover:cursor-pointer text-white">Ganti
                     Password</a>
             </section>

@@ -109,6 +109,8 @@ class UserProfileSettings extends Component
             if ($this->mode === 'nasabah')
                 $this->user->profile()->update(Arr::only($validated, ['alamat', 'metode_pembayaran_utama']));
 
+            $this->user->fresh();
+
             $this->dispatch('profile_updated')->to(Header::class);
 
             Toaster::success($message);
