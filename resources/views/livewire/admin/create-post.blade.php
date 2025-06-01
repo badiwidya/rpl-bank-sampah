@@ -61,29 +61,6 @@
                 }
             });
 
-            document.addEventListener('trix-attachment-add', function(event) {
-                const attachment = event.attachment;
-                if (attachment) {
-                    attachment.setAttributes({
-                        caption: ''
-                    });
-                }
-            });
-
-            document.addEventListener('trix-initialize', function() {
-                const editor = document.querySelector('trix-editor');
-                if (editor && editor.editor) {
-                    const attachments = editor.editor.getAttachments();
-                    if (attachments && attachments.length > 0) {
-                        attachments.forEach(attachment => {
-                            attachment.setAttributes({
-                                caption: ''
-                            });
-                        });
-                    }
-                }
-            });
-
             function handleImageUpload(event) {
                 const attachment = event.attachment;
 
@@ -91,7 +68,6 @@
                     attachment.setAttributes({
                         previewable: true,
                         url: URL.createObjectURL(attachment.file),
-                        caption: ''
                     });
 
                     const reader = new FileReader();
@@ -107,7 +83,6 @@
                                     attachment.setAttributes({
                                         url: response.url,
                                         href: response.url,
-                                        caption: ''
                                     });
                                 }
                             })
