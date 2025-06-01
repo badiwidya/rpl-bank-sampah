@@ -151,7 +151,6 @@ class EditPost extends Component
         $contentImageUrls = $matches[1] ?? [];
         
         foreach ($postImages as $postImage) {
-            $imageUrl = Storage::disk('public')->url($postImage->image_url);
             $isOrphaned = true;
             
             foreach ($contentImageUrls as $contentUrl) {
