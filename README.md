@@ -1,4 +1,4 @@
-# Proyek RPL - Bank Sampah IPB
+# Proyek RPL - Bank Sampah
 
 Aplikasi web Bank Sampah adalah sistem manajemen pengelolaan sampah berbasis Laravel yang memungkinkan nasabah untuk menukar sampah dengan saldo digital. Platform ini menyediakan fitur lengkap mulai dari registrasi nasabah, pencatatan transaksi setoran sampah, penarikan saldo, hingga pengelolaan konten edukasi tentang lingkungan. Sistem ini dirancang untuk mendukung program keberlanjutan lingkungan dengan memberikan insentif ekonomi kepada masyarakat yang aktif dalam pengelolaan sampah.
 

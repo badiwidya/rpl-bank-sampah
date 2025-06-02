@@ -47,7 +47,7 @@
 
     <p style="margin-bottom: 4px;">Terima kasih!</p>
 
-    <p>Hormat kami,<br>Bank Sampah IPB</p>
+    <p>Hormat kami,<br>Bank Sampah</p>
 
 </body>
 

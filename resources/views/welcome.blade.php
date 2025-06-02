@@ -3,8 +3,8 @@
     <section class="min-h-screen flex flex-col md:flex-row p-4 md:p-16 bg-gray-50">
         <div class="w-full md:w-[60%] flex flex-col mb-8 md:mb-0">
             <h1 class="text-4xl md:text-6xl text-emerald-700 font-semibold text-wrap mb-4">Selamat Datang di Bank Sampah
-                IPB</h1>
-            <div class="leading-7 md:leading-8 text-base md:text-lg">Bank Sampah IPB hadir sebagai solusi cerdas untuk
+                </h1>
+            <div class="leading-7 md:leading-8 text-base md:text-lg">Bank Sampah hadir sebagai solusi cerdas untuk
                 mengelola sampah dengan
                 lebih efisien dan bertanggung jawab. Kami menyediakan wadah bagi Anda untuk menukarkan sampah yang
                 terpilah dengan nilai ekonomi yang bermanfaat, sekaligus berkontribusi pada pelestarian lingkungan.
