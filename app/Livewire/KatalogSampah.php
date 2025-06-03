@@ -56,12 +56,6 @@ class KatalogSampah extends Component
         ];
     }
 
-
-    protected $validationAttributes = [
-        'dataInput.nama' => 'Nama',
-        'dataInput.harga_per_kg' => 'Harga per kg',
-    ];
-
     public function editSampah(Sampah $sampah)
     {
         $this->authorize('update', $sampah);
