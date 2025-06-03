@@ -44,7 +44,7 @@ class KatalogSampah extends Component
     {      
         return [
             'dataInput.nama' => 'required|string|max:255',
-            'dataInput.harga_per_kg' => 'required|numeric|min:0',
+            'dataInput.harga_per_kg' => 'required|numeric|gt:0',
         ];
     }
 

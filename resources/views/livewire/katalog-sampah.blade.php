@@ -301,7 +301,7 @@
                         <div
                             class="flex items-center border-gray-300 border rounded-md px-3 focus-within:ring-2 focus-within:ring-emerald-400 transition duration-300 @error('dataInput.harga_per_kg') border-red-500 focus-within:ring-red-500 @enderror">
                             <span class="text-xs sm:text-sm text-gray-700 select-none">Rp.</span>
-                            <input type="number" name="harga_per_kg" step="0.01" min="0"
+                            <input type="number" name="harga_per_kg" step="0.01" min="1"
                                 wire:model.defer="dataInput.harga_per_kg"
                                 class="flex-1 px-2 py-1.5 sm:py-2 text-xs sm:text-sm placeholder:text-sm border-none focus:outline-none" />
                             <span class="text-xs sm:text-sm text-gray-700 select-none">/kg</span>
