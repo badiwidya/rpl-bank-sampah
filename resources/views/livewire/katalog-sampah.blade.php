@@ -264,7 +264,7 @@
                     <div class="mb-4 flex flex-col sm:flex-row items-center gap-2">
                         <div
                             class="flex items-center justify-center h-28 w-28 sm:h-36 sm:w-36 overflow-hidden rounded-md border-1 border-dashed bg-gray-300">
-                            @if ($imageUpload)
+                            @if ($imageUpload && str_starts_with($imageUpload->getMimeType(), 'image/'))
                                 <img class="h-full w-full object-cover" src="{{ $imageUpload->temporaryUrl() }}"
                                     alt="Image upload">
                             @elseif($imagePath)

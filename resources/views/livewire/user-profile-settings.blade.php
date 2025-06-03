@@ -10,7 +10,7 @@
                 <h3 class="font-light text-md text-gray-600 mb-3 sm:mb-4">Foto Profil</h3>
                 <div class="flex flex-col sm:flex-row">
                     <div class="rounded-full border-1 border-gray-400 overflow-hidden w-20 h-20 sm:w-24 sm:h-24 mx-auto sm:mx-0 sm:mr-4 mb-4 sm:mb-0">
-                        @if ($image)
+                        @if ($image && str_starts_with($image->getMimeType(), 'image/'))
                             <img src="{{ asset($image->temporaryUrl()) }}" alt="preview profile picture"
                                 class="object-cover w-full h-full">
                         @else
