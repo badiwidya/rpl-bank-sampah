@@ -19,10 +19,10 @@
                 <div x-data="{ selected: @entangle('categorySelected') }" class="flex gap-1.5 sm:gap-2 flex-wrap">
                     @foreach ($categories as $category)
                         <button type="button" @click="selected = '{{ $category->id }}'"
-                            :class="selected === '{{ $category->id }}'
-                                ?
-                                'bg-emerald-300 text-emerald-700 border-emerald-400' :
-                                'bg-gray-200 text-gray-600 border-gray-400 hover:bg-gray-300'"
+                            :class="{
+                                'bg-emerald-300 text-emerald-700 border-emerald-400': selected == {{ $category->id }},
+                                'bg-gray-200 text-gray-600 border-gray-400 hover:bg-gray-300': selected != {{ $category->id }}
+                            }"
                             class="py-0.5 sm:py-1 px-2 sm:px-3 rounded-full text-xs sm:text-sm border transition-all duration-300 hover:cursor-pointer">
                             {{ $category->nama }}
                         </button>
