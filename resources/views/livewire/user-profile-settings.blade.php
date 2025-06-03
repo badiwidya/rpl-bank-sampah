@@ -92,7 +92,9 @@
 
                         <!-- Dropdown Trigger -->
                         <div @click="open = !open"
-                            class="w-full px-4 py-2 bg-white border border-gray-300 rounded-md text-sm text-gray-800 cursor-pointer focus:outline-none focus:ring-2 focus:ring-emerald-400 transition duration-300"
+                            class="w-full px-4 py-2 bg-white border border-gray-300 rounded-md text-sm text-gray-800 cursor-pointer focus:outline-none focus:ring-2 focus:ring-emerald-400 @error('metode_pembayaran_utama')
+                                ring-2 ring-red-500
+                            @enderror transition duration-300"
                             :class="{ 'ring-2 ring-emerald-400': open }">
                             <span x-text="selected || 'Pilih metode pembayaran'"></span>
                             <svg class="w-4 h-4 inline-block float-right mt-1 text-gray-600" fill="none"
@@ -111,6 +113,9 @@
                                 </div>
                             </template>
                         </div>
+                        @error('metode_pembayaran_utama')
+                            <div class="text-red-500 text-xs my-1 self-end">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="flex-1"></div>

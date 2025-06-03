@@ -57,7 +57,7 @@ class UserProfileSettings extends Component
             ],
             'image' => 'sometimes|nullable|mimes:jpg,jpeg,png|max:4096',
             'alamat' => 'sometimes|nullable|string',
-            'metode_pembayaran_utama' => 'sometimes|nullable|string',
+            'metode_pembayaran_utama' => 'sometimes|nullable|string|' . Rule::in(['Gopay', 'LinkAja', 'Dana', 'OVO']),
         ];
     }
 
@@ -65,6 +65,13 @@ class UserProfileSettings extends Component
     {
         return [
             'image' => 'Foto profil',
+        ];
+    }
+
+    protected function messages()
+    {
+        return [
+            'metode_pembayaran_utama.in' => 'Metode pembayaran tidak valid!'
         ];
     }
 
